@@ -1,5 +1,5 @@
 Fitter report for CPU
-Wed Jan 22 14:21:51 2025
+Wed Jan 22 21:52:53 2025
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -64,7 +64,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Fitter Summary                                                                   ;
 +------------------------------------+---------------------------------------------+
-; Fitter Status                      ; Successful - Wed Jan 22 14:21:51 2025       ;
+; Fitter Status                      ; Successful - Wed Jan 22 21:52:53 2025       ;
 ; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                      ; CPU                                         ;
 ; Top-level Entity Name              ; CPU                                         ;
@@ -1850,7 +1850,7 @@ Warning (15705): Ignored locations or region assignments to the following nodes
     Warning (15706): Node "VGA_R[2]" is assigned to location or region, but does not exist in design
     Warning (15706): Node "VGA_R[3]" is assigned to location or region, but does not exist in design
     Warning (15706): Node "VGA_VS" is assigned to location or region, but does not exist in design
-Info (171121): Fitter preparation operations ending: elapsed time is 00:00:02
+Info (171121): Fitter preparation operations ending: elapsed time is 00:00:01
 Info (14896): Fitter has disabled Advanced Physical Optimization because it is not supported for the current family.
 Info (170189): Fitter placement preparation operations beginning
 Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:00
@@ -1871,22 +1871,22 @@ Info (334004): Delay annotation completed successfully
 Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:01
 Warning (171167): Found invalid Fitter assignments. See the Ignored Assignments panel in the Fitter Compilation Report for more information.
 Warning (169177): 11 pins must meet Intel FPGA requirements for 3.3-, 3.0-, and 2.5-V interfaces. For more information, refer to AN 447: Interfacing MAX 10 Devices with 3.3/3.0/2.5-V LVTTL/LVCMOS I/O Systems.
-    Info (169178): Pin MAX10_CLK1_50 uses I/O standard 3.3-V LVTTL at P11 File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 27
-    Info (169178): Pin SW[0] uses I/O standard 3.3-V LVTTL at C10 File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 29
-    Info (169178): Pin SW[1] uses I/O standard 3.3-V LVTTL at C11 File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 29
-    Info (169178): Pin SW[2] uses I/O standard 3.3-V LVTTL at D12 File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 29
-    Info (169178): Pin SW[3] uses I/O standard 3.3-V LVTTL at C12 File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 29
-    Info (169178): Pin SW[4] uses I/O standard 3.3-V LVTTL at A12 File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 29
-    Info (169178): Pin SW[5] uses I/O standard 3.3-V LVTTL at B12 File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 29
-    Info (169178): Pin SW[6] uses I/O standard 3.3-V LVTTL at A13 File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 29
-    Info (169178): Pin SW[7] uses I/O standard 3.3-V LVTTL at A14 File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 29
-    Info (169178): Pin SW[8] uses I/O standard 3.3-V LVTTL at B14 File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 29
-    Info (169178): Pin SW[9] uses I/O standard 3.3-V LVTTL at F15 File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 29
+    Info (169178): Pin MAX10_CLK1_50 uses I/O standard 3.3-V LVTTL at P11 File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 9
+    Info (169178): Pin SW[0] uses I/O standard 3.3-V LVTTL at C10 File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 11
+    Info (169178): Pin SW[1] uses I/O standard 3.3-V LVTTL at C11 File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 11
+    Info (169178): Pin SW[2] uses I/O standard 3.3-V LVTTL at D12 File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 11
+    Info (169178): Pin SW[3] uses I/O standard 3.3-V LVTTL at C12 File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 11
+    Info (169178): Pin SW[4] uses I/O standard 3.3-V LVTTL at A12 File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 11
+    Info (169178): Pin SW[5] uses I/O standard 3.3-V LVTTL at B12 File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 11
+    Info (169178): Pin SW[6] uses I/O standard 3.3-V LVTTL at A13 File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 11
+    Info (169178): Pin SW[7] uses I/O standard 3.3-V LVTTL at A14 File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 11
+    Info (169178): Pin SW[8] uses I/O standard 3.3-V LVTTL at B14 File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 11
+    Info (169178): Pin SW[9] uses I/O standard 3.3-V LVTTL at F15 File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 11
 Info (144001): Generated suppressed messages file /home/enzo/Documents/risc-cpu/output_files/CPU.fit.smsg
 Info: Quartus Prime Fitter was successful. 0 errors, 130 warnings
     Info: Peak virtual memory: 2073 megabytes
-    Info: Processing ended: Wed Jan 22 14:21:51 2025
-    Info: Elapsed time: 00:00:08
+    Info: Processing ended: Wed Jan 22 21:52:54 2025
+    Info: Elapsed time: 00:00:09
     Info: Total CPU time (on all processors): 00:00:15
 
 

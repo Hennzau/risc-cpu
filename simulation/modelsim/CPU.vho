@@ -17,7 +17,7 @@
 -- PROGRAM "Quartus Prime"
 -- VERSION "Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition"
 
--- DATE "01/22/2025 14:21:57"
+-- DATE "01/22/2025 21:53:00"
 
 -- 
 -- Device: Altera 10M50DAF484C6GES Package FBGA484
@@ -78,13 +78,13 @@ ENTITY 	CPU IS
     PORT (
 	MAX10_CLK1_50 : IN std_logic;
 	SW : IN std_logic_vector(9 DOWNTO 0);
-	LEDR : OUT std_logic_vector(9 DOWNTO 0);
-	HEX0 : OUT std_logic_vector(7 DOWNTO 0);
-	HEX1 : OUT std_logic_vector(7 DOWNTO 0);
-	HEX2 : OUT std_logic_vector(7 DOWNTO 0);
-	HEX3 : OUT std_logic_vector(7 DOWNTO 0);
-	HEX4 : OUT std_logic_vector(7 DOWNTO 0);
-	HEX5 : OUT std_logic_vector(7 DOWNTO 0)
+	LEDR : BUFFER std_logic_vector(9 DOWNTO 0);
+	HEX0 : BUFFER std_logic_vector(7 DOWNTO 0);
+	HEX1 : BUFFER std_logic_vector(7 DOWNTO 0);
+	HEX2 : BUFFER std_logic_vector(7 DOWNTO 0);
+	HEX3 : BUFFER std_logic_vector(7 DOWNTO 0);
+	HEX4 : BUFFER std_logic_vector(7 DOWNTO 0);
+	HEX5 : BUFFER std_logic_vector(7 DOWNTO 0)
 	);
 END CPU;
 
