@@ -59,6 +59,19 @@ COMPONENT dig2dec
 	);
 END COMPONENT;
 
+COMPONENT fetch
+	PORT(
+			en 		: IN STD_LOGIC;
+			clk		: IN STD_LOGIC;
+			rst		: IN STD_LOGIC;
+			
+			jump		: IN STD_LOGIC;
+			
+			address_in	: in std_logic_vector(7 downto 0);
+			address_out	: out std_logic_vector(7 downto 0)	
+	);
+END COMPONENT;
+
 COMPONENT rom
 	PORT(	
 			en 		: IN STD_LOGIC;

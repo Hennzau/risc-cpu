@@ -10,12 +10,12 @@ entity seg7_lut is
         oSEG :  out std_logic_vector( 6  downto 0  )
     );
 	 
-end seg7_lut; 
+end entity; 
 
 
 architecture rtl of seg7_lut is 
-    begin
-        lut: process(iDIG)
+    begin 
+        process(iDIG)
         begin
             case  ( iDIG ) is 
                 when X"1"  => 
@@ -53,5 +53,5 @@ architecture rtl of seg7_lut is
 					 when others =>
 						  oSEG <= B"0111111" ;
             end case;
-        end process lut;
-end rtl; 
+        end process;
+end architecture; 
