@@ -17,7 +17,7 @@
 -- PROGRAM "Quartus Prime"
 -- VERSION "Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition"
 
--- DATE "01/22/2025 22:51:21"
+-- DATE "01/23/2025 13:17:23"
 
 -- 
 -- Device: Altera 10M50DAF484C6GES Package FBGA484
@@ -89,7 +89,6 @@ ENTITY 	CPU IS
 END CPU;
 
 -- Design Ports Information
--- MAX10_CLK1_50	=>  Location: PIN_P11,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
 -- SW[0]	=>  Location: PIN_C10,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
 -- SW[1]	=>  Location: PIN_C11,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
 -- SW[2]	=>  Location: PIN_D12,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
@@ -158,6 +157,7 @@ END CPU;
 -- HEX5[5]	=>  Location: PIN_N19,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 8mA
 -- HEX5[6]	=>  Location: PIN_N20,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 8mA
 -- HEX5[7]	=>  Location: PIN_L19,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 8mA
+-- MAX10_CLK1_50	=>  Location: PIN_P11,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
 
 
 ARCHITECTURE structure OF CPU IS
@@ -181,7 +181,6 @@ SIGNAL ww_HEX4 : std_logic_vector(7 DOWNTO 0);
 SIGNAL ww_HEX5 : std_logic_vector(7 DOWNTO 0);
 SIGNAL \~QUARTUS_CREATED_ADC1~_CHSEL_bus\ : std_logic_vector(4 DOWNTO 0);
 SIGNAL \~QUARTUS_CREATED_ADC2~_CHSEL_bus\ : std_logic_vector(4 DOWNTO 0);
-SIGNAL \MAX10_CLK1_50~input_o\ : std_logic;
 SIGNAL \SW[0]~input_o\ : std_logic;
 SIGNAL \SW[1]~input_o\ : std_logic;
 SIGNAL \SW[2]~input_o\ : std_logic;
@@ -192,6 +191,7 @@ SIGNAL \SW[6]~input_o\ : std_logic;
 SIGNAL \SW[7]~input_o\ : std_logic;
 SIGNAL \SW[8]~input_o\ : std_logic;
 SIGNAL \SW[9]~input_o\ : std_logic;
+SIGNAL \MAX10_CLK1_50~input_o\ : std_logic;
 SIGNAL \~QUARTUS_CREATED_GND~I_combout\ : std_logic;
 SIGNAL \~QUARTUS_CREATED_UNVM~~busy\ : std_logic;
 SIGNAL \~QUARTUS_CREATED_ADC1~~eoc\ : std_logic;
@@ -439,7 +439,7 @@ GENERIC MAP (
 	open_drain_output => "false")
 -- pragma translate_on
 PORT MAP (
-	i => GND,
+	i => VCC,
 	devoe => ww_devoe,
 	o => \HEX0[1]~output_o\);
 
@@ -475,7 +475,7 @@ GENERIC MAP (
 	open_drain_output => "false")
 -- pragma translate_on
 PORT MAP (
-	i => GND,
+	i => VCC,
 	devoe => ww_devoe,
 	o => \HEX0[4]~output_o\);
 
@@ -691,7 +691,7 @@ GENERIC MAP (
 	open_drain_output => "false")
 -- pragma translate_on
 PORT MAP (
-	i => GND,
+	i => VCC,
 	devoe => ww_devoe,
 	o => \HEX2[6]~output_o\);
 
@@ -787,7 +787,7 @@ GENERIC MAP (
 	open_drain_output => "false")
 -- pragma translate_on
 PORT MAP (
-	i => GND,
+	i => VCC,
 	devoe => ww_devoe,
 	o => \HEX3[6]~output_o\);
 
@@ -883,7 +883,7 @@ GENERIC MAP (
 	open_drain_output => "false")
 -- pragma translate_on
 PORT MAP (
-	i => GND,
+	i => VCC,
 	devoe => ww_devoe,
 	o => \HEX4[6]~output_o\);
 
@@ -979,7 +979,7 @@ GENERIC MAP (
 	open_drain_output => "false")
 -- pragma translate_on
 PORT MAP (
-	i => GND,
+	i => VCC,
 	devoe => ww_devoe,
 	o => \HEX5[6]~output_o\);
 
@@ -994,18 +994,6 @@ PORT MAP (
 	i => GND,
 	devoe => ww_devoe,
 	o => \HEX5[7]~output_o\);
-
--- Location: IOIBUF_X34_Y0_N29
-\MAX10_CLK1_50~input\ : fiftyfivenm_io_ibuf
--- pragma translate_off
-GENERIC MAP (
-	bus_hold => "false",
-	listen_to_nsleep_signal => "false",
-	simulate_z_as => "z")
--- pragma translate_on
-PORT MAP (
-	i => ww_MAX10_CLK1_50,
-	o => \MAX10_CLK1_50~input_o\);
 
 -- Location: IOIBUF_X51_Y54_N29
 \SW[0]~input\ : fiftyfivenm_io_ibuf
@@ -1126,6 +1114,18 @@ GENERIC MAP (
 PORT MAP (
 	i => ww_SW(9),
 	o => \SW[9]~input_o\);
+
+-- Location: IOIBUF_X34_Y0_N29
+\MAX10_CLK1_50~input\ : fiftyfivenm_io_ibuf
+-- pragma translate_off
+GENERIC MAP (
+	bus_hold => "false",
+	listen_to_nsleep_signal => "false",
+	simulate_z_as => "z")
+-- pragma translate_on
+PORT MAP (
+	i => ww_MAX10_CLK1_50,
+	o => \MAX10_CLK1_50~input_o\);
 
 -- Location: UNVM_X0_Y40_N40
 \~QUARTUS_CREATED_UNVM~\ : fiftyfivenm_unvm

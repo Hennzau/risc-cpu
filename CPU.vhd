@@ -6,7 +6,9 @@ library work;
 entity CPU is
 	port
 	(
-		MAX10_CLK1_50 : in STD_LOGIC;
+		MAX10_CLK1_50 	: in STD_LOGIC;
+--		MAX10_CLK2_50 	: in STD_LOGIC;
+--		ADC_CLK_10 		: in STD_LOGIC;
 
 		SW            : in STD_LOGIC_VECTOR(9 downto 0);
 		LEDR          : out STD_LOGIC_VECTOR(9 downto 0);
@@ -21,27 +23,6 @@ entity CPU is
 end CPU;
 
 architecture bdf_type of CPU is
-
-	component seg7_lut
-		port
-		(
-			iDIG : in STD_LOGIC_VECTOR(3 downto 0);
-			oSEG : out STD_LOGIC_VECTOR(6 downto 0)
-		);
-	end component;
-
-	component dig2dec
-		port
-		(
-			vol  : in STD_LOGIC_VECTOR(15 downto 0);
-			seg0 : out STD_LOGIC_VECTOR(3 downto 0);
-			seg1 : out STD_LOGIC_VECTOR(3 downto 0);
-			seg2 : out STD_LOGIC_VECTOR(3 downto 0);
-			seg3 : out STD_LOGIC_VECTOR(3 downto 0);
-			seg4 : out STD_LOGIC_VECTOR(3 downto 0)
-		);
-	end component;
-
 	component fetch
 		port
 		(
@@ -152,14 +133,14 @@ architecture bdf_type of CPU is
 		fetch_jump		: out std_logic;
 		fetch_address	: out std_logic_vector(7 downto 0);
 		
-		reg_rw			: out std_logic;
 		reg_address		: out std_logic_vector(3 downto 0);
 		reg_address_a	: out std_logic_vector(3 downto 0);
 		reg_address_b	: out std_logic_vector(3 downto 0);
 		
-		ram_rw		: out std_logic;
 		ram_address : out std_logic_vector(7 downto 0);
-		ram_data_in	: out std_logic_vector(7 downto 0)
+		ram_data_in	: out std_logic_vector(7 downto 0);
+		
+		decoder_out	: out std_logic_vector(7 downto 0)
 	);
 	end component;
 	
@@ -169,10 +150,24 @@ architecture bdf_type of CPU is
 		clk     	: in std_logic;
 		rst     	: in std_logic;
 		
-		stage		: out std_logic_vector(6 downto 0)
+		stage		: out std_logic_vector(7 downto 0)
 	);
 	end component;
+	
+	component screen
+	port
+	(
+		data  : in std_logic_vector(7 downto 0);
 
+		HEX0	: out STD_LOGIC_VECTOR(7 downto 0);
+		HEX1  : out STD_LOGIC_VECTOR(7 downto 0);
+		HEX2  : out STD_LOGIC_VECTOR(7 downto 0);
+		HEX3  : out STD_LOGIC_VECTOR(7 downto 0);
+		HEX4  : out STD_LOGIC_VECTOR(7 downto 0);
+		HEX5  : out STD_LOGIC_VECTOR(7 downto 0)	
+	);
+	end component;
+	
 	signal general_clk: STD_LOGIC;
 	signal general_rst: STD_LOGIC;
 	
@@ -213,7 +208,8 @@ architecture bdf_type of CPU is
 
 	signal decoder_en : std_logic;
 	
-	signal pipeline_stage : std_logic_vector(6 downto 0);
+	signal pipeline_stage : std_logic_vector(7 downto 0);
+	signal decoder_out : std_logic_vector(7 downto 0);
 	
 begin
 
@@ -287,10 +283,11 @@ begin
 		output => status_output
 	);
 	
-	rom_address <= fetch_address_in;
+	rom_address <= fetch_address_out;
 	status_input <= alu_status;
 	reg_data_in <= alu_result;
-	general_clk <= MAX10_CLK1_50;
+	general_clk <= MAX10_CLK1_50; 
+	general_rst <= '0';
 	
 	-- Decoder Instantiation
 	decoder_inst: decoder
@@ -311,14 +308,14 @@ begin
 		fetch_jump		=> fetch_jump,
 		fetch_address	=> fetch_address_in,
 		
-		reg_rw			=> reg_rw,
 		reg_address		=> reg_address,
 		reg_address_a	=> reg_address_a,
 		reg_address_b	=> reg_address_b,
 		
-		ram_rw		=> ram_rw,
 		ram_address => ram_address,
-		ram_data_in	=> ram_data_in
+		ram_data_in	=> ram_data_in,
+		
+		decoder_out => decoder_out
 	);
 	
 	-- Pipeline Instantation
@@ -338,5 +335,22 @@ begin
 	ram_en <= pipeline_stage(4);
 	alu_en <= pipeline_stage(5);
 	status_en <= pipeline_stage(6);
+	
+	ram_rw <= pipeline_stage(7);
+	reg_rw <= pipeline_stage(7);
+	
+	-- Screen
+	
+	screen_inst: screen
+	port map (
+		data => decoder_out,
+		
+		HEX0 => HEX0,
+		HEX1 => HEX1,
+		HEX2 => HEX2,
+		HEX3 => HEX3,
+		HEX4 => HEX4,
+		HEX5 => HEX5
+	);
 	
 end bdf_type;

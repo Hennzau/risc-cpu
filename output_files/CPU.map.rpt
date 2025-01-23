@@ -1,5 +1,5 @@
 Analysis & Synthesis report for CPU
-Thu Jan 23 09:43:39 2025
+Thu Jan 23 13:17:11 2025
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -13,11 +13,23 @@ Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. General Register Statistics
-  9. Port Connectivity Checks: "fetch:fetch_inst"
- 10. Post-Synthesis Netlist Statistics for Top Partition
- 11. Elapsed Time Per Partition
- 12. Analysis & Synthesis Messages
+  8. Registers Removed During Synthesis
+  9. Removed Registers Triggering Further Register Optimizations
+ 10. General Register Statistics
+ 11. Multiplexer Restructuring Statistics (No Restructuring Performed)
+ 12. Parameter Settings for Inferred Entity Instance: screen:screen_inst|dig2dec:b2v_inst6|lpm_divide:Div0
+ 13. Parameter Settings for Inferred Entity Instance: screen:screen_inst|dig2dec:b2v_inst6|lpm_divide:Div1
+ 14. Port Connectivity Checks: "screen:screen_inst|dig2dec:b2v_inst6"
+ 15. Port Connectivity Checks: "pipeline:pipeline_inst"
+ 16. Port Connectivity Checks: "status:status_inst"
+ 17. Port Connectivity Checks: "reg:reg_inst"
+ 18. Port Connectivity Checks: "alu:alu_inst"
+ 19. Port Connectivity Checks: "ram:ram_inst"
+ 20. Port Connectivity Checks: "rom:rom_inst"
+ 21. Port Connectivity Checks: "fetch:fetch_inst"
+ 22. Post-Synthesis Netlist Statistics for Top Partition
+ 23. Elapsed Time Per Partition
+ 24. Analysis & Synthesis Messages
 
 
 
@@ -44,7 +56,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Jan 23 09:43:39 2025       ;
+; Analysis & Synthesis Status        ; Successful - Thu Jan 23 13:17:11 2025       ;
 ; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                      ; CPU                                         ;
 ; Top-level Entity Name              ; CPU                                         ;
@@ -165,52 +177,67 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                      ;
-+----------------------------------+-----------------+-----------------+--------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path               ; Library ;
-+----------------------------------+-----------------+-----------------+--------------------------------------------+---------+
-; CPU.vhd                          ; yes             ; User VHDL File  ; /home/enzo/Documents/risc-cpu/CPU.vhd      ;         ;
-; rom.vhd                          ; yes             ; User VHDL File  ; /home/enzo/Documents/risc-cpu/rom.vhd      ;         ;
-; ram.vhd                          ; yes             ; User VHDL File  ; /home/enzo/Documents/risc-cpu/ram.vhd      ;         ;
-; reg.vhd                          ; yes             ; User VHDL File  ; /home/enzo/Documents/risc-cpu/reg.vhd      ;         ;
-; fetch.vhd                        ; yes             ; User VHDL File  ; /home/enzo/Documents/risc-cpu/fetch.vhd    ;         ;
-; alu.vhd                          ; yes             ; User VHDL File  ; /home/enzo/Documents/risc-cpu/alu.vhd      ;         ;
-; status.vhd                       ; yes             ; User VHDL File  ; /home/enzo/Documents/risc-cpu/status.vhd   ;         ;
-; decoder.vhd                      ; yes             ; User VHDL File  ; /home/enzo/Documents/risc-cpu/decoder.vhd  ;         ;
-; pipeline.vhd                     ; yes             ; User VHDL File  ; /home/enzo/Documents/risc-cpu/pipeline.vhd ;         ;
-+----------------------------------+-----------------+-----------------+--------------------------------------------+---------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                           ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                       ; Library ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------------+---------+
+; dig2dec.vhd                      ; yes             ; User VHDL File               ; /home/enzo/Documents/risc-cpu/dig2dec.vhd                                          ;         ;
+; CPU.vhd                          ; yes             ; User VHDL File               ; /home/enzo/Documents/risc-cpu/CPU.vhd                                              ;         ;
+; rom.vhd                          ; yes             ; User VHDL File               ; /home/enzo/Documents/risc-cpu/rom.vhd                                              ;         ;
+; ram.vhd                          ; yes             ; User VHDL File               ; /home/enzo/Documents/risc-cpu/ram.vhd                                              ;         ;
+; reg.vhd                          ; yes             ; User VHDL File               ; /home/enzo/Documents/risc-cpu/reg.vhd                                              ;         ;
+; seg7_lut.vhd                     ; yes             ; User VHDL File               ; /home/enzo/Documents/risc-cpu/seg7_lut.vhd                                         ;         ;
+; fetch.vhd                        ; yes             ; User VHDL File               ; /home/enzo/Documents/risc-cpu/fetch.vhd                                            ;         ;
+; alu.vhd                          ; yes             ; User VHDL File               ; /home/enzo/Documents/risc-cpu/alu.vhd                                              ;         ;
+; status.vhd                       ; yes             ; User VHDL File               ; /home/enzo/Documents/risc-cpu/status.vhd                                           ;         ;
+; decoder.vhd                      ; yes             ; User VHDL File               ; /home/enzo/Documents/risc-cpu/decoder.vhd                                          ;         ;
+; pipeline.vhd                     ; yes             ; User VHDL File               ; /home/enzo/Documents/risc-cpu/pipeline.vhd                                         ;         ;
+; screen.vhd                       ; yes             ; User VHDL File               ; /home/enzo/Documents/risc-cpu/screen.vhd                                           ;         ;
+; lpm_divide.tdf                   ; yes             ; Megafunction                 ; /home/enzo/intelFPGA_lite/20.1/quartus/libraries/megafunctions/lpm_divide.tdf      ;         ;
+; abs_divider.inc                  ; yes             ; Megafunction                 ; /home/enzo/intelFPGA_lite/20.1/quartus/libraries/megafunctions/abs_divider.inc     ;         ;
+; sign_div_unsign.inc              ; yes             ; Megafunction                 ; /home/enzo/intelFPGA_lite/20.1/quartus/libraries/megafunctions/sign_div_unsign.inc ;         ;
+; aglobal201.inc                   ; yes             ; Megafunction                 ; /home/enzo/intelFPGA_lite/20.1/quartus/libraries/megafunctions/aglobal201.inc      ;         ;
+; db/lpm_divide_otl.tdf            ; yes             ; Auto-Generated Megafunction  ; /home/enzo/Documents/risc-cpu/db/lpm_divide_otl.tdf                                ;         ;
+; db/sign_div_unsign_qlh.tdf       ; yes             ; Auto-Generated Megafunction  ; /home/enzo/Documents/risc-cpu/db/sign_div_unsign_qlh.tdf                           ;         ;
+; db/alt_u_div_uhe.tdf             ; yes             ; Auto-Generated Megafunction  ; /home/enzo/Documents/risc-cpu/db/alt_u_div_uhe.tdf                                 ;         ;
+; db/add_sub_t3c.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/enzo/Documents/risc-cpu/db/add_sub_t3c.tdf                                   ;         ;
+; db/add_sub_u3c.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/enzo/Documents/risc-cpu/db/add_sub_u3c.tdf                                   ;         ;
+; db/lpm_divide_ltl.tdf            ; yes             ; Auto-Generated Megafunction  ; /home/enzo/Documents/risc-cpu/db/lpm_divide_ltl.tdf                                ;         ;
+; db/sign_div_unsign_nlh.tdf       ; yes             ; Auto-Generated Megafunction  ; /home/enzo/Documents/risc-cpu/db/sign_div_unsign_nlh.tdf                           ;         ;
+; db/alt_u_div_ohe.tdf             ; yes             ; Auto-Generated Megafunction  ; /home/enzo/Documents/risc-cpu/db/alt_u_div_ohe.tdf                                 ;         ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------------+---------+
 
 
-+-------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                 ;
-+---------------------------------------------+---------------+
-; Resource                                    ; Usage         ;
-+---------------------------------------------+---------------+
-;                                             ;               ;
-; Total combinational functions               ; 0             ;
-; Logic element usage by number of LUT inputs ;               ;
-;     -- 4 input functions                    ; 0             ;
-;     -- 3 input functions                    ; 0             ;
-;     -- <=2 input functions                  ; 0             ;
-;                                             ;               ;
-; Logic elements by mode                      ;               ;
-;     -- normal mode                          ; 0             ;
-;     -- arithmetic mode                      ; 0             ;
-;                                             ;               ;
-; Total registers                             ; 0             ;
-;     -- Dedicated logic registers            ; 0             ;
-;     -- I/O registers                        ; 0             ;
-;                                             ;               ;
-; I/O pins                                    ; 69            ;
-;                                             ;               ;
-; Embedded Multiplier 9-bit elements          ; 0             ;
-;                                             ;               ;
-; Maximum fan-out node                        ; MAX10_CLK1_50 ;
-; Maximum fan-out                             ; 1             ;
-; Total fan-out                               ; 69            ;
-; Average fan-out                             ; 0.50          ;
-+---------------------------------------------+---------------+
++-----------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary         ;
++---------------------------------------------+-------+
+; Resource                                    ; Usage ;
++---------------------------------------------+-------+
+;                                             ;       ;
+; Total combinational functions               ; 0     ;
+; Logic element usage by number of LUT inputs ;       ;
+;     -- 4 input functions                    ; 0     ;
+;     -- 3 input functions                    ; 0     ;
+;     -- <=2 input functions                  ; 0     ;
+;                                             ;       ;
+; Logic elements by mode                      ;       ;
+;     -- normal mode                          ; 0     ;
+;     -- arithmetic mode                      ; 0     ;
+;                                             ;       ;
+; Total registers                             ; 0     ;
+;     -- Dedicated logic registers            ; 0     ;
+;     -- I/O registers                        ; 0     ;
+;                                             ;       ;
+; I/O pins                                    ; 69    ;
+;                                             ;       ;
+; Embedded Multiplier 9-bit elements          ; 0     ;
+;                                             ;       ;
+; Maximum fan-out node                        ; SW[0] ;
+; Maximum fan-out                             ; 1     ;
+; Total fan-out                               ; 69    ;
+; Average fan-out                             ; 0.50  ;
++---------------------------------------------+-------+
 
 
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -221,6 +248,74 @@ https://fpgasoftware.intel.com/eula.
 ; |CPU                       ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 69   ; 0            ; 0          ; |CPU                ; CPU         ; work         ;
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++--------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                               ;
++------------------------------------------------+-------------------------------------------------+
+; Register name                                  ; Reason for Removal                              ;
++------------------------------------------------+-------------------------------------------------+
+; rom:rom_inst|data[23]                          ; Stuck at VCC due to stuck port data_in          ;
+; rom:rom_inst|data[21,22]                       ; Stuck at GND due to stuck port data_in          ;
+; rom:rom_inst|data[20]                          ; Stuck at VCC due to stuck port data_in          ;
+; rom:rom_inst|data[9,11,13,15,25]               ; Stuck at GND due to stuck port data_in          ;
+; decoder:decoder_inst|op[4]                     ; Stuck at VCC due to stuck port data_in          ;
+; decoder:decoder_inst|op[2,3]                   ; Stuck at GND due to stuck port data_in          ;
+; decoder:decoder_inst|op[1]                     ; Stuck at VCC due to stuck port data_in          ;
+; decoder:decoder_inst|A[7]                      ; Stuck at GND due to stuck port data_in          ;
+; decoder:decoder_inst|format[1]                 ; Stuck at GND due to stuck port data_in          ;
+; decoder:decoder_inst|A[1,3,5]                  ; Stuck at GND due to stuck port data_in          ;
+; decoder:decoder_inst|decoder_out[1,3,5,7]      ; Stuck at GND due to stuck port data_in          ;
+; pipeline:pipeline_inst|\pipeline:counter[3]    ; Stuck at GND due to stuck port data_in          ;
+; rom:rom_inst|data[8,10,12,19,24]               ; Merged with rom:rom_inst|data[14]               ;
+; decoder:decoder_inst|format[0]                 ; Merged with decoder:decoder_inst|A[6]           ;
+; decoder:decoder_inst|op[0]                     ; Merged with decoder:decoder_inst|A[6]           ;
+; decoder:decoder_inst|A[0,2,4]                  ; Merged with decoder:decoder_inst|A[6]           ;
+; decoder:decoder_inst|decoder_out[0,2,4]        ; Merged with decoder:decoder_inst|decoder_out[6] ;
+; decoder:decoder_inst|decoder_out[6]            ; Stuck at VCC due to stuck port data_in          ;
+; decoder:decoder_inst|A[6]                      ; Lost fanout                                     ;
+; pipeline:pipeline_inst|stage[2]                ; Lost fanout                                     ;
+; rom:rom_inst|data[14]                          ; Lost fanout                                     ;
+; pipeline:pipeline_inst|\pipeline:counter[0..2] ; Lost fanout                                     ;
+; fetch:fetch_inst|address[0..7]                 ; Lost fanout                                     ;
+; pipeline:pipeline_inst|stage[0,1]              ; Lost fanout                                     ;
+; Total Number of Removed Registers = 53         ;                                                 ;
++------------------------------------------------+-------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                                  ;
++---------------------------------------------+---------------------------+------------------------------------------------------------------------------------+
+; Register name                               ; Reason for Removal        ; Registers Removed due to This Register                                             ;
++---------------------------------------------+---------------------------+------------------------------------------------------------------------------------+
+; rom:rom_inst|data[23]                       ; Stuck at VCC              ; decoder:decoder_inst|op[4], decoder:decoder_inst|decoder_out[7],                   ;
+;                                             ; due to stuck port data_in ; decoder:decoder_inst|decoder_out[5], decoder:decoder_inst|decoder_out[3],          ;
+;                                             ;                           ; decoder:decoder_inst|decoder_out[1], decoder:decoder_inst|decoder_out[6],          ;
+;                                             ;                           ; decoder:decoder_inst|A[6], pipeline:pipeline_inst|stage[2], rom:rom_inst|data[14], ;
+;                                             ;                           ; pipeline:pipeline_inst|\pipeline:counter[2], fetch:fetch_inst|address[0],          ;
+;                                             ;                           ; fetch:fetch_inst|address[1], fetch:fetch_inst|address[2],                          ;
+;                                             ;                           ; fetch:fetch_inst|address[3], fetch:fetch_inst|address[4],                          ;
+;                                             ;                           ; fetch:fetch_inst|address[5], fetch:fetch_inst|address[6],                          ;
+;                                             ;                           ; pipeline:pipeline_inst|stage[1], pipeline:pipeline_inst|stage[0]                   ;
+; pipeline:pipeline_inst|\pipeline:counter[3] ; Stuck at GND              ; pipeline:pipeline_inst|\pipeline:counter[0],                                       ;
+;                                             ; due to stuck port data_in ; pipeline:pipeline_inst|\pipeline:counter[1]                                        ;
+; rom:rom_inst|data[22]                       ; Stuck at GND              ; decoder:decoder_inst|op[3]                                                         ;
+;                                             ; due to stuck port data_in ;                                                                                    ;
+; rom:rom_inst|data[21]                       ; Stuck at GND              ; decoder:decoder_inst|op[2]                                                         ;
+;                                             ; due to stuck port data_in ;                                                                                    ;
+; rom:rom_inst|data[20]                       ; Stuck at VCC              ; decoder:decoder_inst|op[1]                                                         ;
+;                                             ; due to stuck port data_in ;                                                                                    ;
+; rom:rom_inst|data[15]                       ; Stuck at GND              ; decoder:decoder_inst|A[7]                                                          ;
+;                                             ; due to stuck port data_in ;                                                                                    ;
+; rom:rom_inst|data[25]                       ; Stuck at GND              ; decoder:decoder_inst|format[1]                                                     ;
+;                                             ; due to stuck port data_in ;                                                                                    ;
+; rom:rom_inst|data[13]                       ; Stuck at GND              ; decoder:decoder_inst|A[5]                                                          ;
+;                                             ; due to stuck port data_in ;                                                                                    ;
+; rom:rom_inst|data[11]                       ; Stuck at GND              ; decoder:decoder_inst|A[3]                                                          ;
+;                                             ; due to stuck port data_in ;                                                                                    ;
+; rom:rom_inst|data[9]                        ; Stuck at GND              ; decoder:decoder_inst|A[1]                                                          ;
+;                                             ; due to stuck port data_in ;                                                                                    ;
++---------------------------------------------+---------------------------+------------------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -238,13 +333,133 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "fetch:fetch_inst"                                                                          ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port        ; Type   ; Severity ; Details                                                                             ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-; address_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (No Restructuring Performed)                                                                                              ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------+
+; 1:1                ; 8 bits    ; 0 LEs         ; 0 LEs                ; 0 LEs                  ; Yes        ; |CPU|fetch:fetch_inst|address[0]                 ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |CPU|decoder:decoder_inst|decoder_out[6]         ;
+; 16:1               ; 3 bits    ; 30 LEs        ; 3 LEs                ; 27 LEs                 ; Yes        ; |CPU|pipeline:pipeline_inst|\pipeline:counter[3] ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: screen:screen_inst|dig2dec:b2v_inst6|lpm_divide:Div0 ;
++------------------------+----------------+-------------------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                                        ;
++------------------------+----------------+-------------------------------------------------------------+
+; LPM_WIDTHN             ; 16             ; Untyped                                                     ;
+; LPM_WIDTHD             ; 4              ; Untyped                                                     ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                                     ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                                     ;
+; LPM_PIPELINE           ; 0              ; Untyped                                                     ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                                     ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                                     ;
+; CBXI_PARAMETER         ; lpm_divide_otl ; Untyped                                                     ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                                     ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                                     ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                                  ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                                ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                                ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                              ;
++------------------------+----------------+-------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: screen:screen_inst|dig2dec:b2v_inst6|lpm_divide:Div1 ;
++------------------------+----------------+-------------------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                                        ;
++------------------------+----------------+-------------------------------------------------------------+
+; LPM_WIDTHN             ; 13             ; Untyped                                                     ;
+; LPM_WIDTHD             ; 4              ; Untyped                                                     ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                                     ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                                     ;
+; LPM_PIPELINE           ; 0              ; Untyped                                                     ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                                     ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                                     ;
+; CBXI_PARAMETER         ; lpm_divide_ltl ; Untyped                                                     ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                                     ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                                     ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                                  ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                                ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                                ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                              ;
++------------------------+----------------+-------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------+
+; Port Connectivity Checks: "screen:screen_inst|dig2dec:b2v_inst6" ;
++------------+-------+----------+----------------------------------+
+; Port       ; Type  ; Severity ; Details                          ;
++------------+-------+----------+----------------------------------+
+; vol[15..8] ; Input ; Info     ; Stuck at GND                     ;
++------------+-------+----------+----------------------------------+
+
+
++----------------------------------------------------+
+; Port Connectivity Checks: "pipeline:pipeline_inst" ;
++------+-------+----------+--------------------------+
+; Port ; Type  ; Severity ; Details                  ;
++------+-------+----------+--------------------------+
+; rst  ; Input ; Info     ; Stuck at GND             ;
++------+-------+----------+--------------------------+
+
+
++------------------------------------------------+
+; Port Connectivity Checks: "status:status_inst" ;
++------+-------+----------+----------------------+
+; Port ; Type  ; Severity ; Details              ;
++------+-------+----------+----------------------+
+; rst  ; Input ; Info     ; Stuck at GND         ;
++------+-------+----------+----------------------+
+
+
++------------------------------------------+
+; Port Connectivity Checks: "reg:reg_inst" ;
++------+-------+----------+----------------+
+; Port ; Type  ; Severity ; Details        ;
++------+-------+----------+----------------+
+; rst  ; Input ; Info     ; Stuck at GND   ;
++------+-------+----------+----------------+
+
+
++------------------------------------------+
+; Port Connectivity Checks: "alu:alu_inst" ;
++------+-------+----------+----------------+
+; Port ; Type  ; Severity ; Details        ;
++------+-------+----------+----------------+
+; rst  ; Input ; Info     ; Stuck at GND   ;
++------+-------+----------+----------------+
+
+
++------------------------------------------+
+; Port Connectivity Checks: "ram:ram_inst" ;
++------+-------+----------+----------------+
+; Port ; Type  ; Severity ; Details        ;
++------+-------+----------+----------------+
+; rst  ; Input ; Info     ; Stuck at GND   ;
++------+-------+----------+----------------+
+
+
++------------------------------------------+
+; Port Connectivity Checks: "rom:rom_inst" ;
++------+-------+----------+----------------+
+; Port ; Type  ; Severity ; Details        ;
++------+-------+----------+----------------+
+; rst  ; Input ; Info     ; Stuck at GND   ;
++------+-------+----------+----------------+
+
+
++----------------------------------------------+
+; Port Connectivity Checks: "fetch:fetch_inst" ;
++------+-------+----------+--------------------+
+; Port ; Type  ; Severity ; Details            ;
++------+-------+----------+--------------------+
+; rst  ; Input ; Info     ; Stuck at GND       ;
++------+-------+----------+--------------------+
 
 
 +-----------------------------------------------------+
@@ -253,9 +468,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 69                          ;
-; cycloneiii_lcell_comb ; 1                           ;
-;     normal            ; 1                           ;
-;         0 data inputs ; 1                           ;
+; cycloneiii_lcell_comb ; 2                           ;
+;     normal            ; 2                           ;
+;         0 data inputs ; 2                           ;
 ;                       ;                             ;
 ; Max LUT depth         ; 0.00                        ;
 ; Average LUT depth     ; 0.00                        ;
@@ -277,7 +492,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Thu Jan 23 09:43:28 2025
+    Info: Processing started: Thu Jan 23 13:17:03 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off CPU -c CPU
 Info (16303): Aggressive Performance optimization mode selected -- timing performance will be prioritized at the potential cost of increased logic area and compilation time
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -286,7 +501,7 @@ Info (12021): Found 2 design units, including 1 entities, in source file dig2dec
     Info (12022): Found design unit 1: dig2dec-rtl File: /home/enzo/Documents/risc-cpu/dig2dec.vhd Line: 16
     Info (12023): Found entity 1: dig2dec File: /home/enzo/Documents/risc-cpu/dig2dec.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file CPU.vhd
-    Info (12022): Found design unit 1: CPU-bdf_type File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 23
+    Info (12022): Found design unit 1: CPU-bdf_type File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 25
     Info (12023): Found entity 1: CPU File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 6
 Info (12021): Found 2 design units, including 1 entities, in source file rom.vhd
     Info (12022): Found design unit 1: rom-rom_a File: /home/enzo/Documents/risc-cpu/rom.vhd Line: 20
@@ -313,99 +528,135 @@ Info (12021): Found 2 design units, including 1 entities, in source file decoder
     Info (12022): Found design unit 1: decoder-decoder_a File: /home/enzo/Documents/risc-cpu/decoder.vhd Line: 38
     Info (12023): Found entity 1: decoder File: /home/enzo/Documents/risc-cpu/decoder.vhd Line: 6
 Info (12021): Found 2 design units, including 1 entities, in source file pipeline.vhd
-    Info (12022): Found design unit 1: pipeline-pipeline_a File: /home/enzo/Documents/risc-cpu/pipeline.vhd Line: 25
+    Info (12022): Found design unit 1: pipeline-pipeline_a File: /home/enzo/Documents/risc-cpu/pipeline.vhd Line: 26
     Info (12023): Found entity 1: pipeline File: /home/enzo/Documents/risc-cpu/pipeline.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file screen.vhd
+    Info (12022): Found design unit 1: screen-screen_a File: /home/enzo/Documents/risc-cpu/screen.vhd Line: 21
+    Info (12023): Found entity 1: screen File: /home/enzo/Documents/risc-cpu/screen.vhd Line: 6
 Info (12127): Elaborating entity "CPU" for the top level hierarchy
-Warning (10541): VHDL Signal Declaration warning at CPU.vhd(12): used implicit default value for signal "LEDR" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 12
-Warning (10541): VHDL Signal Declaration warning at CPU.vhd(14): used implicit default value for signal "HEX0" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 14
-Warning (10541): VHDL Signal Declaration warning at CPU.vhd(15): used implicit default value for signal "HEX1" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 15
-Warning (10541): VHDL Signal Declaration warning at CPU.vhd(16): used implicit default value for signal "HEX2" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 16
-Warning (10541): VHDL Signal Declaration warning at CPU.vhd(17): used implicit default value for signal "HEX3" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 17
-Warning (10541): VHDL Signal Declaration warning at CPU.vhd(18): used implicit default value for signal "HEX4" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 18
-Warning (10541): VHDL Signal Declaration warning at CPU.vhd(19): used implicit default value for signal "HEX5" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 19
-Warning (10541): VHDL Signal Declaration warning at CPU.vhd(177): used implicit default value for signal "general_rst" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 177
-Warning (10036): Verilog HDL or VHDL warning at CPU.vhd(182): object "fetch_address_out" assigned a value but never read File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 182
-Info (12128): Elaborating entity "fetch" for hierarchy "fetch:fetch_inst" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 220
-Info (12128): Elaborating entity "rom" for hierarchy "rom:rom_inst" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 231
-Warning (10541): VHDL Signal Declaration warning at rom.vhd(24): used implicit default value for signal "rom_data" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/enzo/Documents/risc-cpu/rom.vhd Line: 24
-Info (12128): Elaborating entity "ram" for hierarchy "ram:ram_inst" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 241
-Info (12128): Elaborating entity "alu" for hierarchy "alu:alu_inst" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 253
-Info (12128): Elaborating entity "reg" for hierarchy "reg:reg_inst" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 266
-Info (12128): Elaborating entity "status" for hierarchy "status:status_inst" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 281
-Info (12128): Elaborating entity "decoder" for hierarchy "decoder:decoder_inst" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 296
+Warning (10541): VHDL Signal Declaration warning at CPU.vhd(14): used implicit default value for signal "LEDR" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 14
+Info (12128): Elaborating entity "fetch" for hierarchy "fetch:fetch_inst" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 216
+Info (12128): Elaborating entity "rom" for hierarchy "rom:rom_inst" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 227
+Info (12128): Elaborating entity "ram" for hierarchy "ram:ram_inst" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 237
+Info (12128): Elaborating entity "alu" for hierarchy "alu:alu_inst" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 249
+Info (12128): Elaborating entity "reg" for hierarchy "reg:reg_inst" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 262
+Info (12128): Elaborating entity "status" for hierarchy "status:status_inst" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 277
+Info (12128): Elaborating entity "decoder" for hierarchy "decoder:decoder_inst" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 293
 Warning (10541): VHDL Signal Declaration warning at decoder.vhd(19): used implicit default value for signal "alu_sel" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/enzo/Documents/risc-cpu/decoder.vhd Line: 19
 Warning (10541): VHDL Signal Declaration warning at decoder.vhd(20): used implicit default value for signal "alu_a" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/enzo/Documents/risc-cpu/decoder.vhd Line: 20
 Warning (10541): VHDL Signal Declaration warning at decoder.vhd(21): used implicit default value for signal "alu_b" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/enzo/Documents/risc-cpu/decoder.vhd Line: 21
 Warning (10541): VHDL Signal Declaration warning at decoder.vhd(23): used implicit default value for signal "fetch_jump" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/enzo/Documents/risc-cpu/decoder.vhd Line: 23
 Warning (10541): VHDL Signal Declaration warning at decoder.vhd(24): used implicit default value for signal "fetch_address" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/enzo/Documents/risc-cpu/decoder.vhd Line: 24
-Warning (10541): VHDL Signal Declaration warning at decoder.vhd(26): used implicit default value for signal "reg_rw" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/enzo/Documents/risc-cpu/decoder.vhd Line: 26
-Warning (10541): VHDL Signal Declaration warning at decoder.vhd(27): used implicit default value for signal "reg_address" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/enzo/Documents/risc-cpu/decoder.vhd Line: 27
-Warning (10541): VHDL Signal Declaration warning at decoder.vhd(28): used implicit default value for signal "reg_address_a" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/enzo/Documents/risc-cpu/decoder.vhd Line: 28
-Warning (10541): VHDL Signal Declaration warning at decoder.vhd(29): used implicit default value for signal "reg_address_b" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/enzo/Documents/risc-cpu/decoder.vhd Line: 29
-Warning (10541): VHDL Signal Declaration warning at decoder.vhd(31): used implicit default value for signal "ram_rw" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/enzo/Documents/risc-cpu/decoder.vhd Line: 31
-Warning (10541): VHDL Signal Declaration warning at decoder.vhd(32): used implicit default value for signal "ram_address" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/enzo/Documents/risc-cpu/decoder.vhd Line: 32
-Warning (10541): VHDL Signal Declaration warning at decoder.vhd(33): used implicit default value for signal "ram_data_in" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/enzo/Documents/risc-cpu/decoder.vhd Line: 33
-Info (12128): Elaborating entity "pipeline" for hierarchy "pipeline:pipeline_inst" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 327
-Warning (10492): VHDL Process Statement warning at pipeline.vhd(31): signal "rst" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/enzo/Documents/risc-cpu/pipeline.vhd Line: 31
+Warning (10541): VHDL Signal Declaration warning at decoder.vhd(26): used implicit default value for signal "reg_address" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/enzo/Documents/risc-cpu/decoder.vhd Line: 26
+Warning (10541): VHDL Signal Declaration warning at decoder.vhd(27): used implicit default value for signal "reg_address_a" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/enzo/Documents/risc-cpu/decoder.vhd Line: 27
+Warning (10541): VHDL Signal Declaration warning at decoder.vhd(28): used implicit default value for signal "reg_address_b" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/enzo/Documents/risc-cpu/decoder.vhd Line: 28
+Warning (10541): VHDL Signal Declaration warning at decoder.vhd(30): used implicit default value for signal "ram_address" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/enzo/Documents/risc-cpu/decoder.vhd Line: 30
+Warning (10541): VHDL Signal Declaration warning at decoder.vhd(31): used implicit default value for signal "ram_data_in" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/enzo/Documents/risc-cpu/decoder.vhd Line: 31
+Warning (10036): Verilog HDL or VHDL warning at decoder.vhd(42): object "reg" assigned a value but never read File: /home/enzo/Documents/risc-cpu/decoder.vhd Line: 42
+Warning (10036): Verilog HDL or VHDL warning at decoder.vhd(44): object "B" assigned a value but never read File: /home/enzo/Documents/risc-cpu/decoder.vhd Line: 44
+Info (12128): Elaborating entity "pipeline" for hierarchy "pipeline:pipeline_inst" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 324
+Warning (10492): VHDL Process Statement warning at pipeline.vhd(32): signal "rst" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/enzo/Documents/risc-cpu/pipeline.vhd Line: 32
+Info (12128): Elaborating entity "screen" for hierarchy "screen:screen_inst" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 344
+Warning (10873): Using initial value X (don't care) for net "HEX_out0[7]" at screen.vhd(44) File: /home/enzo/Documents/risc-cpu/screen.vhd Line: 44
+Warning (10873): Using initial value X (don't care) for net "HEX_out1[7]" at screen.vhd(45) File: /home/enzo/Documents/risc-cpu/screen.vhd Line: 45
+Warning (10873): Using initial value X (don't care) for net "HEX_out2[7]" at screen.vhd(46) File: /home/enzo/Documents/risc-cpu/screen.vhd Line: 46
+Warning (10873): Using initial value X (don't care) for net "HEX_out3[7]" at screen.vhd(47) File: /home/enzo/Documents/risc-cpu/screen.vhd Line: 47
+Warning (10873): Using initial value X (don't care) for net "HEX_out4[7]" at screen.vhd(48) File: /home/enzo/Documents/risc-cpu/screen.vhd Line: 48
+Info (12128): Elaborating entity "seg7_lut" for hierarchy "screen:screen_inst|seg7_lut:b2v_inst1" File: /home/enzo/Documents/risc-cpu/screen.vhd Line: 59
+Info (12128): Elaborating entity "dig2dec" for hierarchy "screen:screen_inst|dig2dec:b2v_inst6" File: /home/enzo/Documents/risc-cpu/screen.vhd Line: 94
+Info (276014): Found 1 instances of uninferred RAM logic
+    Info (276013): RAM logic "rom:rom_inst|rom_data" is uninferred because MIF is not supported for the selected family File: /home/enzo/Documents/risc-cpu/rom.vhd Line: 24
+Info (278001): Inferred 2 megafunctions from design logic
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "screen:screen_inst|dig2dec:b2v_inst6|Div0" File: /home/enzo/Documents/risc-cpu/dig2dec.vhd Line: 24
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "screen:screen_inst|dig2dec:b2v_inst6|Div1" File: /home/enzo/Documents/risc-cpu/dig2dec.vhd Line: 25
+Info (12130): Elaborated megafunction instantiation "screen:screen_inst|dig2dec:b2v_inst6|lpm_divide:Div0" File: /home/enzo/Documents/risc-cpu/dig2dec.vhd Line: 24
+Info (12133): Instantiated megafunction "screen:screen_inst|dig2dec:b2v_inst6|lpm_divide:Div0" with the following parameter: File: /home/enzo/Documents/risc-cpu/dig2dec.vhd Line: 24
+    Info (12134): Parameter "LPM_WIDTHN" = "16"
+    Info (12134): Parameter "LPM_WIDTHD" = "4"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_otl.tdf
+    Info (12023): Found entity 1: lpm_divide_otl File: /home/enzo/Documents/risc-cpu/db/lpm_divide_otl.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_qlh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_qlh File: /home/enzo/Documents/risc-cpu/db/sign_div_unsign_qlh.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_uhe.tdf
+    Info (12023): Found entity 1: alt_u_div_uhe File: /home/enzo/Documents/risc-cpu/db/alt_u_div_uhe.tdf Line: 27
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_t3c.tdf
+    Info (12023): Found entity 1: add_sub_t3c File: /home/enzo/Documents/risc-cpu/db/add_sub_t3c.tdf Line: 23
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_u3c.tdf
+    Info (12023): Found entity 1: add_sub_u3c File: /home/enzo/Documents/risc-cpu/db/add_sub_u3c.tdf Line: 23
+Info (12130): Elaborated megafunction instantiation "screen:screen_inst|dig2dec:b2v_inst6|lpm_divide:Div1" File: /home/enzo/Documents/risc-cpu/dig2dec.vhd Line: 25
+Info (12133): Instantiated megafunction "screen:screen_inst|dig2dec:b2v_inst6|lpm_divide:Div1" with the following parameter: File: /home/enzo/Documents/risc-cpu/dig2dec.vhd Line: 25
+    Info (12134): Parameter "LPM_WIDTHN" = "13"
+    Info (12134): Parameter "LPM_WIDTHD" = "4"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_ltl.tdf
+    Info (12023): Found entity 1: lpm_divide_ltl File: /home/enzo/Documents/risc-cpu/db/lpm_divide_ltl.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_nlh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_nlh File: /home/enzo/Documents/risc-cpu/db/sign_div_unsign_nlh.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_ohe.tdf
+    Info (12023): Found entity 1: alt_u_div_ohe File: /home/enzo/Documents/risc-cpu/db/alt_u_div_ohe.tdf Line: 27
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "LEDR[0]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 12
-    Warning (13410): Pin "LEDR[1]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 12
-    Warning (13410): Pin "LEDR[2]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 12
-    Warning (13410): Pin "LEDR[3]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 12
-    Warning (13410): Pin "LEDR[4]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 12
-    Warning (13410): Pin "LEDR[5]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 12
-    Warning (13410): Pin "LEDR[6]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 12
-    Warning (13410): Pin "LEDR[7]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 12
-    Warning (13410): Pin "LEDR[8]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 12
-    Warning (13410): Pin "LEDR[9]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 12
-    Warning (13410): Pin "HEX0[0]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 14
-    Warning (13410): Pin "HEX0[1]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 14
-    Warning (13410): Pin "HEX0[2]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 14
-    Warning (13410): Pin "HEX0[3]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 14
-    Warning (13410): Pin "HEX0[4]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 14
-    Warning (13410): Pin "HEX0[5]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 14
-    Warning (13410): Pin "HEX0[6]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 14
-    Warning (13410): Pin "HEX0[7]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 14
-    Warning (13410): Pin "HEX1[0]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 15
-    Warning (13410): Pin "HEX1[1]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 15
-    Warning (13410): Pin "HEX1[2]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 15
-    Warning (13410): Pin "HEX1[3]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 15
-    Warning (13410): Pin "HEX1[4]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 15
-    Warning (13410): Pin "HEX1[5]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 15
-    Warning (13410): Pin "HEX1[6]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 15
-    Warning (13410): Pin "HEX1[7]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 15
-    Warning (13410): Pin "HEX2[0]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 16
-    Warning (13410): Pin "HEX2[1]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 16
-    Warning (13410): Pin "HEX2[2]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 16
-    Warning (13410): Pin "HEX2[3]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 16
-    Warning (13410): Pin "HEX2[4]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 16
-    Warning (13410): Pin "HEX2[5]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 16
-    Warning (13410): Pin "HEX2[6]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 16
-    Warning (13410): Pin "HEX2[7]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 16
-    Warning (13410): Pin "HEX3[0]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 17
-    Warning (13410): Pin "HEX3[1]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 17
-    Warning (13410): Pin "HEX3[2]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 17
-    Warning (13410): Pin "HEX3[3]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 17
-    Warning (13410): Pin "HEX3[4]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 17
-    Warning (13410): Pin "HEX3[5]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 17
-    Warning (13410): Pin "HEX3[6]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 17
-    Warning (13410): Pin "HEX3[7]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 17
-    Warning (13410): Pin "HEX4[0]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 18
-    Warning (13410): Pin "HEX4[1]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 18
-    Warning (13410): Pin "HEX4[2]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 18
-    Warning (13410): Pin "HEX4[3]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 18
-    Warning (13410): Pin "HEX4[4]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 18
-    Warning (13410): Pin "HEX4[5]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 18
-    Warning (13410): Pin "HEX4[6]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 18
-    Warning (13410): Pin "HEX4[7]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 18
-    Warning (13410): Pin "HEX5[0]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 19
-    Warning (13410): Pin "HEX5[1]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 19
-    Warning (13410): Pin "HEX5[2]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 19
-    Warning (13410): Pin "HEX5[3]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 19
-    Warning (13410): Pin "HEX5[4]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 19
-    Warning (13410): Pin "HEX5[5]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 19
-    Warning (13410): Pin "HEX5[6]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 19
-    Warning (13410): Pin "HEX5[7]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 19
+    Warning (13410): Pin "LEDR[0]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 14
+    Warning (13410): Pin "LEDR[1]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 14
+    Warning (13410): Pin "LEDR[2]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 14
+    Warning (13410): Pin "LEDR[3]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 14
+    Warning (13410): Pin "LEDR[4]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 14
+    Warning (13410): Pin "LEDR[5]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 14
+    Warning (13410): Pin "LEDR[6]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 14
+    Warning (13410): Pin "LEDR[7]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 14
+    Warning (13410): Pin "LEDR[8]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 14
+    Warning (13410): Pin "LEDR[9]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 14
+    Warning (13410): Pin "HEX0[0]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 16
+    Warning (13410): Pin "HEX0[1]" is stuck at VCC File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 16
+    Warning (13410): Pin "HEX0[2]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 16
+    Warning (13410): Pin "HEX0[3]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 16
+    Warning (13410): Pin "HEX0[4]" is stuck at VCC File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 16
+    Warning (13410): Pin "HEX0[5]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 16
+    Warning (13410): Pin "HEX0[6]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 16
+    Warning (13410): Pin "HEX0[7]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 16
+    Warning (13410): Pin "HEX1[0]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 17
+    Warning (13410): Pin "HEX1[1]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 17
+    Warning (13410): Pin "HEX1[2]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 17
+    Warning (13410): Pin "HEX1[3]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 17
+    Warning (13410): Pin "HEX1[4]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 17
+    Warning (13410): Pin "HEX1[5]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 17
+    Warning (13410): Pin "HEX1[6]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 17
+    Warning (13410): Pin "HEX1[7]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 17
+    Warning (13410): Pin "HEX2[0]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 18
+    Warning (13410): Pin "HEX2[1]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 18
+    Warning (13410): Pin "HEX2[2]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 18
+    Warning (13410): Pin "HEX2[3]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 18
+    Warning (13410): Pin "HEX2[4]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 18
+    Warning (13410): Pin "HEX2[5]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 18
+    Warning (13410): Pin "HEX2[6]" is stuck at VCC File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 18
+    Warning (13410): Pin "HEX2[7]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 18
+    Warning (13410): Pin "HEX3[0]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 19
+    Warning (13410): Pin "HEX3[1]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 19
+    Warning (13410): Pin "HEX3[2]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 19
+    Warning (13410): Pin "HEX3[3]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 19
+    Warning (13410): Pin "HEX3[4]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 19
+    Warning (13410): Pin "HEX3[5]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 19
+    Warning (13410): Pin "HEX3[6]" is stuck at VCC File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 19
+    Warning (13410): Pin "HEX3[7]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 19
+    Warning (13410): Pin "HEX4[0]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 20
+    Warning (13410): Pin "HEX4[1]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 20
+    Warning (13410): Pin "HEX4[2]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 20
+    Warning (13410): Pin "HEX4[3]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 20
+    Warning (13410): Pin "HEX4[4]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 20
+    Warning (13410): Pin "HEX4[5]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 20
+    Warning (13410): Pin "HEX4[6]" is stuck at VCC File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 20
+    Warning (13410): Pin "HEX4[7]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 20
+    Warning (13410): Pin "HEX5[0]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 21
+    Warning (13410): Pin "HEX5[1]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 21
+    Warning (13410): Pin "HEX5[2]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 21
+    Warning (13410): Pin "HEX5[3]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 21
+    Warning (13410): Pin "HEX5[4]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 21
+    Warning (13410): Pin "HEX5[5]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 21
+    Warning (13410): Pin "HEX5[6]" is stuck at VCC File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 21
+    Warning (13410): Pin "HEX5[7]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 21
+Info (17049): 16 registers lost all their fanouts during netlist optimizations.
 Info (128000): Starting physical synthesis optimizations for speed
 Info (332104): Reading SDC File: 'CPU.sdc'
 Info (332151): Clock uncertainty is not calculated until you update the timing netlist.
@@ -419,28 +670,28 @@ Info (128002): Starting physical synthesis algorithm register retiming
 Info (128003): Physical synthesis algorithm register retiming complete: estimated slack improvement of 0 ps
 Info (128002): Starting physical synthesis algorithm combinational resynthesis using boolean division
 Info (128003): Physical synthesis algorithm combinational resynthesis using boolean division complete: estimated slack improvement of 0 ps
-Info (128001): Physical synthesis optimizations for speed complete: elapsed time is 00:00:01
+Info (128001): Physical synthesis optimizations for speed complete: elapsed time is 00:00:00
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 11 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "SW[0]" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 13
+    Warning (15610): No output dependent on input pin "SW[1]" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 13
+    Warning (15610): No output dependent on input pin "SW[2]" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 13
+    Warning (15610): No output dependent on input pin "SW[3]" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 13
+    Warning (15610): No output dependent on input pin "SW[4]" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 13
+    Warning (15610): No output dependent on input pin "SW[5]" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 13
+    Warning (15610): No output dependent on input pin "SW[6]" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 13
+    Warning (15610): No output dependent on input pin "SW[7]" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 13
+    Warning (15610): No output dependent on input pin "SW[8]" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 13
+    Warning (15610): No output dependent on input pin "SW[9]" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 13
     Warning (15610): No output dependent on input pin "MAX10_CLK1_50" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 9
-    Warning (15610): No output dependent on input pin "SW[0]" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 11
-    Warning (15610): No output dependent on input pin "SW[1]" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 11
-    Warning (15610): No output dependent on input pin "SW[2]" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 11
-    Warning (15610): No output dependent on input pin "SW[3]" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 11
-    Warning (15610): No output dependent on input pin "SW[4]" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 11
-    Warning (15610): No output dependent on input pin "SW[5]" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 11
-    Warning (15610): No output dependent on input pin "SW[6]" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 11
-    Warning (15610): No output dependent on input pin "SW[7]" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 11
-    Warning (15610): No output dependent on input pin "SW[8]" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 11
-    Warning (15610): No output dependent on input pin "SW[9]" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 11
 Info (21057): Implemented 69 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 11 input pins
     Info (21059): Implemented 58 output pins
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 95 warnings
-    Info: Peak virtual memory: 543 megabytes
-    Info: Processing ended: Thu Jan 23 09:43:39 2025
-    Info: Elapsed time: 00:00:11
-    Info: Total CPU time (on all processors): 00:00:32
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 91 warnings
+    Info: Peak virtual memory: 556 megabytes
+    Info: Processing ended: Thu Jan 23 13:17:11 2025
+    Info: Elapsed time: 00:00:08
+    Info: Total CPU time (on all processors): 00:00:23
 
 

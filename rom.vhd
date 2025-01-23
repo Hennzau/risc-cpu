@@ -21,7 +21,10 @@ architecture rom_a of rom is
 
 	type rom is array(0 to 255) of std_logic_vector(25 downto 0);
 
-	signal rom_data : rom;
+	signal rom_data : rom := (
+						"01" & "10011" & "000" & "01010101" & "00000000",
+		others => 	"00" & "10010" & "000" & "00000000" & "00000000"
+	);
 
 begin
 	acces_rom : process (rst, clk)

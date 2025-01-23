@@ -17,7 +17,8 @@ entity pipeline is
 		-- 4 is ram
 		-- 5 is alu
 		-- 6 is status
-		stage	: out std_logic_vector(6 downto 0)
+		-- 7 is for read/write mode
+		stage	: out std_logic_vector(7 downto 0)
 	);
 
 end entity;
@@ -30,34 +31,34 @@ begin
 	begin
 		if rst = '1' then
 			counter := to_unsigned(0,4);
-			stage <= "0000001";
+			stage <= "00000001";
 		else
 			if rising_edge(clk) then
 				case counter is
 					when to_unsigned(0, 4) =>
-						stage <= "0000001"; -- fetch
+						stage <= "00000001"; -- fetch
 						counter := counter + 1;
 					when to_unsigned(1, 4) =>
-						stage <= "0000010"; -- rom
+						stage <= "00000010"; -- rom
 						counter := counter + 1;
 					when to_unsigned(2, 4) =>
-						stage <= "0000100"; -- decoder
+						stage <= "00000100"; -- decoder
 						counter := counter + 1;
 					when to_unsigned(3, 4) =>
-						stage <= "0011000"; -- ram + reg (possible read)
+						stage <= "00011000"; -- ram + reg (possible read)
 						counter := counter + 1;
 					when to_unsigned(4, 4) =>
-						stage <= "0000100"; -- decoder again (load memory values into decoder)
+						stage <= "00000100"; -- decoder again (load memory values into decoder)
 						counter := counter + 1;			
 					when to_unsigned(5, 4) =>
-						stage <= "0100000"; -- alu
+						stage <= "00100000"; -- alu
 						counter := counter + 1;
 					when to_unsigned(6, 4) =>
-						stage <= "1011000"; -- ram + reg + status (possible write)
+						stage <= "11011000"; -- ram + reg + status (possible write)
 						counter := counter + 1;						
 					when others =>
 						counter := to_unsigned(0, 4);
-						stage <= "0000001";
+						stage <= "00000001";
 				end case;
 			end if;
 		end if;

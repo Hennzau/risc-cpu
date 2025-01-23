@@ -40,7 +40,7 @@ begin
 			if rising_edge(clk) then
 				if en = '1' then
 					if rw = '1' then
-					data_reg(to_integer(unsigned(address))) <= data_in;
+						data_reg(to_integer(unsigned(address))) <= data_in;
 					else
 						data_out_a <= data_reg(to_integer(unsigned(address_a)));
 						data_out_b <= data_reg(to_integer(unsigned(address_b)));
