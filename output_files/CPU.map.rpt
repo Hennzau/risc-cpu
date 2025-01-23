@@ -1,5 +1,5 @@
 Analysis & Synthesis report for CPU
-Thu Jan 23 21:39:08 2025
+Thu Jan 23 22:47:15 2025
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -13,30 +13,34 @@ Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. Registers Removed During Synthesis
-  9. Removed Registers Triggering Further Register Optimizations
- 10. General Register Statistics
- 11. Physical Synthesis Netlist Optimizations
- 12. Registers Packed Into Inferred Megafunctions
- 13. Multiplexer Restructuring Statistics (No Restructuring Performed)
- 14. Source assignments for ram:ram_inst|altsyncram:data_ram_rtl_0|altsyncram_85c1:auto_generated
- 15. Parameter Settings for Inferred Entity Instance: ram:ram_inst|altsyncram:data_ram_rtl_0
- 16. Parameter Settings for Inferred Entity Instance: screen:screen_inst|dig2dec:dig2dec_inst|lpm_divide:Mod1
- 17. Parameter Settings for Inferred Entity Instance: screen:screen_inst|dig2dec:dig2dec_inst|lpm_divide:Div2
- 18. Parameter Settings for Inferred Entity Instance: screen:screen_inst|dig2dec:dig2dec_inst|lpm_divide:Mod0
- 19. Parameter Settings for Inferred Entity Instance: screen:screen_inst|dig2dec:dig2dec_inst|lpm_divide:Div1
- 20. altsyncram Parameter Settings by Entity Instance
- 21. Port Connectivity Checks: "screen:screen_inst"
- 22. Port Connectivity Checks: "pipeline:pipeline_inst"
- 23. Port Connectivity Checks: "status:status_inst"
- 24. Port Connectivity Checks: "reg:reg_inst"
- 25. Port Connectivity Checks: "alu:alu_inst"
- 26. Port Connectivity Checks: "ram:ram_inst"
- 27. Port Connectivity Checks: "rom:rom_inst"
- 28. Port Connectivity Checks: "fetch:fetch_inst"
- 29. Post-Synthesis Netlist Statistics for Top Partition
- 30. Elapsed Time Per Partition
- 31. Analysis & Synthesis Messages
+  8. Analysis & Synthesis DSP Block Usage Summary
+  9. Registers Removed During Synthesis
+ 10. Removed Registers Triggering Further Register Optimizations
+ 11. General Register Statistics
+ 12. Physical Synthesis Netlist Optimizations
+ 13. Registers Packed Into Inferred Megafunctions
+ 14. Multiplexer Restructuring Statistics (No Restructuring Performed)
+ 15. Source assignments for ram:ram_inst|altsyncram:data_ram_rtl_0|altsyncram_85c1:auto_generated
+ 16. Parameter Settings for Inferred Entity Instance: ram:ram_inst|altsyncram:data_ram_rtl_0
+ 17. Parameter Settings for Inferred Entity Instance: screen:screen_inst|dig2dec:dig2dec_inst|lpm_divide:Mod1
+ 18. Parameter Settings for Inferred Entity Instance: screen:screen_inst|dig2dec:dig2dec_inst|lpm_divide:Div2
+ 19. Parameter Settings for Inferred Entity Instance: screen:screen_inst|dig2dec:dig2dec_inst|lpm_divide:Mod0
+ 20. Parameter Settings for Inferred Entity Instance: screen:screen_inst|dig2dec:dig2dec_inst|lpm_divide:Div1
+ 21. Parameter Settings for Inferred Entity Instance: alu:alu_inst|lpm_mult:Mult0
+ 22. Parameter Settings for Inferred Entity Instance: alu:alu_inst|lpm_divide:Div0
+ 23. altsyncram Parameter Settings by Entity Instance
+ 24. lpm_mult Parameter Settings by Entity Instance
+ 25. Port Connectivity Checks: "screen:screen_inst"
+ 26. Port Connectivity Checks: "pipeline:pipeline_inst"
+ 27. Port Connectivity Checks: "status:status_inst"
+ 28. Port Connectivity Checks: "reg:reg_inst"
+ 29. Port Connectivity Checks: "alu:alu_inst"
+ 30. Port Connectivity Checks: "ram:ram_inst"
+ 31. Port Connectivity Checks: "rom:rom_inst"
+ 32. Port Connectivity Checks: "fetch:fetch_inst"
+ 33. Post-Synthesis Netlist Statistics for Top Partition
+ 34. Elapsed Time Per Partition
+ 35. Analysis & Synthesis Messages
 
 
 
@@ -63,19 +67,19 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Jan 23 21:39:08 2025       ;
+; Analysis & Synthesis Status        ; Successful - Thu Jan 23 22:47:15 2025       ;
 ; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                      ; CPU                                         ;
 ; Top-level Entity Name              ; CPU                                         ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 360                                         ;
-;     Total combinational functions  ; 316                                         ;
-;     Dedicated logic registers      ; 119                                         ;
-; Total registers                    ; 119                                         ;
+; Total logic elements               ; 492                                         ;
+;     Total combinational functions  ; 440                                         ;
+;     Dedicated logic registers      ; 153                                         ;
+; Total registers                    ; 153                                         ;
 ; Total pins                         ; 69                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
-; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Embedded Multiplier 9-bit elements ; 1                                           ;
 ; Total PLLs                         ; 0                                           ;
 ; UFM blocks                         ; 0                                           ;
 ; ADC blocks                         ; 0                                           ;
@@ -181,8 +185,7 @@ https://fpgasoftware.intel.com/eula.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
-;     Processors 3-16        ;   0.0%      ;
+;     Processors 2-16        ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -227,6 +230,15 @@ https://fpgasoftware.intel.com/eula.
 ; db/lpm_divide_csl.tdf            ; yes             ; Auto-Generated Megafunction  ; /home/enzo/Documents/risc-cpu/db/lpm_divide_csl.tdf                                  ;         ;
 ; db/sign_div_unsign_ekh.tdf       ; yes             ; Auto-Generated Megafunction  ; /home/enzo/Documents/risc-cpu/db/sign_div_unsign_ekh.tdf                             ;         ;
 ; db/alt_u_div_6fe.tdf             ; yes             ; Auto-Generated Megafunction  ; /home/enzo/Documents/risc-cpu/db/alt_u_div_6fe.tdf                                   ;         ;
+; lpm_mult.tdf                     ; yes             ; Megafunction                 ; /home/enzo/intelFPGA_lite/20.1/quartus/libraries/megafunctions/lpm_mult.tdf          ;         ;
+; lpm_add_sub.inc                  ; yes             ; Megafunction                 ; /home/enzo/intelFPGA_lite/20.1/quartus/libraries/megafunctions/lpm_add_sub.inc       ;         ;
+; multcore.inc                     ; yes             ; Megafunction                 ; /home/enzo/intelFPGA_lite/20.1/quartus/libraries/megafunctions/multcore.inc          ;         ;
+; bypassff.inc                     ; yes             ; Megafunction                 ; /home/enzo/intelFPGA_lite/20.1/quartus/libraries/megafunctions/bypassff.inc          ;         ;
+; altshift.inc                     ; yes             ; Megafunction                 ; /home/enzo/intelFPGA_lite/20.1/quartus/libraries/megafunctions/altshift.inc          ;         ;
+; db/mult_tds.tdf                  ; yes             ; Auto-Generated Megafunction  ; /home/enzo/Documents/risc-cpu/db/mult_tds.tdf                                        ;         ;
+; db/lpm_divide_5ao.tdf            ; yes             ; Auto-Generated Megafunction  ; /home/enzo/Documents/risc-cpu/db/lpm_divide_5ao.tdf                                  ;         ;
+; db/abs_divider_aag.tdf           ; yes             ; Auto-Generated Megafunction  ; /home/enzo/Documents/risc-cpu/db/abs_divider_aag.tdf                                 ;         ;
+; db/lpm_abs_r99.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/enzo/Documents/risc-cpu/db/lpm_abs_r99.tdf                                     ;         ;
 +----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------------+---------+
 
 
@@ -235,30 +247,30 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+---------------------+
 ; Resource                                    ; Usage               ;
 +---------------------------------------------+---------------------+
-; Estimated Total logic elements              ; 360                 ;
+; Estimated Total logic elements              ; 492                 ;
 ;                                             ;                     ;
-; Total combinational functions               ; 316                 ;
+; Total combinational functions               ; 440                 ;
 ; Logic element usage by number of LUT inputs ;                     ;
-;     -- 4 input functions                    ; 70                  ;
-;     -- 3 input functions                    ; 108                 ;
-;     -- <=2 input functions                  ; 138                 ;
+;     -- 4 input functions                    ; 130                 ;
+;     -- 3 input functions                    ; 163                 ;
+;     -- <=2 input functions                  ; 147                 ;
 ;                                             ;                     ;
 ; Logic elements by mode                      ;                     ;
-;     -- normal mode                          ; 227                 ;
-;     -- arithmetic mode                      ; 89                  ;
+;     -- normal mode                          ; 305                 ;
+;     -- arithmetic mode                      ; 135                 ;
 ;                                             ;                     ;
-; Total registers                             ; 119                 ;
-;     -- Dedicated logic registers            ; 119                 ;
+; Total registers                             ; 153                 ;
+;     -- Dedicated logic registers            ; 153                 ;
 ;     -- I/O registers                        ; 0                   ;
 ;                                             ;                     ;
 ; I/O pins                                    ; 69                  ;
 ;                                             ;                     ;
-; Embedded Multiplier 9-bit elements          ; 0                   ;
+; Embedded Multiplier 9-bit elements          ; 1                   ;
 ;                                             ;                     ;
 ; Maximum fan-out node                        ; MAX10_CLK1_50~input ;
-; Maximum fan-out                             ; 119                 ;
-; Total fan-out                               ; 1278                ;
-; Average fan-out                             ; 2.23                ;
+; Maximum fan-out                             ; 153                 ;
+; Total fan-out                               ; 1787                ;
+; Average fan-out                             ; 2.43                ;
 +---------------------------------------------+---------------------+
 
 
@@ -267,13 +279,23 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
 ; Compilation Hierarchy Node                   ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                                                                                                                          ; Entity Name         ; Library Name ;
 +----------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
-; |CPU                                         ; 316 (0)             ; 119 (0)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 69   ; 0            ; 0          ; |CPU                                                                                                                                         ; CPU                 ; work         ;
-;    |alu:alu_inst|                            ; 19 (19)             ; 10 (10)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |CPU|alu:alu_inst                                                                                                                            ; alu                 ; work         ;
-;    |decoder:decoder_inst|                    ; 25 (25)             ; 38 (38)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |CPU|decoder:decoder_inst                                                                                                                    ; decoder             ; work         ;
-;    |fetch:fetch_inst|                        ; 9 (9)               ; 8 (8)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |CPU|fetch:fetch_inst                                                                                                                        ; fetch               ; work         ;
+; |CPU                                         ; 440 (0)             ; 153 (0)                   ; 0           ; 0          ; 1            ; 1       ; 0         ; 69   ; 0            ; 0          ; |CPU                                                                                                                                         ; CPU                 ; work         ;
+;    |alu:alu_inst|                            ; 150 (34)            ; 51 (38)                   ; 0           ; 0          ; 1            ; 1       ; 0         ; 0    ; 0            ; 0          ; |CPU|alu:alu_inst                                                                                                                            ; alu                 ; work         ;
+;       |lpm_divide:Div0|                      ; 116 (0)             ; 13 (0)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |CPU|alu:alu_inst|lpm_divide:Div0                                                                                                            ; lpm_divide          ; work         ;
+;          |lpm_divide_5ao:auto_generated|     ; 116 (0)             ; 13 (0)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |CPU|alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated                                                                              ; lpm_divide_5ao      ; work         ;
+;             |abs_divider_aag:divider|        ; 116 (16)            ; 13 (0)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |CPU|alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider                                                      ; abs_divider_aag     ; work         ;
+;                |alt_u_div_8fe:divider|       ; 79 (75)             ; 4 (3)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |CPU|alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider                                ; alt_u_div_8fe       ; work         ;
+;                   |add_sub_t3c:add_sub_0|    ; 2 (2)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |CPU|alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|add_sub_t3c:add_sub_0          ; add_sub_t3c         ; work         ;
+;                   |add_sub_u3c:add_sub_1|    ; 2 (2)               ; 1 (1)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |CPU|alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|add_sub_u3c:add_sub_1          ; add_sub_u3c         ; work         ;
+;                |lpm_abs_r99:my_abs_den|      ; 9 (9)               ; 5 (5)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |CPU|alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|lpm_abs_r99:my_abs_den                               ; lpm_abs_r99         ; work         ;
+;                |lpm_abs_r99:my_abs_num|      ; 12 (12)             ; 4 (4)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |CPU|alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|lpm_abs_r99:my_abs_num                               ; lpm_abs_r99         ; work         ;
+;       |lpm_mult:Mult0|                       ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 1            ; 1       ; 0         ; 0    ; 0            ; 0          ; |CPU|alu:alu_inst|lpm_mult:Mult0                                                                                                             ; lpm_mult            ; work         ;
+;          |mult_tds:auto_generated|           ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 1            ; 1       ; 0         ; 0    ; 0            ; 0          ; |CPU|alu:alu_inst|lpm_mult:Mult0|mult_tds:auto_generated                                                                                     ; mult_tds            ; work         ;
+;    |decoder:decoder_inst|                    ; 32 (32)             ; 38 (38)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |CPU|decoder:decoder_inst                                                                                                                    ; decoder             ; work         ;
+;    |fetch:fetch_inst|                        ; 8 (8)               ; 8 (8)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |CPU|fetch:fetch_inst                                                                                                                        ; fetch               ; work         ;
 ;    |pipeline:pipeline_inst|                  ; 9 (9)               ; 9 (9)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |CPU|pipeline:pipeline_inst                                                                                                                  ; pipeline            ; work         ;
-;    |reg:reg_inst|                            ; 23 (23)             ; 45 (45)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |CPU|reg:reg_inst                                                                                                                            ; reg                 ; work         ;
-;    |rom:rom_inst|                            ; 12 (12)             ; 9 (9)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |CPU|rom:rom_inst                                                                                                                            ; rom                 ; work         ;
+;    |reg:reg_inst|                            ; 14 (14)             ; 40 (40)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |CPU|reg:reg_inst                                                                                                                            ; reg                 ; work         ;
+;    |rom:rom_inst|                            ; 8 (8)               ; 7 (7)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |CPU|rom:rom_inst                                                                                                                            ; rom                 ; work         ;
 ;    |screen:screen_inst|                      ; 219 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |CPU|screen:screen_inst                                                                                                                      ; screen              ; work         ;
 ;       |dig2dec:dig2dec_inst|                 ; 199 (18)            ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |CPU|screen:screen_inst|dig2dec:dig2dec_inst                                                                                                 ; dig2dec             ; work         ;
 ;          |lpm_divide:Div1|                   ; 25 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |CPU|screen:screen_inst|dig2dec:dig2dec_inst|lpm_divide:Div1                                                                                 ; lpm_divide          ; work         ;
@@ -299,135 +321,153 @@ https://fpgasoftware.intel.com/eula.
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
++-----------------------------------------------------+
+; Analysis & Synthesis DSP Block Usage Summary        ;
++---------------------------------------+-------------+
+; Statistic                             ; Number Used ;
++---------------------------------------+-------------+
+; Simple Multipliers (9-bit)            ; 1           ;
+; Simple Multipliers (18-bit)           ; 0           ;
+; Embedded Multiplier Blocks            ; --          ;
+; Embedded Multiplier 9-bit elements    ; 1           ;
+; Signed Embedded Multipliers           ; 1           ;
+; Unsigned Embedded Multipliers         ; 0           ;
+; Mixed Sign Embedded Multipliers       ; 0           ;
+; Variable Sign Embedded Multipliers    ; 0           ;
+; Dedicated Input Shift Register Chains ; 0           ;
++---------------------------------------+-------------+
+Note: number of Embedded Multiplier Blocks used is only available after a successful fit.
+
+
 +-------------------------------------------------------------------------------------------+
 ; Registers Removed During Synthesis                                                        ;
 +---------------------------------------------+---------------------------------------------+
 ; Register name                               ; Reason for Removal                          ;
 +---------------------------------------------+---------------------------------------------+
 ; pipeline:pipeline_inst|stage[4]             ; Merged with pipeline:pipeline_inst|stage[3] ;
-; decoder:decoder_inst|alu_sel[1,2]           ; Merged with decoder:decoder_inst|alu_sel[0] ;
-; rom:rom_inst|data[0,2..7,12,18,21,22,25]    ; Stuck at GND due to stuck port data_in      ;
+; rom:rom_inst|data[1..8,14,18,21,22,25]      ; Stuck at GND due to stuck port data_in      ;
 ; decoder:decoder_inst|format[1]              ; Stuck at GND due to stuck port data_in      ;
+; decoder:decoder_inst|A[0]                   ; Stuck at GND due to stuck port data_in      ;
 ; decoder:decoder_inst|op[2,3]                ; Stuck at GND due to stuck port data_in      ;
-; decoder:decoder_inst|A[4]                   ; Stuck at GND due to stuck port data_in      ;
+; decoder:decoder_inst|A[6]                   ; Stuck at GND due to stuck port data_in      ;
 ; decoder:decoder_inst|reg[2]                 ; Stuck at GND due to stuck port data_in      ;
-; decoder:decoder_inst|B[0,2..7]              ; Stuck at GND due to stuck port data_in      ;
-; decoder:decoder_inst|reg_address_b[0,2]     ; Stuck at GND due to stuck port data_in      ;
+; decoder:decoder_inst|B[1..7]                ; Stuck at GND due to stuck port data_in      ;
+; decoder:decoder_inst|reg_address_a[0]       ; Stuck at GND due to stuck port data_in      ;
+; decoder:decoder_inst|ram_rw                 ; Stuck at GND due to stuck port data_in      ;
+; decoder:decoder_inst|reg_address_b[1,2]     ; Stuck at GND due to stuck port data_in      ;
 ; decoder:decoder_inst|ram_data_in[0..7]      ; Stuck at GND due to stuck port data_in      ;
 ; decoder:decoder_inst|ram_address[0..7]      ; Stuck at GND due to stuck port data_in      ;
-; decoder:decoder_inst|ram_rw                 ; Stuck at GND due to stuck port data_in      ;
+; reg:reg_inst|data_reg[3][0]                 ; Lost fanout                                 ;
+; reg:reg_inst|data_reg[5][0]                 ; Lost fanout                                 ;
+; reg:reg_inst|data_reg[7][0]                 ; Lost fanout                                 ;
+; reg:reg_inst|data_reg[3][7]                 ; Lost fanout                                 ;
+; reg:reg_inst|data_reg[5][7]                 ; Lost fanout                                 ;
+; reg:reg_inst|data_reg[7][7]                 ; Lost fanout                                 ;
+; reg:reg_inst|data_reg[3][1]                 ; Lost fanout                                 ;
+; reg:reg_inst|data_reg[5][1]                 ; Lost fanout                                 ;
+; reg:reg_inst|data_reg[7][1]                 ; Lost fanout                                 ;
+; reg:reg_inst|data_reg[3][2]                 ; Lost fanout                                 ;
+; reg:reg_inst|data_reg[5][2]                 ; Lost fanout                                 ;
+; reg:reg_inst|data_reg[7][2]                 ; Lost fanout                                 ;
+; reg:reg_inst|data_reg[3][3]                 ; Lost fanout                                 ;
+; reg:reg_inst|data_reg[5][3]                 ; Lost fanout                                 ;
+; reg:reg_inst|data_reg[7][3]                 ; Lost fanout                                 ;
+; reg:reg_inst|data_reg[3][4]                 ; Lost fanout                                 ;
+; reg:reg_inst|data_reg[5][4]                 ; Lost fanout                                 ;
+; reg:reg_inst|data_reg[7][4]                 ; Lost fanout                                 ;
+; reg:reg_inst|data_reg[3][5]                 ; Lost fanout                                 ;
+; reg:reg_inst|data_reg[5][5]                 ; Lost fanout                                 ;
+; reg:reg_inst|data_reg[7][5]                 ; Lost fanout                                 ;
+; reg:reg_inst|data_reg[3][6]                 ; Lost fanout                                 ;
+; reg:reg_inst|data_reg[5][6]                 ; Lost fanout                                 ;
+; reg:reg_inst|data_reg[7][6]                 ; Lost fanout                                 ;
 ; decoder:decoder_inst|reg_address[2]         ; Stuck at GND due to stuck port data_in      ;
-; decoder:decoder_inst|alu_sel[0]             ; Stuck at GND due to stuck port data_in      ;
+; decoder:decoder_inst|alu_sel[2]             ; Stuck at GND due to stuck port data_in      ;
 ; reg:reg_inst|data_reg[4][0]                 ; Stuck at GND due to stuck port clock_enable ;
-; reg:reg_inst|data_reg[5][0]                 ; Stuck at GND due to stuck port clock_enable ;
 ; reg:reg_inst|data_reg[6][0]                 ; Stuck at GND due to stuck port clock_enable ;
-; reg:reg_inst|data_reg[7][0]                 ; Stuck at GND due to stuck port clock_enable ;
 ; reg:reg_inst|data_reg[4][7]                 ; Stuck at GND due to stuck port clock_enable ;
-; reg:reg_inst|data_reg[5][7]                 ; Stuck at GND due to stuck port clock_enable ;
 ; reg:reg_inst|data_reg[6][7]                 ; Stuck at GND due to stuck port clock_enable ;
-; reg:reg_inst|data_reg[7][7]                 ; Stuck at GND due to stuck port clock_enable ;
 ; reg:reg_inst|data_reg[4][1]                 ; Stuck at GND due to stuck port clock_enable ;
-; reg:reg_inst|data_reg[5][1]                 ; Stuck at GND due to stuck port clock_enable ;
 ; reg:reg_inst|data_reg[6][1]                 ; Stuck at GND due to stuck port clock_enable ;
-; reg:reg_inst|data_reg[7][1]                 ; Stuck at GND due to stuck port clock_enable ;
 ; reg:reg_inst|data_reg[4][2]                 ; Stuck at GND due to stuck port clock_enable ;
-; reg:reg_inst|data_reg[5][2]                 ; Stuck at GND due to stuck port clock_enable ;
 ; reg:reg_inst|data_reg[6][2]                 ; Stuck at GND due to stuck port clock_enable ;
-; reg:reg_inst|data_reg[7][2]                 ; Stuck at GND due to stuck port clock_enable ;
 ; reg:reg_inst|data_reg[4][3]                 ; Stuck at GND due to stuck port clock_enable ;
-; reg:reg_inst|data_reg[5][3]                 ; Stuck at GND due to stuck port clock_enable ;
 ; reg:reg_inst|data_reg[6][3]                 ; Stuck at GND due to stuck port clock_enable ;
-; reg:reg_inst|data_reg[7][3]                 ; Stuck at GND due to stuck port clock_enable ;
 ; reg:reg_inst|data_reg[4][4]                 ; Stuck at GND due to stuck port clock_enable ;
-; reg:reg_inst|data_reg[5][4]                 ; Stuck at GND due to stuck port clock_enable ;
 ; reg:reg_inst|data_reg[6][4]                 ; Stuck at GND due to stuck port clock_enable ;
-; reg:reg_inst|data_reg[7][4]                 ; Stuck at GND due to stuck port clock_enable ;
 ; reg:reg_inst|data_reg[4][5]                 ; Stuck at GND due to stuck port clock_enable ;
-; reg:reg_inst|data_reg[5][5]                 ; Stuck at GND due to stuck port clock_enable ;
 ; reg:reg_inst|data_reg[6][5]                 ; Stuck at GND due to stuck port clock_enable ;
-; reg:reg_inst|data_reg[7][5]                 ; Stuck at GND due to stuck port clock_enable ;
 ; reg:reg_inst|data_reg[4][6]                 ; Stuck at GND due to stuck port clock_enable ;
-; reg:reg_inst|data_reg[5][6]                 ; Stuck at GND due to stuck port clock_enable ;
 ; reg:reg_inst|data_reg[6][6]                 ; Stuck at GND due to stuck port clock_enable ;
-; reg:reg_inst|data_reg[7][6]                 ; Stuck at GND due to stuck port clock_enable ;
-; alu:alu_inst|result[7]                      ; Stuck at GND due to stuck port data_in      ;
-; reg:reg_inst|data_reg[0][7]                 ; Stuck at GND due to stuck port data_in      ;
-; reg:reg_inst|data_reg[1][7]                 ; Stuck at GND due to stuck port data_in      ;
-; reg:reg_inst|data_reg[2][7]                 ; Stuck at GND due to stuck port data_in      ;
-; reg:reg_inst|data_reg[3][7]                 ; Stuck at GND due to stuck port data_in      ;
-; reg:reg_inst|data_out_b[7]                  ; Stuck at GND due to stuck port data_in      ;
-; decoder:decoder_inst|alu_b[7]               ; Stuck at GND due to stuck port data_in      ;
-; reg:reg_inst|data_out_a[7]                  ; Stuck at GND due to stuck port data_in      ;
 ; pipeline:pipeline_inst|\pipeline:counter[3] ; Stuck at GND due to stuck port data_in      ;
-; rom:rom_inst|data[20]                       ; Merged with rom:rom_inst|data[8]            ;
-; rom:rom_inst|data[10,11]                    ; Merged with rom:rom_inst|data[24]           ;
-; rom:rom_inst|data[1]                        ; Merged with rom:rom_inst|data[23]           ;
-; rom:rom_inst|data[13,14]                    ; Merged with rom:rom_inst|data[15]           ;
-; decoder:decoder_inst|op[4]                  ; Merged with decoder:decoder_inst|B[1]       ;
-; decoder:decoder_inst|op[1]                  ; Merged with decoder:decoder_inst|A[0]       ;
-; decoder:decoder_inst|A[2,3]                 ; Merged with decoder:decoder_inst|format[0]  ;
-; decoder:decoder_inst|A[5,6]                 ; Merged with decoder:decoder_inst|A[7]       ;
-; decoder:decoder_inst|reg_address_b[1]       ; Stuck at VCC due to stuck port data_in      ;
-; Total Number of Removed Registers = 102     ;                                             ;
+; rom:rom_inst|data[13,20]                    ; Merged with rom:rom_inst|data[24]           ;
+; rom:rom_inst|data[0]                        ; Merged with rom:rom_inst|data[23]           ;
+; rom:rom_inst|data[10..12]                   ; Merged with rom:rom_inst|data[15]           ;
+; decoder:decoder_inst|op[4]                  ; Merged with decoder:decoder_inst|B[0]       ;
+; decoder:decoder_inst|op[1]                  ; Merged with decoder:decoder_inst|format[0]  ;
+; decoder:decoder_inst|A[5]                   ; Merged with decoder:decoder_inst|format[0]  ;
+; decoder:decoder_inst|A[2..4]                ; Merged with decoder:decoder_inst|A[7]       ;
+; decoder:decoder_inst|reg_address_b[0]       ; Stuck at VCC due to stuck port data_in      ;
+; Total Number of Removed Registers = 103     ;                                             ;
 +---------------------------------------------+---------------------------------------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                                           ;
-+-----------------------+---------------------------+-----------------------------------------------------------------------------------+
-; Register name         ; Reason for Removal        ; Registers Removed due to This Register                                            ;
-+-----------------------+---------------------------+-----------------------------------------------------------------------------------+
-; rom:rom_inst|data[25] ; Stuck at GND              ; decoder:decoder_inst|format[1], decoder:decoder_inst|reg_address_b[2],            ;
-;                       ; due to stuck port data_in ; decoder:decoder_inst|reg_address_b[0], decoder:decoder_inst|reg_address[2],       ;
-;                       ;                           ; decoder:decoder_inst|alu_sel[0], reg:reg_inst|data_reg[4][0],                     ;
-;                       ;                           ; reg:reg_inst|data_reg[5][0], reg:reg_inst|data_reg[6][0],                         ;
-;                       ;                           ; reg:reg_inst|data_reg[7][0], reg:reg_inst|data_reg[4][7],                         ;
-;                       ;                           ; reg:reg_inst|data_reg[5][7], reg:reg_inst|data_reg[6][7],                         ;
-;                       ;                           ; reg:reg_inst|data_reg[7][7], reg:reg_inst|data_reg[4][1],                         ;
-;                       ;                           ; reg:reg_inst|data_reg[5][1], reg:reg_inst|data_reg[6][1],                         ;
-;                       ;                           ; reg:reg_inst|data_reg[7][1], reg:reg_inst|data_reg[4][2],                         ;
-;                       ;                           ; reg:reg_inst|data_reg[5][2], reg:reg_inst|data_reg[6][2],                         ;
-;                       ;                           ; reg:reg_inst|data_reg[7][2], reg:reg_inst|data_reg[4][3],                         ;
-;                       ;                           ; reg:reg_inst|data_reg[5][3], reg:reg_inst|data_reg[6][3],                         ;
-;                       ;                           ; reg:reg_inst|data_reg[7][3], reg:reg_inst|data_reg[4][4],                         ;
-;                       ;                           ; reg:reg_inst|data_reg[5][4], reg:reg_inst|data_reg[6][4],                         ;
-;                       ;                           ; reg:reg_inst|data_reg[7][4], reg:reg_inst|data_reg[4][5],                         ;
-;                       ;                           ; reg:reg_inst|data_reg[5][5], reg:reg_inst|data_reg[6][5],                         ;
-;                       ;                           ; reg:reg_inst|data_reg[7][5], reg:reg_inst|data_reg[4][6],                         ;
-;                       ;                           ; reg:reg_inst|data_reg[5][6], reg:reg_inst|data_reg[6][6],                         ;
-;                       ;                           ; reg:reg_inst|data_reg[7][6], alu:alu_inst|result[7], reg:reg_inst|data_reg[0][7], ;
-;                       ;                           ; reg:reg_inst|data_reg[1][7], reg:reg_inst|data_reg[2][7],                         ;
-;                       ;                           ; reg:reg_inst|data_reg[3][7], reg:reg_inst|data_out_b[7],                          ;
-;                       ;                           ; decoder:decoder_inst|alu_b[7], reg:reg_inst|data_out_a[7],                        ;
-;                       ;                           ; decoder:decoder_inst|reg_address_b[1]                                             ;
-; rom:rom_inst|data[22] ; Stuck at GND              ; decoder:decoder_inst|op[3], decoder:decoder_inst|ram_data_in[5],                  ;
-;                       ; due to stuck port data_in ; decoder:decoder_inst|ram_data_in[6], decoder:decoder_inst|ram_data_in[7],         ;
-;                       ;                           ; decoder:decoder_inst|ram_address[0], decoder:decoder_inst|ram_address[1],         ;
-;                       ;                           ; decoder:decoder_inst|ram_address[2], decoder:decoder_inst|ram_address[3],         ;
-;                       ;                           ; decoder:decoder_inst|ram_address[4], decoder:decoder_inst|ram_address[5],         ;
-;                       ;                           ; decoder:decoder_inst|ram_address[6], decoder:decoder_inst|ram_address[7],         ;
-;                       ;                           ; decoder:decoder_inst|ram_rw                                                       ;
-; rom:rom_inst|data[21] ; Stuck at GND              ; decoder:decoder_inst|op[2]                                                        ;
-;                       ; due to stuck port data_in ;                                                                                   ;
-; rom:rom_inst|data[12] ; Stuck at GND              ; decoder:decoder_inst|A[4]                                                         ;
-;                       ; due to stuck port data_in ;                                                                                   ;
-; rom:rom_inst|data[18] ; Stuck at GND              ; decoder:decoder_inst|reg[2]                                                       ;
-;                       ; due to stuck port data_in ;                                                                                   ;
-; rom:rom_inst|data[7]  ; Stuck at GND              ; decoder:decoder_inst|B[7]                                                         ;
-;                       ; due to stuck port data_in ;                                                                                   ;
-; rom:rom_inst|data[6]  ; Stuck at GND              ; decoder:decoder_inst|B[6]                                                         ;
-;                       ; due to stuck port data_in ;                                                                                   ;
-; rom:rom_inst|data[5]  ; Stuck at GND              ; decoder:decoder_inst|B[5]                                                         ;
-;                       ; due to stuck port data_in ;                                                                                   ;
-; rom:rom_inst|data[4]  ; Stuck at GND              ; decoder:decoder_inst|B[4]                                                         ;
-;                       ; due to stuck port data_in ;                                                                                   ;
-; rom:rom_inst|data[3]  ; Stuck at GND              ; decoder:decoder_inst|B[3]                                                         ;
-;                       ; due to stuck port data_in ;                                                                                   ;
-; rom:rom_inst|data[2]  ; Stuck at GND              ; decoder:decoder_inst|B[2]                                                         ;
-;                       ; due to stuck port data_in ;                                                                                   ;
-; rom:rom_inst|data[0]  ; Stuck at GND              ; decoder:decoder_inst|B[0]                                                         ;
-;                       ; due to stuck port data_in ;                                                                                   ;
-+-----------------------+---------------------------+-----------------------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                       ;
++-----------------------+---------------------------+-------------------------------------------------------------------------------+
+; Register name         ; Reason for Removal        ; Registers Removed due to This Register                                        ;
++-----------------------+---------------------------+-------------------------------------------------------------------------------+
+; rom:rom_inst|data[25] ; Stuck at GND              ; decoder:decoder_inst|format[1], decoder:decoder_inst|reg_address_a[0],        ;
+;                       ; due to stuck port data_in ; decoder:decoder_inst|reg_address_b[2], decoder:decoder_inst|reg_address_b[1], ;
+;                       ;                           ; reg:reg_inst|data_reg[3][0], reg:reg_inst|data_reg[5][0],                     ;
+;                       ;                           ; reg:reg_inst|data_reg[3][7], reg:reg_inst|data_reg[5][7],                     ;
+;                       ;                           ; reg:reg_inst|data_reg[3][1], reg:reg_inst|data_reg[5][1],                     ;
+;                       ;                           ; reg:reg_inst|data_reg[3][2], reg:reg_inst|data_reg[5][2],                     ;
+;                       ;                           ; reg:reg_inst|data_reg[3][3], reg:reg_inst|data_reg[5][3],                     ;
+;                       ;                           ; reg:reg_inst|data_reg[3][4], reg:reg_inst|data_reg[5][4],                     ;
+;                       ;                           ; reg:reg_inst|data_reg[3][5], reg:reg_inst|data_reg[5][5],                     ;
+;                       ;                           ; reg:reg_inst|data_reg[3][6], reg:reg_inst|data_reg[5][6],                     ;
+;                       ;                           ; decoder:decoder_inst|reg_address[2], decoder:decoder_inst|alu_sel[2],         ;
+;                       ;                           ; reg:reg_inst|data_reg[4][0], reg:reg_inst|data_reg[6][0],                     ;
+;                       ;                           ; reg:reg_inst|data_reg[4][7], reg:reg_inst|data_reg[6][7],                     ;
+;                       ;                           ; reg:reg_inst|data_reg[4][1], reg:reg_inst|data_reg[6][1],                     ;
+;                       ;                           ; reg:reg_inst|data_reg[4][2], reg:reg_inst|data_reg[6][2],                     ;
+;                       ;                           ; reg:reg_inst|data_reg[4][3], reg:reg_inst|data_reg[6][3],                     ;
+;                       ;                           ; reg:reg_inst|data_reg[4][4], reg:reg_inst|data_reg[6][4],                     ;
+;                       ;                           ; reg:reg_inst|data_reg[4][5], reg:reg_inst|data_reg[6][5],                     ;
+;                       ;                           ; reg:reg_inst|data_reg[4][6], reg:reg_inst|data_reg[6][6],                     ;
+;                       ;                           ; decoder:decoder_inst|reg_address_b[0]                                         ;
+; rom:rom_inst|data[22] ; Stuck at GND              ; decoder:decoder_inst|op[3], decoder:decoder_inst|ram_rw,                      ;
+;                       ; due to stuck port data_in ; decoder:decoder_inst|ram_data_in[2], decoder:decoder_inst|ram_data_in[3],     ;
+;                       ;                           ; decoder:decoder_inst|ram_data_in[4], decoder:decoder_inst|ram_data_in[5],     ;
+;                       ;                           ; decoder:decoder_inst|ram_data_in[6], decoder:decoder_inst|ram_data_in[7],     ;
+;                       ;                           ; decoder:decoder_inst|ram_address[1], decoder:decoder_inst|ram_address[2],     ;
+;                       ;                           ; decoder:decoder_inst|ram_address[3], decoder:decoder_inst|ram_address[4],     ;
+;                       ;                           ; decoder:decoder_inst|ram_address[5], decoder:decoder_inst|ram_address[6],     ;
+;                       ;                           ; decoder:decoder_inst|ram_address[7]                                           ;
+; rom:rom_inst|data[8]  ; Stuck at GND              ; decoder:decoder_inst|A[0], decoder:decoder_inst|ram_address[0]                ;
+;                       ; due to stuck port data_in ;                                                                               ;
+; rom:rom_inst|data[21] ; Stuck at GND              ; decoder:decoder_inst|op[2]                                                    ;
+;                       ; due to stuck port data_in ;                                                                               ;
+; rom:rom_inst|data[14] ; Stuck at GND              ; decoder:decoder_inst|A[6]                                                     ;
+;                       ; due to stuck port data_in ;                                                                               ;
+; rom:rom_inst|data[18] ; Stuck at GND              ; decoder:decoder_inst|reg[2]                                                   ;
+;                       ; due to stuck port data_in ;                                                                               ;
+; rom:rom_inst|data[7]  ; Stuck at GND              ; decoder:decoder_inst|B[7]                                                     ;
+;                       ; due to stuck port data_in ;                                                                               ;
+; rom:rom_inst|data[6]  ; Stuck at GND              ; decoder:decoder_inst|B[6]                                                     ;
+;                       ; due to stuck port data_in ;                                                                               ;
+; rom:rom_inst|data[5]  ; Stuck at GND              ; decoder:decoder_inst|B[5]                                                     ;
+;                       ; due to stuck port data_in ;                                                                               ;
+; rom:rom_inst|data[4]  ; Stuck at GND              ; decoder:decoder_inst|B[4]                                                     ;
+;                       ; due to stuck port data_in ;                                                                               ;
+; rom:rom_inst|data[3]  ; Stuck at GND              ; decoder:decoder_inst|B[3]                                                     ;
+;                       ; due to stuck port data_in ;                                                                               ;
+; rom:rom_inst|data[2]  ; Stuck at GND              ; decoder:decoder_inst|B[2]                                                     ;
+;                       ; due to stuck port data_in ;                                                                               ;
+; rom:rom_inst|data[1]  ; Stuck at GND              ; decoder:decoder_inst|B[1]                                                     ;
+;                       ; due to stuck port data_in ;                                                                               ;
++-----------------------+---------------------------+-------------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -435,12 +475,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 119   ;
-; Number of registers using Synchronous Clear  ; 7     ;
+; Total registers                              ; 153   ;
+; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 100   ;
+; Number of registers using Clock Enable       ; 122   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -450,78 +490,121 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+---------------------+
 ; Node                                                                                                                                                               ; Action           ; Reason              ;
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+---------------------+
-; alu:alu_inst|Add0~1                                                                                                                                                ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|StageOut[8]~2                                             ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|StageOut[8]~2_RTM0177                                     ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|StageOut[8]~2_RTM0177                                     ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|StageOut[9]~1                                             ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|StageOut[9]~1_OTERM174                                    ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|StageOut[9]~1_RTM0161                                     ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|StageOut[16]~5                                            ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|StageOut[24]~9                                            ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|StageOut[32]~14                                           ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|StageOut[40]~20                                           ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|StageOut[48]~27                                           ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|add_sub_2_result_int[0]~1                                 ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|add_sub_3_result_int[0]~1                                 ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|add_sub_4_result_int[0]~1                                 ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|add_sub_5_result_int[0]~1                                 ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|add_sub_6_result_int[0]~1                                 ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|add_sub_t3c:add_sub_0|_~0_RTM0149                         ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|add_sub_t3c:add_sub_0|_~0_RTM0149                         ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|add_sub_u3c:add_sub_1|_~0                                 ; Deleted          ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|add_sub_u3c:add_sub_1|_~0_RTM0162                         ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|add_sub_u3c:add_sub_1|_~0_RTM0162                         ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|add_sub_u3c:add_sub_1|carry_eqn[1]~0                      ; Deleted          ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|add_sub_u3c:add_sub_1|carry_eqn[1]~0_OTERM176             ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|add_sub_u3c:add_sub_1|carry_eqn[1]~0_RTM0145              ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|add_sub_u3c:add_sub_1|carry_eqn[1]~0_RTM0145              ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|add_sub_u3c:add_sub_1|carry_eqn[1]~0_RTM0178              ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|add_sub_u3c:add_sub_1|carry_eqn[1]~0_RTM0178              ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|sel[1]_OTERM166                                           ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|alt_u_div_8fe:divider|sel[4]_OTERM168                                           ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|diff_signs_RTM083                                                               ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|diff_signs_RTM083                                                               ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|lpm_abs_r99:my_abs_den|cs1a[1]~6_OTERM132                                       ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|lpm_abs_r99:my_abs_den|cs1a[2]~5_OTERM130                                       ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|lpm_abs_r99:my_abs_den|cs1a[3]~4_OTERM156                                       ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|lpm_abs_r99:my_abs_den|cs1a[4]~1_OTERM152                                       ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|lpm_abs_r99:my_abs_den|cs1a[4]~3_OTERM154                                       ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|lpm_abs_r99:my_abs_num|cs1a[2]~0_OTERM47                                        ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|lpm_abs_r99:my_abs_num|cs1a[5]~4_NEW_REG54_OTERM72                              ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|lpm_abs_r99:my_abs_num|cs1a[5]~4_OTERM55                                        ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|lpm_abs_r99:my_abs_num|cs1a[6]~2_NEW_REG50_OTERM170                             ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|lpm_abs_r99:my_abs_num|cs1a[6]~2_OTERM51                                        ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|lpm_abs_r99:my_abs_num|cs1a[6]~3_NEW_REG52_OTERM74                              ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|lpm_abs_r99:my_abs_num|cs1a[6]~3_OTERM53                                        ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|op_1~1                                                                          ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|op_1~12                                                                         ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|op_1~12_RTM0146                                                                 ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|op_1~14                                                                         ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|op_1~14_RTM0150                                                                 ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|quotient[0]~7                                                                   ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|quotient[1]~2                                                                   ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|quotient[1]~2_RTM0126                                                           ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|quotient[2]~6                                                                   ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|quotient[2]~6_RTM0119                                                           ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|quotient[3]~5                                                                   ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|quotient[3]~5_RTM0112                                                           ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|quotient[4]~4                                                                   ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|quotient[4]~4_RTM099                                                            ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|quotient[5]~3                                                                   ; Modified         ; Timing optimization ;
+; alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider|quotient[5]~3_RTM084                                                            ; Modified         ; Timing optimization ;
 ; alu:alu_inst|result[0]                                                                                                                                             ; Deleted          ; Timing optimization ;
-; alu:alu_inst|result[0]_OTERM29                                                                                                                                     ; Retimed Register ; Timing optimization ;
-; alu:alu_inst|result[0]_OTERM31                                                                                                                                     ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[0]_OTERM57                                                                                                                                     ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[0]_OTERM59                                                                                                                                     ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[0]_OTERM61                                                                                                                                     ; Retimed Register ; Timing optimization ;
 ; alu:alu_inst|result[1]                                                                                                                                             ; Deleted          ; Timing optimization ;
-; alu:alu_inst|result[1]_OTERM27                                                                                                                                     ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[1]_OTERM41                                                                                                                                     ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[1]_OTERM43                                                                                                                                     ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[1]_OTERM45_OTERM121                                                                                                                            ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[1]_OTERM45_OTERM123_OTERM142                                                                                                                   ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[1]_OTERM45_OTERM125                                                                                                                            ; Retimed Register ; Timing optimization ;
 ; alu:alu_inst|result[2]                                                                                                                                             ; Deleted          ; Timing optimization ;
-; alu:alu_inst|result[2]_OTERM21                                                                                                                                     ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[2]_OTERM35                                                                                                                                     ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[2]_OTERM37                                                                                                                                     ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[2]_OTERM39_OTERM114                                                                                                                            ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[2]_OTERM39_OTERM118                                                                                                                            ; Retimed Register ; Timing optimization ;
 ; alu:alu_inst|result[3]                                                                                                                                             ; Deleted          ; Timing optimization ;
 ; alu:alu_inst|result[3]_OTERM23                                                                                                                                     ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[3]_OTERM25                                                                                                                                     ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[3]_OTERM27_OTERM107                                                                                                                            ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[3]_OTERM27_OTERM111                                                                                                                            ; Retimed Register ; Timing optimization ;
 ; alu:alu_inst|result[4]                                                                                                                                             ; Deleted          ; Timing optimization ;
-; alu:alu_inst|result[4]_OTERM25                                                                                                                                     ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[4]_OTERM9                                                                                                                                      ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[4]_OTERM11                                                                                                                                     ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[4]_OTERM13                                                                                                                                     ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[4]_OTERM15_OTERM94                                                                                                                             ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[4]_OTERM15_OTERM98                                                                                                                             ; Retimed Register ; Timing optimization ;
 ; alu:alu_inst|result[5]                                                                                                                                             ; Deleted          ; Timing optimization ;
-; alu:alu_inst|result[5]_OTERM33                                                                                                                                     ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[5]_OTERM1                                                                                                                                      ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[5]_OTERM3                                                                                                                                      ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[5]_OTERM5                                                                                                                                      ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[5]_OTERM7_OTERM76                                                                                                                              ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[5]_OTERM7_OTERM80                                                                                                                              ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[5]_OTERM7_OTERM82                                                                                                                              ; Retimed Register ; Timing optimization ;
 ; alu:alu_inst|result[6]                                                                                                                                             ; Deleted          ; Timing optimization ;
-; alu:alu_inst|result[6]_OTERM1                                                                                                                                      ; Retimed Register ; Timing optimization ;
-; alu:alu_inst|result[6]_OTERM3                                                                                                                                      ; Retimed Register ; Timing optimization ;
-; alu:alu_inst|result[6]_OTERM5                                                                                                                                      ; Retimed Register ; Timing optimization ;
-; alu:alu_inst|result~0                                                                                                                                              ; Modified         ; Timing optimization ;
-; alu:alu_inst|result~2                                                                                                                                              ; Deleted          ; Timing optimization ;
-; alu:alu_inst|result~2_Duplicate_8                                                                                                                                  ; Retimed Register ; Timing optimization ;
-; alu:alu_inst|result~2_Duplicate_10                                                                                                                                 ; Retimed Register ; Timing optimization ;
-; alu:alu_inst|result~2_Duplicate_12                                                                                                                                 ; Retimed Register ; Timing optimization ;
-; alu:alu_inst|result~2_Duplicate_14                                                                                                                                 ; Retimed Register ; Timing optimization ;
-; decoder:decoder_inst|A[0]_OTERM7                                                                                                                                   ; Retimed Register ; Timing optimization ;
-; decoder:decoder_inst|B[1]_OTERM11                                                                                                                                  ; Retimed Register ; Timing optimization ;
-; decoder:decoder_inst|B[1]~0                                                                                                                                        ; Deleted          ; Timing optimization ;
-; decoder:decoder_inst|Mux4~0                                                                                                                                        ; Modified         ; Timing optimization ;
-; decoder:decoder_inst|Mux6~0                                                                                                                                        ; Modified         ; Timing optimization ;
-; decoder:decoder_inst|Mux7~0                                                                                                                                        ; Modified         ; Timing optimization ;
-; decoder:decoder_inst|Mux8~0                                                                                                                                        ; Modified         ; Timing optimization ;
-; decoder:decoder_inst|Mux9~0                                                                                                                                        ; Modified         ; Timing optimization ;
-; decoder:decoder_inst|format[0]_OTERM59                                                                                                                             ; Retimed Register ; Timing optimization ;
-; decoder:decoder_inst|op[0]_OTERM9                                                                                                                                  ; Retimed Register ; Timing optimization ;
-; decoder:decoder_inst|reg_address[0]_OTERM13                                                                                                                        ; Retimed Register ; Timing optimization ;
-; decoder:decoder_inst|reg_address_a[0]~0_OTERM19                                                                                                                    ; Retimed Register ; Timing optimization ;
-; fetch:fetch_inst|address[1]_RTM052                                                                                                                                 ; Modified         ; Timing optimization ;
-; fetch:fetch_inst|address[1]_RTM052                                                                                                                                 ; Retimed Register ; Timing optimization ;
-; reg:reg_inst|Decoder0~0_OTERM15                                                                                                                                    ; Retimed Register ; Timing optimization ;
-; reg:reg_inst|Decoder0~2_OTERM17                                                                                                                                    ; Retimed Register ; Timing optimization ;
-; reg:reg_inst|Mux1~2                                                                                                                                                ; Deleted          ; Timing optimization ;
-; reg:reg_inst|Mux3~2                                                                                                                                                ; Deleted          ; Timing optimization ;
-; reg:reg_inst|Mux4~2                                                                                                                                                ; Deleted          ; Timing optimization ;
-; reg:reg_inst|Mux5~2                                                                                                                                                ; Deleted          ; Timing optimization ;
-; reg:reg_inst|Mux6~2                                                                                                                                                ; Deleted          ; Timing optimization ;
-; reg:reg_inst|data_out_a[1]                                                                                                                                         ; Deleted          ; Timing optimization ;
-; reg:reg_inst|data_out_a[1]_OTERM47                                                                                                                                 ; Retimed Register ; Timing optimization ;
-; reg:reg_inst|data_out_a[2]                                                                                                                                         ; Deleted          ; Timing optimization ;
-; reg:reg_inst|data_out_a[2]_OTERM45                                                                                                                                 ; Retimed Register ; Timing optimization ;
-; reg:reg_inst|data_out_a[3]                                                                                                                                         ; Deleted          ; Timing optimization ;
-; reg:reg_inst|data_out_a[3]_OTERM43                                                                                                                                 ; Retimed Register ; Timing optimization ;
-; reg:reg_inst|data_out_a[4]                                                                                                                                         ; Deleted          ; Timing optimization ;
-; reg:reg_inst|data_out_a[4]_OTERM37                                                                                                                                 ; Retimed Register ; Timing optimization ;
-; reg:reg_inst|data_out_a[4]_OTERM39                                                                                                                                 ; Retimed Register ; Timing optimization ;
-; reg:reg_inst|data_out_a[6]                                                                                                                                         ; Deleted          ; Timing optimization ;
-; reg:reg_inst|data_out_a[6]_OTERM41                                                                                                                                 ; Retimed Register ; Timing optimization ;
-; rom:rom_inst|data[15]                                                                                                                                              ; Deleted          ; Timing optimization ;
-; rom:rom_inst|data[15]_OTERM35                                                                                                                                      ; Retimed Register ; Timing optimization ;
-; rom:rom_inst|data[16]                                                                                                                                              ; Deleted          ; Timing optimization ;
-; rom:rom_inst|data[16]_OTERM49                                                                                                                                      ; Retimed Register ; Timing optimization ;
-; rom:rom_inst|data[23]                                                                                                                                              ; Deleted          ; Timing optimization ;
-; rom:rom_inst|data[23]_OTERM51                                                                                                                                      ; Retimed Register ; Timing optimization ;
-; rom:rom_inst|data[23]_OTERM55                                                                                                                                      ; Retimed Register ; Timing optimization ;
-; rom:rom_inst|rom_data~6_RTM056                                                                                                                                     ; Modified         ; Timing optimization ;
-; rom:rom_inst|rom_data~6_RTM056                                                                                                                                     ; Retimed Register ; Timing optimization ;
-; rom:rom_inst|rom_data~7                                                                                                                                            ; Deleted          ; Timing optimization ;
-; rom:rom_inst|rom_data~7_RTM053                                                                                                                                     ; Modified         ; Timing optimization ;
-; rom:rom_inst|rom_data~7_RTM057                                                                                                                                     ; Modified         ; Timing optimization ;
-; rom:rom_inst|rom_data~8                                                                                                                                            ; Deleted          ; Timing optimization ;
-; rom:rom_inst|rom_data~8_Duplicate_13                                                                                                                               ; Retimed Register ; Timing optimization ;
-; rom:rom_inst|rom_data~11                                                                                                                                           ; Deleted          ; Timing optimization ;
-; rom:rom_inst|rom_data~11_Duplicate_14                                                                                                                              ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[6]_OTERM29                                                                                                                                     ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[6]_OTERM31_OTERM101_OTERM144                                                                                                                   ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[6]_OTERM31_OTERM103                                                                                                                            ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[6]_OTERM31_OTERM105                                                                                                                            ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[6]_OTERM33                                                                                                                                     ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[7]                                                                                                                                             ; Deleted          ; Timing optimization ;
+; alu:alu_inst|result[7]_OTERM17                                                                                                                                     ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[7]_OTERM19_OTERM86_OTERM148                                                                                                                    ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[7]_OTERM19_OTERM88                                                                                                                             ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[7]_OTERM19_OTERM90                                                                                                                             ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[7]_OTERM19_OTERM92                                                                                                                             ; Retimed Register ; Timing optimization ;
+; alu:alu_inst|result[7]_OTERM21                                                                                                                                     ; Retimed Register ; Timing optimization ;
+; decoder:decoder_inst|alu_a[0]_OTERM164                                                                                                                             ; Retimed Register ; Timing optimization ;
+; decoder:decoder_inst|alu_b[0]_NEW64_RTM066                                                                                                                         ; Modified         ; Timing optimization ;
+; decoder:decoder_inst|alu_b[0]_OTERM65                                                                                                                              ; Retimed Register ; Timing optimization ;
+; decoder:decoder_inst|alu_b[1]_OTERM68                                                                                                                              ; Retimed Register ; Timing optimization ;
+; decoder:decoder_inst|alu_b[2]_OTERM70                                                                                                                              ; Retimed Register ; Timing optimization ;
+; decoder:decoder_inst|alu_b[3]_OTERM134                                                                                                                             ; Retimed Register ; Timing optimization ;
+; decoder:decoder_inst|alu_b[4]_OTERM136                                                                                                                             ; Retimed Register ; Timing optimization ;
+; decoder:decoder_inst|alu_b[5]_OTERM138                                                                                                                             ; Retimed Register ; Timing optimization ;
+; decoder:decoder_inst|alu_b[6]_OTERM140                                                                                                                             ; Retimed Register ; Timing optimization ;
+; decoder:decoder_inst|alu_b[7]_OTERM63                                                                                                                              ; Retimed Register ; Timing optimization ;
 ; screen:screen_inst|dig2dec:dig2dec_inst|Add2~0                                                                                                                     ; Modified         ; Timing optimization ;
 ; screen:screen_inst|dig2dec:dig2dec_inst|a_abs~0                                                                                                                    ; Deleted          ; Timing optimization ;
 ; screen:screen_inst|dig2dec:dig2dec_inst|lpm_divide:Div1|lpm_divide_csl:auto_generated|sign_div_unsign_ekh:divider|alt_u_div_6fe:divider|StageOut[50]~9             ; Modified         ; Timing optimization ;
@@ -587,15 +670,15 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                       ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------+
-; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |CPU|alu:alu_inst|result[2]                      ;
-; 8:1                ; 2 bits    ; 10 LEs        ; 2 LEs                ; 8 LEs                  ; Yes        ; |CPU|decoder:decoder_inst|ram_rw                 ;
-; 8:1                ; 2 bits    ; 10 LEs        ; 0 LEs                ; 10 LEs                 ; Yes        ; |CPU|decoder:decoder_inst|alu_sel[0]             ;
-; 8:1                ; 10 bits   ; 50 LEs        ; 0 LEs                ; 50 LEs                 ; Yes        ; |CPU|decoder:decoder_inst|alu_a[3]               ;
-; 8:1                ; 8 bits    ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; Yes        ; |CPU|reg:reg_inst|data_out_a[7]                  ;
-; 9:1                ; 7 bits    ; 42 LEs        ; 7 LEs                ; 35 LEs                 ; Yes        ; |CPU|decoder:decoder_inst|alu_b[7]               ;
-; 16:1               ; 6 bits    ; 60 LEs        ; 24 LEs               ; 36 LEs                 ; Yes        ; |CPU|pipeline:pipeline_inst|stage[5]             ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |CPU|reg:reg_inst|data_out_a[0]                  ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 0 LEs                ; 4 LEs                  ; Yes        ; |CPU|decoder:decoder_inst|reg_address_a[1]       ;
+; 8:1                ; 4 bits    ; 20 LEs        ; 12 LEs               ; 8 LEs                  ; Yes        ; |CPU|decoder:decoder_inst|alu_sel[0]             ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 0 LEs                ; 10 LEs                 ; Yes        ; |CPU|decoder:decoder_inst|reg_address[1]         ;
+; 16:1               ; 6 bits    ; 60 LEs        ; 24 LEs               ; 36 LEs                 ; Yes        ; |CPU|pipeline:pipeline_inst|stage[7]             ;
 ; 16:1               ; 3 bits    ; 30 LEs        ; 3 LEs                ; 27 LEs                 ; Yes        ; |CPU|pipeline:pipeline_inst|\pipeline:counter[1] ;
-; 7:1                ; 3 bits    ; 12 LEs        ; 0 LEs                ; 12 LEs                 ; Yes        ; |CPU|decoder:decoder_inst|reg_address_a[1]       ;
+; 10:1               ; 7 bits    ; 42 LEs        ; 42 LEs               ; 0 LEs                  ; Yes        ; |CPU|alu:alu_inst|result[2]                      ;
+; 8:1                ; 8 bits    ; 40 LEs        ; 0 LEs                ; 40 LEs                 ; Yes        ; |CPU|decoder:decoder_inst|alu_a[0]               ;
+; 6:1                ; 7 bits    ; 28 LEs        ; 7 LEs                ; 21 LEs                 ; Yes        ; |CPU|decoder:decoder_inst|alu_b[5]               ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------+
 
 
@@ -761,6 +844,64 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
++---------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: alu:alu_inst|lpm_mult:Mult0    ;
++------------------------------------------------+----------+---------------------+
+; Parameter Name                                 ; Value    ; Type                ;
++------------------------------------------------+----------+---------------------+
+; AUTO_CARRY_CHAINS                              ; ON       ; AUTO_CARRY          ;
+; IGNORE_CARRY_BUFFERS                           ; OFF      ; IGNORE_CARRY        ;
+; AUTO_CASCADE_CHAINS                            ; ON       ; AUTO_CASCADE        ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF      ; IGNORE_CASCADE      ;
+; LPM_WIDTHA                                     ; 8        ; Untyped             ;
+; LPM_WIDTHB                                     ; 8        ; Untyped             ;
+; LPM_WIDTHP                                     ; 16       ; Untyped             ;
+; LPM_WIDTHR                                     ; 16       ; Untyped             ;
+; LPM_WIDTHS                                     ; 1        ; Untyped             ;
+; LPM_REPRESENTATION                             ; SIGNED   ; Untyped             ;
+; LPM_PIPELINE                                   ; 0        ; Untyped             ;
+; LATENCY                                        ; 0        ; Untyped             ;
+; INPUT_A_IS_CONSTANT                            ; NO       ; Untyped             ;
+; INPUT_B_IS_CONSTANT                            ; NO       ; Untyped             ;
+; USE_EAB                                        ; OFF      ; Untyped             ;
+; MAXIMIZE_SPEED                                 ; 5        ; Untyped             ;
+; DEVICE_FAMILY                                  ; MAX 10   ; Untyped             ;
+; CARRY_CHAIN                                    ; MANUAL   ; Untyped             ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT      ; TECH_MAPPER_APEX20K ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO     ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0        ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0        ; Untyped             ;
+; CBXI_PARAMETER                                 ; mult_tds ; Untyped             ;
+; INPUT_A_FIXED_VALUE                            ; Bx       ; Untyped             ;
+; INPUT_B_FIXED_VALUE                            ; Bx       ; Untyped             ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF      ; Untyped             ;
++------------------------------------------------+----------+---------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: alu:alu_inst|lpm_divide:Div0 ;
++------------------------+----------------+-------------------------------------+
+; Parameter Name         ; Value          ; Type                                ;
++------------------------+----------------+-------------------------------------+
+; LPM_WIDTHN             ; 8              ; Untyped                             ;
+; LPM_WIDTHD             ; 8              ; Untyped                             ;
+; LPM_NREPRESENTATION    ; SIGNED         ; Untyped                             ;
+; LPM_DREPRESENTATION    ; SIGNED         ; Untyped                             ;
+; LPM_PIPELINE           ; 0              ; Untyped                             ;
+; LPM_REMAINDERPOSITIVE  ; FALSE          ; Untyped                             ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                             ;
+; CBXI_PARAMETER         ; lpm_divide_5ao ; Untyped                             ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                             ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                             ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                          ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                        ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                        ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                      ;
++------------------------+----------------+-------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
 +------------------------------------------------------------------------------------+
 ; altsyncram Parameter Settings by Entity Instance                                   ;
 +-------------------------------------------+----------------------------------------+
@@ -779,6 +920,26 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     -- RAM_BLOCK_TYPE                     ; AUTO                                   ;
 ;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                              ;
 +-------------------------------------------+----------------------------------------+
+
+
++---------------------------------------------------------------------+
+; lpm_mult Parameter Settings by Entity Instance                      ;
++---------------------------------------+-----------------------------+
+; Name                                  ; Value                       ;
++---------------------------------------+-----------------------------+
+; Number of entity instances            ; 1                           ;
+; Entity Instance                       ; alu:alu_inst|lpm_mult:Mult0 ;
+;     -- LPM_WIDTHA                     ; 8                           ;
+;     -- LPM_WIDTHB                     ; 8                           ;
+;     -- LPM_WIDTHP                     ; 16                          ;
+;     -- LPM_REPRESENTATION             ; SIGNED                      ;
+;     -- INPUT_A_IS_CONSTANT            ; NO                          ;
+;     -- INPUT_B_IS_CONSTANT            ; NO                          ;
+;     -- USE_EAB                        ; OFF                         ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                        ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx                          ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx                          ;
++---------------------------------------+-----------------------------+
 
 
 +------------------------------------------------+
@@ -861,24 +1022,25 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 69                          ;
-; cycloneiii_ff         ; 119                         ;
-;     ENA               ; 93                          ;
-;     ENA SCLR          ; 7                           ;
-;     plain             ; 19                          ;
-; cycloneiii_lcell_comb ; 319                         ;
-;     arith             ; 89                          ;
+; cycloneiii_ff         ; 153                         ;
+;     ENA               ; 122                         ;
+;     plain             ; 31                          ;
+; cycloneiii_lcell_comb ; 444                         ;
+;     arith             ; 135                         ;
 ;         1 data inputs ; 3                           ;
 ;         2 data inputs ; 20                          ;
-;         3 data inputs ; 66                          ;
-;     normal            ; 230                         ;
-;         0 data inputs ; 17                          ;
-;         1 data inputs ; 6                           ;
+;         3 data inputs ; 112                         ;
+;     normal            ; 309                         ;
+;         0 data inputs ; 23                          ;
+;         1 data inputs ; 10                          ;
 ;         2 data inputs ; 95                          ;
-;         3 data inputs ; 42                          ;
-;         4 data inputs ; 70                          ;
+;         3 data inputs ; 51                          ;
+;         4 data inputs ; 130                         ;
+; cycloneiii_mac_mult   ; 1                           ;
+; cycloneiii_mac_out    ; 1                           ;
 ;                       ;                             ;
-; Max LUT depth         ; 15.00                       ;
-; Average LUT depth     ; 7.92                        ;
+; Max LUT depth         ; 15.70                       ;
+; Average LUT depth     ; 8.63                        ;
 +-----------------------+-----------------------------+
 
 
@@ -887,7 +1049,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:02     ;
 +----------------+--------------+
 
 
@@ -897,7 +1059,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Thu Jan 23 21:38:59 2025
+    Info: Processing started: Thu Jan 23 22:47:05 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off CPU -c CPU
 Info (16303): Aggressive Performance optimization mode selected -- timing performance will be prioritized at the potential cost of increased logic area and compilation time
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -944,6 +1106,9 @@ Info (12128): Elaborating entity "fetch" for hierarchy "fetch:fetch_inst" File: 
 Info (12128): Elaborating entity "rom" for hierarchy "rom:rom_inst" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 239
 Info (12128): Elaborating entity "ram" for hierarchy "ram:ram_inst" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 249
 Info (12128): Elaborating entity "alu" for hierarchy "alu:alu_inst" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 262
+Warning (10631): VHDL Process Statement warning at alu.vhd(26): inferring latch(es) for signal or variable "status", which holds its previous value in one or more paths through the process File: /home/enzo/Documents/risc-cpu/alu.vhd Line: 26
+Info (10041): Inferred latch for "status[0]" at alu.vhd(26) File: /home/enzo/Documents/risc-cpu/alu.vhd Line: 26
+Info (10041): Inferred latch for "status[1]" at alu.vhd(26) File: /home/enzo/Documents/risc-cpu/alu.vhd Line: 26
 Info (12128): Elaborating entity "reg" for hierarchy "reg:reg_inst" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 275
 Info (12128): Elaborating entity "status" for hierarchy "status:status_inst" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 291
 Info (12128): Elaborating entity "decoder" for hierarchy "decoder:decoder_inst" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 307
@@ -973,11 +1138,13 @@ Info (19000): Inferred 1 megafunctions from design logic
         Info (286033): Parameter ADDRESS_REG_B set to CLOCK1
         Info (286033): Parameter INDATA_ACLR_A set to NONE
         Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
-Info (278001): Inferred 4 megafunctions from design logic
+Info (278001): Inferred 6 megafunctions from design logic
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "screen:screen_inst|dig2dec:dig2dec_inst|Mod1" File: /home/enzo/Documents/risc-cpu/dig2dec.vhd Line: 49
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "screen:screen_inst|dig2dec:dig2dec_inst|Div2" File: /home/enzo/Documents/risc-cpu/dig2dec.vhd Line: 48
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "screen:screen_inst|dig2dec:dig2dec_inst|Mod0" File: /home/enzo/Documents/risc-cpu/dig2dec.vhd Line: 48
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "screen:screen_inst|dig2dec:dig2dec_inst|Div1" File: /home/enzo/Documents/risc-cpu/dig2dec.vhd Line: 47
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "alu:alu_inst|Mult0" File: /home/enzo/Documents/risc-cpu/alu.vhd Line: 51
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "alu:alu_inst|Div0" File: /home/enzo/Documents/risc-cpu/alu.vhd Line: 55
 Info (12130): Elaborated megafunction instantiation "ram:ram_inst|altsyncram:data_ram_rtl_0"
 Info (12133): Instantiated megafunction "ram:ram_inst|altsyncram:data_ram_rtl_0" with the following parameter:
     Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
@@ -1036,6 +1203,32 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/sign
     Info (12023): Found entity 1: sign_div_unsign_ekh File: /home/enzo/Documents/risc-cpu/db/sign_div_unsign_ekh.tdf Line: 25
 Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_6fe.tdf
     Info (12023): Found entity 1: alt_u_div_6fe File: /home/enzo/Documents/risc-cpu/db/alt_u_div_6fe.tdf Line: 27
+Info (12130): Elaborated megafunction instantiation "alu:alu_inst|lpm_mult:Mult0" File: /home/enzo/Documents/risc-cpu/alu.vhd Line: 51
+Info (12133): Instantiated megafunction "alu:alu_inst|lpm_mult:Mult0" with the following parameter: File: /home/enzo/Documents/risc-cpu/alu.vhd Line: 51
+    Info (12134): Parameter "LPM_WIDTHA" = "8"
+    Info (12134): Parameter "LPM_WIDTHB" = "8"
+    Info (12134): Parameter "LPM_WIDTHP" = "16"
+    Info (12134): Parameter "LPM_WIDTHR" = "16"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
+Info (12021): Found 1 design units, including 1 entities, in source file db/mult_tds.tdf
+    Info (12023): Found entity 1: mult_tds File: /home/enzo/Documents/risc-cpu/db/mult_tds.tdf Line: 29
+Info (12130): Elaborated megafunction instantiation "alu:alu_inst|lpm_divide:Div0" File: /home/enzo/Documents/risc-cpu/alu.vhd Line: 55
+Info (12133): Instantiated megafunction "alu:alu_inst|lpm_divide:Div0" with the following parameter: File: /home/enzo/Documents/risc-cpu/alu.vhd Line: 55
+    Info (12134): Parameter "LPM_WIDTHN" = "8"
+    Info (12134): Parameter "LPM_WIDTHD" = "8"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_HINT" = "LPM_REMAINDERPOSITIVE=FALSE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_5ao.tdf
+    Info (12023): Found entity 1: lpm_divide_5ao File: /home/enzo/Documents/risc-cpu/db/lpm_divide_5ao.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/abs_divider_aag.tdf
+    Info (12023): Found entity 1: abs_divider_aag File: /home/enzo/Documents/risc-cpu/db/abs_divider_aag.tdf Line: 27
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_abs_r99.tdf
+    Info (12023): Found entity 1: lpm_abs_r99 File: /home/enzo/Documents/risc-cpu/db/lpm_abs_r99.tdf Line: 25
 Warning (14284): Synthesized away the following node(s):
     Warning (14285): Synthesized away the following RAM node(s):
         Warning (14320): Synthesized away node "ram:ram_inst|altsyncram:data_ram_rtl_0|altsyncram_85c1:auto_generated|ram_block1a0" File: /home/enzo/Documents/risc-cpu/db/altsyncram_85c1.tdf Line: 39
@@ -1046,6 +1239,8 @@ Warning (14284): Synthesized away the following node(s):
         Warning (14320): Synthesized away node "ram:ram_inst|altsyncram:data_ram_rtl_0|altsyncram_85c1:auto_generated|ram_block1a5" File: /home/enzo/Documents/risc-cpu/db/altsyncram_85c1.tdf Line: 189
         Warning (14320): Synthesized away node "ram:ram_inst|altsyncram:data_ram_rtl_0|altsyncram_85c1:auto_generated|ram_block1a6" File: /home/enzo/Documents/risc-cpu/db/altsyncram_85c1.tdf Line: 219
         Warning (14320): Synthesized away node "ram:ram_inst|altsyncram:data_ram_rtl_0|altsyncram_85c1:auto_generated|ram_block1a7" File: /home/enzo/Documents/risc-cpu/db/altsyncram_85c1.tdf Line: 249
+Info (13014): Ignored 14 buffer(s)
+    Info (13016): Ignored 14 CARRY_SUM buffer(s)
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "LEDR[0]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 16
     Warning (13410): Pin "LEDR[1]" is stuck at GND File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 16
@@ -1084,6 +1279,7 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "HEX5[6]" is stuck at VCC File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 23
     Warning (13410): Pin "HEX5[7]" is stuck at VCC File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 23
 Info (286030): Timing-Driven Synthesis is running
+Info (17049): 24 registers lost all their fanouts during netlist optimizations.
 Info (17016): Found the following redundant logic cells in design
     Info (17048): Logic cell "screen:screen_inst|dig2dec:dig2dec_inst|lpm_divide:Mod0|lpm_divide_gkl:auto_generated|sign_div_unsign_fkh:divider|alt_u_div_8fe:divider|add_sub_7_result_int[0]~0" File: /home/enzo/Documents/risc-cpu/db/alt_u_div_8fe.tdf Line: 62
     Info (17048): Logic cell "screen:screen_inst|dig2dec:dig2dec_inst|lpm_divide:Mod0|lpm_divide_gkl:auto_generated|sign_div_unsign_fkh:divider|alt_u_div_8fe:divider|add_sub_6_result_int[0]~14" File: /home/enzo/Documents/risc-cpu/db/alt_u_div_8fe.tdf Line: 57
@@ -1097,7 +1293,7 @@ Info (332111): Found 1 clocks
     Info (332111): ======== ============
     Info (332111):   20.000 MAX10_CLK1_50
 Info (128002): Starting physical synthesis algorithm register retiming
-Info (128003): Physical synthesis algorithm register retiming complete: estimated slack improvement of 602 ps
+Info (128003): Physical synthesis algorithm register retiming complete: estimated slack improvement of 4659 ps
 Info (128002): Starting physical synthesis algorithm combinational resynthesis using boolean division
 Info (128003): Physical synthesis algorithm combinational resynthesis using boolean division complete: estimated slack improvement of 0 ps
 Info (128001): Physical synthesis optimizations for speed complete: elapsed time is 00:00:01
@@ -1114,14 +1310,15 @@ Warning (21074): Design contains 10 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SW[7]" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 15
     Warning (15610): No output dependent on input pin "SW[8]" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 15
     Warning (15610): No output dependent on input pin "SW[9]" File: /home/enzo/Documents/risc-cpu/CPU.vhd Line: 15
-Info (21057): Implemented 452 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 609 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 11 input pins
     Info (21059): Implemented 58 output pins
-    Info (21061): Implemented 383 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 64 warnings
-    Info: Peak virtual memory: 620 megabytes
-    Info: Processing ended: Thu Jan 23 21:39:08 2025
-    Info: Elapsed time: 00:00:09
+    Info (21061): Implemented 539 logic cells
+    Info (21062): Implemented 1 DSP elements
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 65 warnings
+    Info: Peak virtual memory: 616 megabytes
+    Info: Processing ended: Thu Jan 23 22:47:15 2025
+    Info: Elapsed time: 00:00:10
     Info: Total CPU time (on all processors): 00:00:24
 
 
