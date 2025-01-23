@@ -1,5 +1,7 @@
 library ieee;
+
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 library work;
 
@@ -161,7 +163,8 @@ architecture bdf_type of CPU is
 	component screen
 	port
 	(
-		data  : in std_logic_vector(7 downto 0);
+		data_a  	: in std_logic_vector(7 downto 0);
+		data_b	: in std_logic_vector(5 downto 0);
 
 		HEX0	: out STD_LOGIC_VECTOR(7 downto 0);
 		HEX1  : out STD_LOGIC_VECTOR(7 downto 0);
@@ -355,10 +358,10 @@ begin
 	reg_rw_dec <= decoder_reg_rw;
 	
 	-- Screen
-	
 	screen_inst: screen
 	port map (
-		data => decoder_out,
+		data_a => decoder_out,
+		data_b => std_logic_vector(to_unsigned(8, 6)),
 		
 		HEX0 => HEX0,
 		HEX1 => HEX1,

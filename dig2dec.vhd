@@ -5,33 +5,69 @@ use ieee.numeric_std.all;
 entity dig2dec is
 	port 
 	(
-		vol  : in std_logic_vector(15 downto 0);
-		seg4 : out std_logic_vector(3 downto 0);
-		seg3 : out std_logic_vector(3 downto 0);
-		seg2 : out std_logic_vector(3 downto 0);
-		seg1 : out std_logic_vector(3 downto 0);
-		seg0 : out std_logic_vector(3 downto 0)
+		data_a  	: in std_logic_vector(7 downto 0);
+		data_b	: in std_logic_vector(5 downto 0);
+		
+		seg0 : out STD_LOGIC_VECTOR(3 downto 0);
+		seg1 : out STD_LOGIC_VECTOR(3 downto 0);
+		seg2 : out STD_LOGIC_VECTOR(3 downto 0);
+		seg3 : out STD_LOGIC_VECTOR(3 downto 0);
+		seg4 : out STD_LOGIC_VECTOR(3 downto 0);
+		seg5 : out STD_LOGIC_VECTOR(3 downto 0)
 	);
 end entity;
+
 architecture rtl of dig2dec is
+
 begin
-	p_decim       : process (vol)
-		variable vol4 : unsigned(3 downto 0); -- vol4=E(vol/10000) compris entre 0 et 5 (3 bits mini)
-		variable vol3 : unsigned(6 downto 0); -- vol3=E(vol/1000) compris entre 0 et 50 (6 bits mini)
-		variable vol2 : unsigned(9 downto 0); -- vol2=E(vol/100) compris entre 0 et 500 (9 bits mini)
-		variable vol1 : unsigned(12 downto 0); -- vol1=E(vol/10) compris entre 0 et 5000 (13 bits mini)
+	process (data_a, data_b)
+		variable b1 : unsigned(5 downto 0); -- La valeur initiale (6 bits)
+		variable b4 : unsigned(3 downto 0); -- E(data_b/10) : les dizaines (4 bits)
+		variable b3 : unsigned(3 downto 0); -- data_b - b4*10 : les unités (4 bits)
+		
+		variable a_abs : unsigned(7 downto 0); -- Valeur absolue de data_a (8 bits)
+		variable a3 : unsigned(3 downto 0); -- Les centaines (4 bits)
+		variable a2 : unsigned(3 downto 0); -- Les dizaines (4 bits)
+		variable a1 : unsigned(3 downto 0); -- Les unités (4 bits)
 	begin
-		vol1 := resize(unsigned(vol)/10, vol1'length); -- on calcule les divisions successives par puissances de 10
-		vol2 := resize(vol1/10, vol2'length);
-		vol3 := resize(vol2/10, vol3'length);
-		vol4 := resize(vol3/10, vol4'length); -- on calcule les divisions successives par puissances de 10
- 
-		seg4 <= std_logic_vector(resize(vol4, seg4'length));
-		seg3 <= std_logic_vector(resize(vol3 - vol4 * 10, seg3'length));
-		seg2 <= std_logic_vector(resize(vol2 - vol3 * 10, seg2'length));
-		seg1 <= std_logic_vector(resize(vol1 - vol2 * 10, seg1'length));
-		seg0 <= std_logic_vector(resize(unsigned(vol) - vol1 * 10, seg0'length));
- 
+		b1 := unsigned(data_b);
+		
+		b4 := resize(b1 / 10, b4'length); -- Les dizaines
+		b3 := resize(b1 - b4 * 10, b3'length); -- Les unités
+		
+		if b1 >= 10 then
+			seg5 <= std_logic_vector(b4); -- Les dizaines
+		else 
+			seg5 <= X"B";
+		end if;
+		
+		seg4 <= std_logic_vector(b3); -- Les unités		
+		
+		a_abs := unsigned(abs(signed(data_a))); -- Convertir en valeur absolue et en unsigned
+		a3 := resize(a_abs / 100, a3'length); -- Les centaines
+		a2 := resize((a_abs / 10) mod 10, a2'length); -- Les dizaines
+		a1 := resize(a_abs mod 10, a1'length); -- Les unités		
+		
+		if a_abs >= 100 then
+			seg2 <= std_logic_vector(a3); -- Les centaines
+		else
+			seg2 <= X"B"; -- Vide
+		end if;
+		
+		if a_abs >= 10 then
+			seg1 <= std_logic_vector(a2); -- Les dizaines
+		else
+			seg1 <= X"B"; -- Vide
+		end if;
+		
+		seg0 <= std_logic_vector(a1); -- Toujours affiché pour les unités
+		
+		if signed(data_a) < 0 then
+			seg3 <= X"a";
+		else
+			seg3 <= X"b";
+		end if;
+
 	end process;
 
 end architecture;

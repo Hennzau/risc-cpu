@@ -115,6 +115,32 @@ begin
 						alu_a <= ram_value;
 						alu_b <= (others => '0');
 						alu_sel <= "000";
+					when "00000" =>
+						reg_rw <= '1';
+						ram_rw <= '0';
+						reg_address <= reg;
+
+						case format is
+							when "00" =>
+								reg_address_a <= A(2 downto 0);
+								reg_address_b <= B(2 downto 0);
+								
+								alu_a <= reg_value_a;
+								alu_b <= reg_value_b;
+								alu_sel <= "000";
+							when "01" =>
+								alu_a <= A;
+								alu_b <= B;
+								alu_sel <= "000";
+							when others =>
+								null;
+						end case;
+					when "00001" =>
+						null;
+					when "00010" =>
+						null;
+					when "00011" =>
+						null;
 					when others =>
 						null;
 				end case;

@@ -36,9 +36,9 @@ begin
 			when X"9" => 
 				oSEG <= B"0011000";
 			when X"a" => 
-				oSEG <= B"0001000";
+				oSEG <= B"0111111";
 			when X"b" => 
-				oSEG <= B"0000011";
+				oSEG <= B"1111111";
 			when X"c" => 
 				oSEG <= B"1000110";
 			when X"d" => 
@@ -48,7 +48,7 @@ begin
 			when X"f" => 
 				oSEG <= B"0001110";
 			when X"0" => 
-				oSEG <= B"1000000";
+				oSEG <= B"1000000";	
 			when others => 
 				oSEG <= B"0111111";
 		end case;
