@@ -5,6 +5,8 @@ use ieee.numeric_std.all;
 entity reg is
 	port 
 	(
+		rw			  : in std_logic;
+		
 		en         : in std_logic;
 		clk        : in std_logic;
 		rst        : in std_logic;
@@ -37,10 +39,12 @@ begin
 		else
 			if rising_edge(clk) then
 				if en = '1' then
+					if rw = '1' then
 					data_reg(to_integer(unsigned(address))) <= data_in;
-				else
-					data_out_a <= data_reg(to_integer(unsigned(address_a)));
-					data_out_b <= data_reg(to_integer(unsigned(address_b)));
+					else
+						data_out_a <= data_reg(to_integer(unsigned(address_a)));
+						data_out_b <= data_reg(to_integer(unsigned(address_b)));
+					end if;
 				end if;
 			end if;
 		end if;

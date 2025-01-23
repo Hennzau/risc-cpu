@@ -1,0 +1,66 @@
+library ieee;
+
+use IEEE.STD_LOGIC_1164.all;
+use ieee.numeric_std.all;
+
+entity pipeline is
+
+	port 
+	(
+		rst	: in std_logic;
+		clk	: in std_logic;
+		
+		-- 0 is fetch
+		-- 1 is rom
+		-- 2 is decoder
+		-- 3 is reg
+		-- 4 is ram
+		-- 5 is alu
+		-- 6 is status
+		stage	: out std_logic_vector(6 downto 0)
+	);
+
+end entity;
+
+architecture pipeline_a of pipeline is
+	
+begin
+	pipeline: process (clk)
+		variable counter : unsigned(3 downto 0) := to_unsigned(0, 4);
+	begin
+		if rst = '1' then
+			counter := to_unsigned(0,4);
+			stage <= "0000001";
+		else
+			if rising_edge(clk) then
+				case counter is
+					when to_unsigned(0, 4) =>
+						stage <= "0000001"; -- fetch
+						counter := counter + 1;
+					when to_unsigned(1, 4) =>
+						stage <= "0000010"; -- rom
+						counter := counter + 1;
+					when to_unsigned(2, 4) =>
+						stage <= "0000100"; -- decoder
+						counter := counter + 1;
+					when to_unsigned(3, 4) =>
+						stage <= "0011000"; -- ram + reg (possible read)
+						counter := counter + 1;
+					when to_unsigned(4, 4) =>
+						stage <= "0000100"; -- decoder again (load memory values into decoder)
+						counter := counter + 1;			
+					when to_unsigned(5, 4) =>
+						stage <= "0100000"; -- alu
+						counter := counter + 1;
+					when to_unsigned(6, 4) =>
+						stage <= "1011000"; -- ram + reg + status (possible write)
+						counter := counter + 1;						
+					when others =>
+						counter := to_unsigned(0, 4);
+						stage <= "0000001";
+				end case;
+			end if;
+		end if;
+	end process;
+
+end architecture;

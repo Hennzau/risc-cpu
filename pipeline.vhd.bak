@@ -1,0 +1,27 @@
+library ieee;
+
+use IEEE.STD_LOGIC_1164.all;
+use ieee.numeric_std.all;
+
+entity pipeline is
+
+	port 
+	(
+		clk	: in std_logic;
+		stage	: out std_logic_vector(6 downto 0)
+	);
+
+end entity;
+
+architecture decoder_a of decoder is
+
+begin
+	decode: process (clk)
+	begin
+		if rising_edge(clk) then
+			if en = '1' then
+			end if;
+		end if;
+	end process;
+
+end architecture;

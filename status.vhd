@@ -7,6 +7,7 @@ entity status is
 
 	port 
 	(
+		en			: in std_logic;
 		clk     	: in std_logic;
 		rst     	: in std_logic;
  
@@ -25,7 +26,9 @@ begin
 			output <= (others => '0');
 		else
 			if rising_edge(clk) then
+				if en = '1' then
 					output <= input;
+				end if;
 			end if;
 		end if;
  
