@@ -44,21 +44,28 @@ begin
 					when to_unsigned(2, 4) =>
 						stage <= "00000100"; -- decoder
 						counter := counter + 1;
+
+-- je ne sais pas encore pourquoi mais j'ai besoin de faire 2 fois le decoder sinon un mov de registre ne fonctionne pas.
+
 					when to_unsigned(3, 4) =>
+						stage <= "00000100"; -- decoder again
+						counter := counter + 1;
+						
+					when to_unsigned(4, 4) =>
 						stage <= "00011000"; -- ram + reg (possible read)
 						counter := counter + 1;
-					when to_unsigned(4, 4) =>
-						stage <= "00000100"; -- decoder again (load memory values into decoder)
-						counter := counter + 1;			
 					when to_unsigned(5, 4) =>
+						stage <= "00000100"; -- decoder again (load memory values into decoder)
+						counter := counter + 1;		
+					when to_unsigned(6, 4) =>
 						stage <= "00100000"; -- alu
 						counter := counter + 1;
-					when to_unsigned(6, 4) =>
+					when to_unsigned(7, 4) =>
 						stage <= "11011000"; -- ram + reg + status (possible write)
-						counter := counter + 1;						
-					when others =>
+						counter := to_unsigned(0, 4);			
+						
+					when others => -- IMPOSIBLE CASE
 						counter := to_unsigned(0, 4);
-						stage <= "00000001";
 				end case;
 			end if;
 		end if;

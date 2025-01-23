@@ -6,15 +6,16 @@ entity reg is
 	port 
 	(
 		rw			  : in std_logic;
+		rw_dec		: in std_logic;
 		
 		en         : in std_logic;
 		clk        : in std_logic;
 		rst        : in std_logic;
  
-		address    : in std_logic_vector(3 downto 0);
+		address    : in std_logic_vector(2 downto 0);
  
-		address_a  : in std_logic_vector(3 downto 0);
-		address_b  : in std_logic_vector(3 downto 0);
+		address_a  : in std_logic_vector(2 downto 0);
+		address_b  : in std_logic_vector(2 downto 0);
  
 		data_in    : in std_logic_vector(7 downto 0);
  
@@ -39,7 +40,7 @@ begin
 		else
 			if rising_edge(clk) then
 				if en = '1' then
-					if rw = '1' then
+					if rw = '1' and rw_dec = '1' then
 						data_reg(to_integer(unsigned(address))) <= data_in;
 					else
 						data_out_a <= data_reg(to_integer(unsigned(address_a)));

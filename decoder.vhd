@@ -20,13 +20,15 @@ entity decoder is
 		alu_a			: out std_logic_vector(7 downto 0);
 		alu_b			: out std_logic_vector(7 downto 0);
 		
-		fetch_jump		: out std_logic;
+		fetch_jump		: out std_logic := '0';
 		fetch_address	: out std_logic_vector(7 downto 0);
 		
-		reg_address		: out std_logic_vector(3 downto 0);
-		reg_address_a	: out std_logic_vector(3 downto 0);
-		reg_address_b	: out std_logic_vector(3 downto 0);
+		reg_rw			: out std_logic;
+		reg_address		: out std_logic_vector(2 downto 0);
+		reg_address_a	: out std_logic_vector(2 downto 0);
+		reg_address_b	: out std_logic_vector(2 downto 0);
 		
+		ram_rw		: out std_logic;
 		ram_address : out std_logic_vector(7 downto 0);
 		ram_data_in	: out std_logic_vector(7 downto 0);
 		
@@ -53,24 +55,66 @@ begin
 				reg <= instruction(18 downto 16);
 				A <= instruction(15 downto 8);
 				B <= instruction(7 downto 0);
-				
-				case format is
-					when "00" =>
-						case op is
-							when "10010" =>
-								null; -- NOP
-							when others =>
-								null;
-						end case;
-					when "01" =>
-						case op is
-							when "10011" =>
+
+				case op is
+					when "10010" => -- NOP
+						null;
+					
+					when "10011" => -- OUT
+						reg_rw <= '0';
+						ram_rw <= '0';
+
+						case format is
+							when "00" => -- ALL REG								
+								reg_address_a <= A(2 downto 0);
+								decoder_out <= reg_value_a;
+							when "01" => -- ALL IMM
 								decoder_out <= A;
 							when others =>
 								null;
 						end case;
-					when "10" =>
-						null;
+						
+					when "10001" => -- MOV
+						reg_rw <= '1';
+						ram_rw <= '0';
+						
+						case format is
+							when "00" => -- ALL REG
+								reg_address <= reg;
+								
+								reg_address_a <= A(2 downto 0);
+								
+								alu_a <= reg_value_a;
+								
+								alu_b <= (others => '0');
+								alu_sel <= "000";
+							when "01" =>
+								reg_address <= reg;
+								
+								alu_a <= A;
+								alu_b <= (others => '0');
+								alu_sel <= "000";
+							when others =>
+								null;
+						end case;
+					when "10100" => -- REG2RAM
+						ram_rw <= '1';
+						reg_rw <='0';
+						
+						ram_address <= A;
+						ram_data_in <= reg_value_a;
+						
+						reg_address_a <= reg;
+					when "10101" => -- RAM2REG
+						ram_rw <= '0';
+						reg_rw <= '1';
+						
+						reg_address <= reg;
+						ram_address <= A;
+						
+						alu_a <= ram_value;
+						alu_b <= (others => '0');
+						alu_sel <= "000";
 					when others =>
 						null;
 				end case;

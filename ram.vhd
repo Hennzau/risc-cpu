@@ -6,6 +6,7 @@ entity ram is
 	port 
 	(
 		rw       : in std_logic;
+		rw_dec	: in std_logic;
  
 		en       : in std_logic;
 		clk      : in std_logic;
@@ -30,10 +31,10 @@ begin
 		if rst /= '1' then
 			if rising_edge(clk) then
 				if en = '1' then
-					if rw = '1' then
-						data_out <= data_ram(to_integer(unsigned(address)));
-					else
+					if rw = '1' and rw_dec = '1' then
 						data_ram(to_integer(unsigned(address))) <= data_in;
+					else
+						data_out <= data_ram(to_integer(unsigned(address)));
 					end if;
 				end if;
 			end if;

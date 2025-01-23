@@ -54,6 +54,7 @@ architecture bdf_type of CPU is
 		port
 		(
 			rw       : in STD_LOGIC;
+			rw_dec	: in std_logic;
 			en       : in STD_LOGIC;
 			clk      : in STD_LOGIC;
 			rst      : in STD_LOGIC;
@@ -86,14 +87,15 @@ architecture bdf_type of CPU is
 	port
 	(
 		rw			  : in std_logic;
+		rw_dec	  : in std_logic;
 		en			  : in STD_LOGIC;
 		clk        : in STD_LOGIC;
 		rst        : in STD_LOGIC;
 
-		address    : in std_logic_vector(3 downto 0);
+		address    : in std_logic_vector(2 downto 0);
 
-		address_a  : in std_logic_vector(3 downto 0);
-		address_b  : in std_logic_vector(3 downto 0);
+		address_a  : in std_logic_vector(2 downto 0);
+		address_b  : in std_logic_vector(2 downto 0);
 
 		data_in    : in std_logic_vector(7 downto 0);
 
@@ -133,10 +135,12 @@ architecture bdf_type of CPU is
 		fetch_jump		: out std_logic;
 		fetch_address	: out std_logic_vector(7 downto 0);
 		
-		reg_address		: out std_logic_vector(3 downto 0);
-		reg_address_a	: out std_logic_vector(3 downto 0);
-		reg_address_b	: out std_logic_vector(3 downto 0);
+		reg_rw			: out std_logic;
+		reg_address		: out std_logic_vector(2 downto 0);
+		reg_address_a	: out std_logic_vector(2 downto 0);
+		reg_address_b	: out std_logic_vector(2 downto 0);
 		
+		ram_rw		: out std_logic;
 		ram_address : out std_logic_vector(7 downto 0);
 		ram_data_in	: out std_logic_vector(7 downto 0);
 		
@@ -181,6 +185,7 @@ architecture bdf_type of CPU is
 	signal rom_data : std_logic_vector(25 downto 0);
 
 	signal ram_rw : STD_LOGIC;
+	signal ram_rw_dec : STD_LOGIC;
 	signal ram_en : STD_LOGIC;
 	signal ram_address : std_logic_vector(7 downto 0);
 	signal ram_data_in : std_logic_vector(7 downto 0);
@@ -194,10 +199,11 @@ architecture bdf_type of CPU is
 	signal alu_status : std_logic_vector(1 downto 0);
 	
 	signal reg_rw : STD_LOGIC;
+	signal reg_rw_dec : STD_LOGIC;
 	signal reg_en : STD_LOGIC;
-	signal reg_address : std_logic_vector(3 downto 0);
-	signal reg_address_a : std_logic_vector(3 downto 0);
-	signal reg_address_b : std_logic_vector(3 downto 0);
+	signal reg_address : std_logic_vector(2 downto 0);
+	signal reg_address_a : std_logic_vector(2 downto 0);
+	signal reg_address_b : std_logic_vector(2 downto 0);
 	signal reg_data_in : std_logic_vector(7 downto 0);
 	signal reg_data_out_a : std_logic_vector(7 downto 0);
 	signal reg_data_out_b : std_logic_vector(7 downto 0);
@@ -210,6 +216,9 @@ architecture bdf_type of CPU is
 	
 	signal pipeline_stage : std_logic_vector(7 downto 0);
 	signal decoder_out : std_logic_vector(7 downto 0);
+	
+	signal decoder_reg_rw	: std_logic;
+	signal decoder_ram_rw	: std_logic;
 	
 begin
 
@@ -237,6 +246,7 @@ begin
 	ram_inst: ram
 	port map (
 		rw       => ram_rw,
+		rw_dec       => ram_rw_dec,
 		en       => ram_en,
 		clk      => general_clk,
 		rst      => general_rst,
@@ -262,6 +272,7 @@ begin
 	reg_inst: reg
 	port map (
 		rw			  => reg_rw,
+		rw_dec			  => reg_rw_dec,
 		en			  => reg_en,
 		clk        => general_clk,
 		rst        => general_rst,
@@ -308,10 +319,12 @@ begin
 		fetch_jump		=> fetch_jump,
 		fetch_address	=> fetch_address_in,
 		
+		reg_rw			=> decoder_reg_rw,
 		reg_address		=> reg_address,
 		reg_address_a	=> reg_address_a,
 		reg_address_b	=> reg_address_b,
 		
+		ram_rw		=> decoder_ram_rw,
 		ram_address => ram_address,
 		ram_data_in	=> ram_data_in,
 		
@@ -338,6 +351,8 @@ begin
 	
 	ram_rw <= pipeline_stage(7);
 	reg_rw <= pipeline_stage(7);
+	ram_rw_dec <= decoder_ram_rw;
+	reg_rw_dec <= decoder_reg_rw;
 	
 	-- Screen
 	
