@@ -132,6 +132,11 @@ begin
 								alu_a <= A;
 								alu_b <= B;
 								alu_sel <= "000";
+							when "10" =>
+								reg_address_a <= A(2 downto 0);
+								alu_a <= reg_value_a;
+								alu_b <= B;
+								alu_sel <= "000";
 							when others =>
 								null;
 						end case;
@@ -150,6 +155,11 @@ begin
 								alu_sel <= "001";
 							when "01" =>
 								alu_a <= A;
+								alu_b <= B;
+								alu_sel <= "001";
+							when "10" =>
+								reg_address_a <= A(2 downto 0);
+								alu_a <= reg_value_a;
 								alu_b <= B;
 								alu_sel <= "001";
 							when others =>
@@ -172,6 +182,11 @@ begin
 								alu_a <= A;
 								alu_b <= B;
 								alu_sel <= "010";
+							when "10" =>
+								reg_address_a <= A(2 downto 0);
+								alu_a <= reg_value_a;
+								alu_b <= B;
+								alu_sel <= "010";
 							when others =>
 								null;
 						end case;
@@ -192,9 +207,82 @@ begin
 								alu_a <= A;
 								alu_b <= B;
 								alu_sel <= "011";
+							when "10" =>
+								reg_address_a <= A(2 downto 0);
+								alu_a <= reg_value_a;
+								alu_b <= B;
+								alu_sel <= "011";
 							when others =>
 								null;
-						end case;						
+						end case;
+					when "00100" => -- INC
+						reg_rw <= '1';
+						ram_rw <= '0';
+						reg_address <= reg;
+						
+						case format is
+							when "00" =>
+								reg_address_a <= A(2 downto 0);
+								
+								alu_a <= reg_value_a;
+								alu_b <= (others => '0');
+								alu_sel <= "100";
+							when others =>
+								null;
+						end case;
+					when "00101" => -- DEC
+						reg_rw <= '1';
+						ram_rw <= '0';
+						reg_address <= reg;
+						
+						case format is
+							when "00" =>
+								reg_address_a <= A(2 downto 0);
+								
+								alu_a <= reg_value_a;
+								alu_b <= (others => '0');
+								alu_sel <= "101";
+							when others =>
+								null;
+						end case;
+					when "00110" => -- LSHIFT
+						reg_rw <= '1';
+						ram_rw <= '0';
+						reg_address <= reg;
+						
+						case format is
+							when "00" =>
+								reg_address_a <= A(2 downto 0);
+								
+								alu_a <= reg_value_a;
+								alu_b <= (others => '0');
+								alu_sel <= "110";
+							when "01" =>
+								alu_a <= A;
+								alu_b <= (others => '0');
+								alu_sel <= "110";
+							when others =>
+								null;
+						end case;
+					when "00111" => -- RSHIFT
+						reg_rw <= '1';
+						ram_rw <= '0';
+						reg_address <= reg;
+						
+						case format is
+							when "00" =>
+								reg_address_a <= A(2 downto 0);
+								
+								alu_a <= reg_value_a;
+								alu_b <= (others => '0');
+								alu_sel <= "111";
+							when "01" =>
+								alu_a <= A;
+								alu_b <= (others => '0');
+								alu_sel <= "111";
+							when others =>
+								null;
+						end case;
 					when others =>
 						null;
 				end case;
