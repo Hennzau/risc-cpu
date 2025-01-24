@@ -80,17 +80,17 @@ begin
 				end case;
 
 				-- Set status bits
---				if temp_result /= 0 then
---					status(0) <= '1'; -- nonzero
---				else
---					status(0) <= '0';
---				end if;
---
---				if temp_result >= 0 then
---					status(1) <= '1'; -- positive
---				else
---					status(1) <= '0';
---				end if;
+				if temp_result /= 0 then
+					status(0) <= '1'; -- nonzero
+				else
+					status(0) <= '0';
+				end if;
+
+				if temp_result >= 0 then
+					status(1) <= '1'; -- positive
+				else
+					status(1) <= '0';
+				end if;
 			end if;
 		end if;
 	end process use_alu;

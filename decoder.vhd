@@ -75,10 +75,10 @@ begin
 						when "00" =>
 							alu_a <= reg_value_a;
 							alu_b <= reg_value_b;
-						when "10" =>
+						when "01" =>
 							alu_a <= A;
 							alu_b <= B;
-						when "11" =>
+						when "10" =>
 							alu_a <= reg_value_a;
 							alu_b <= B;
 						when others =>
