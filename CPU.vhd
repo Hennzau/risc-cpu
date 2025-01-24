@@ -12,6 +12,8 @@ entity CPU is
 --		MAX10_CLK2_50 	: in STD_LOGIC;
 --		ADC_CLK_10 		: in STD_LOGIC;
 
+		KEY	: in std_logic_vector(1 downto 0); 
+
 		SW            : in STD_LOGIC_VECTOR(9 downto 0);
 		LEDR          : out STD_LOGIC_VECTOR(9 downto 0);
 
@@ -361,7 +363,7 @@ begin
 	screen_inst: screen
 	port map (
 		data_a => decoder_out,
-		data_b => std_logic_vector(to_unsigned(8, 6)),
+		data_b => std_logic_vector(to_unsigned(to_integer(unsigned(SW(9 downto 8))), 6)),
 		
 		HEX0 => HEX0,
 		HEX1 => HEX1,
@@ -370,5 +372,7 @@ begin
 		HEX4 => HEX4,
 		HEX5 => HEX5
 	);
+	
+	LEDR <= SW;
 	
 end bdf_type;

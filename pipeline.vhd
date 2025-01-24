@@ -26,7 +26,7 @@ end entity;
 architecture pipeline_a of pipeline is
 	
 begin
-	pipeline: process (clk)
+	pipeline: process (clk, rst)
 		variable counter : unsigned(3 downto 0) := to_unsigned(0, 4);
 	begin
 		if rst = '1' then
@@ -63,6 +63,10 @@ begin
 					when to_unsigned(7, 4) =>
 						stage <= "11011000"; -- ram + reg + status (possible write)
 						counter := to_unsigned(0, 4);			
+						
+						-- Note : meme en cas de jump sur le status, c'est bon car après une 
+						-- updatede status non souhaitée, la valeur qui est au branchement du 
+						-- fetch n'a pas encore été mise à our et donc c'est bien la bonne
 						
 					when others => -- IMPOSIBLE CASE
 						counter := to_unsigned(0, 4);

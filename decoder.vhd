@@ -85,20 +85,31 @@ begin
 							null;
 					end case;
 				else -- Not an ALU OP
+					reg_address_a <= A(2 downto 0);
+					alu_b <= (others => '0');
+					alu_sel <= "000";
+					reg_address <= reg;
+					
+					reg_rw <= '0';
+					ram_rw <= '0';
+					fetch_jump <= '0';
+					
 					case op is
 						when "10010" => -- NOP
-							null;
+							reg_rw <= '0';
+							ram_rw <= '0';
 						
-						when "10011" => -- OUT
+						when "10011" => -- PRINT
 							reg_rw <= '0';
 							ram_rw <= '0';
 
 							case format is
 								when "00" => -- ALL REG								
-									reg_address_a <= A(2 downto 0);
 									decoder_out <= reg_value_a;
 								when "01" => -- ALL IMM
 									decoder_out <= A;
+								when "10" => -- Duplicated from 00
+									decoder_out <= reg_value_a;
 								when others =>
 									null;
 							end case;
@@ -109,20 +120,11 @@ begin
 							
 							case format is
 								when "00" => -- ALL REG
-									reg_address <= reg;
-									
-									reg_address_a <= A(2 downto 0);
-									
 									alu_a <= reg_value_a;
-									
-									alu_b <= (others => '0');
-									alu_sel <= "000";
 								when "01" =>
-									reg_address <= reg;
-									
 									alu_a <= A;
-									alu_b <= (others => '0');
-									alu_sel <= "000";
+								when "10" => -- Duplicated from 00
+									alu_a <= reg_value_a;
 								when others =>
 									null;
 							end case;
@@ -137,180 +139,100 @@ begin
 							ram_rw <= '0';
 							reg_rw <= '1';
 							
-							reg_address <= reg;
 							ram_address <= A;
 							
 							alu_a <= ram_value;
-							alu_b <= (others => '0');
-							alu_sel <= "000";
---						when "00000" => -- ADD
---							reg_rw <= '1';
---							ram_rw <= '0';
---							reg_address <= reg;
---
---							case format is
---								when "00" =>
---									reg_address_a <= A(2 downto 0);
---									reg_address_b <= B(2 downto 0);
---									
---									alu_a <= reg_value_a;
---									alu_b <= reg_value_b;
---									alu_sel <= "000";
---								when "01" =>
---									alu_a <= A;
---									alu_b <= B;
---									alu_sel <= "000";
---								when "10" =>
---									reg_address_a <= A(2 downto 0);
---									alu_a <= reg_value_a;
---									alu_b <= B;
---									alu_sel <= "000";
---								when others =>
---									null;
---							end case;
---						when "00001" => -- SUB
---							reg_rw <= '1';
---							ram_rw <= '0';
---							reg_address <= reg;
---
---							case format is
---								when "00" =>
---									reg_address_a <= A(2 downto 0);
---									reg_address_b <= B(2 downto 0);
---									
---									alu_a <= reg_value_a;
---									alu_b <= reg_value_b;
---									alu_sel <= "001";
---								when "01" =>
---									alu_a <= A;
---									alu_b <= B;
---									alu_sel <= "001";
---								when "10" =>
---									reg_address_a <= A(2 downto 0);
---									alu_a <= reg_value_a;
---									alu_b <= B;
---									alu_sel <= "001";
---								when others =>
---									null;
---							end case;
---						when "00010" => -- MUL
---							reg_rw <= '1';
---							ram_rw <= '0';
---							reg_address <= reg;
---
---							case format is
---								when "00" =>
---									reg_address_a <= A(2 downto 0);
---									reg_address_b <= B(2 downto 0);
---									
---									alu_a <= reg_value_a;
---									alu_b <= reg_value_b;
---									alu_sel <= "010";
---								when "01" =>
---									alu_a <= A;
---									alu_b <= B;
---									alu_sel <= "010";
---								when "10" =>
---									reg_address_a <= A(2 downto 0);
---									alu_a <= reg_value_a;
---									alu_b <= B;
---									alu_sel <= "010";
---								when others =>
---									null;
---							end case;
---						when "00011" => -- DIV
---							reg_rw <= '1';
---							ram_rw <= '0';
---							reg_address <= reg;
---
---							case format is
---								when "00" =>
---									reg_address_a <= A(2 downto 0);
---									reg_address_b <= B(2 downto 0);
---									
---									alu_a <= reg_value_a;
---									alu_b <= reg_value_b;
---									alu_sel <= "011";
---								when "01" =>
---									alu_a <= A;
---									alu_b <= B;
---									alu_sel <= "011";
---								when "10" =>
---									reg_address_a <= A(2 downto 0);
---									alu_a <= reg_value_a;
---									alu_b <= B;
---									alu_sel <= "011";
---								when others =>
---									null;
---							end case;
---						when "00100" => -- INC
---							reg_rw <= '1';
---							ram_rw <= '0';
---							reg_address <= reg;
---							
---							case format is
---								when "00" =>
---									reg_address_a <= A(2 downto 0);
---									
---									alu_a <= reg_value_a;
---									alu_b <= (others => '0');
---									alu_sel <= "100";
---								when others =>
---									null;
---							end case;
---						when "00101" => -- DEC
---							reg_rw <= '1';
---							ram_rw <= '0';
---							reg_address <= reg;
---							
---							case format is
---								when "00" =>
---									reg_address_a <= A(2 downto 0);
---									
---									alu_a <= reg_value_a;
---									alu_b <= (others => '0');
---									alu_sel <= "101";
---								when others =>
---									null;
---							end case;
---						when "00110" => -- LSHIFT
---							reg_rw <= '1';
---							ram_rw <= '0';
---							reg_address <= reg;
---							
---							case format is
---								when "00" =>
---									reg_address_a <= A(2 downto 0);
---									
---									alu_a <= reg_value_a;
---									alu_b <= (others => '0');
---									alu_sel <= "110";
---								when "01" =>
---									alu_a <= A;
---									alu_b <= (others => '0');
---									alu_sel <= "110";
---								when others =>
---									null;
---							end case;
---						when "00111" => -- RSHIFT
---							reg_rw <= '1';
---							ram_rw <= '0';
---							reg_address <= reg;
---							
---							case format is
---								when "00" =>
---									reg_address_a <= A(2 downto 0);
---									
---									alu_a <= reg_value_a;
---									alu_b <= (others => '0');
---									alu_sel <= "111";
---								when "01" =>
---									alu_a <= A;
---									alu_b <= (others => '0');
---									alu_sel <= "111";
---								when others =>
---									null;
---							end case;
+						when "01100" =>	-- JUMP
+							ram_rw <= '0';
+							reg_rw <= '0';
+							
+							case format is
+								when "00" =>
+									fetch_jump <= '1';
+									fetch_address <= reg_value_a;
+								when "01" =>
+									fetch_jump <= '1';
+									fetch_address <= A;
+								when "10" =>
+									fetch_jump <= '1';
+									fetch_address <= reg_value_a;
+								when others =>
+									null;
+							end case;
+						when "01101" =>	-- ZJMP
+							ram_rw <= '0';
+							reg_rw <= '0';
+							
+							if status(0) = '0' then
+								case format is
+									when "00" =>
+										fetch_jump <= '1';
+										fetch_address <= reg_value_a;
+									when "01" =>
+										fetch_jump <= '1';
+										fetch_address <= A;
+									when "10" =>
+										fetch_jump <= '1';
+										fetch_address <= reg_value_a;
+									when others =>
+										null;
+								end case;
+							end if;
+						when "01110" =>	-- NZJMP
+							ram_rw <= '0';
+							reg_rw <= '0';
+							
+							if status(0) = '1' then
+								case format is
+									when "00" =>
+										fetch_jump <= '1';
+										fetch_address <= reg_value_a;
+									when "01" =>
+										fetch_jump <= '1';
+										fetch_address <= A;
+									when "10" =>
+										fetch_jump <= '1';
+										fetch_address <= reg_value_a;
+									when others =>
+										null;
+								end case;
+							end if;
+						when "01111" =>	-- PJMP
+							ram_rw <= '0';
+							reg_rw <= '0';
+							if status(1) = '1' then
+								case format is
+									when "00" =>
+										fetch_jump <= '1';
+										fetch_address <= reg_value_a;
+									when "01" =>
+										fetch_jump <= '1';
+										fetch_address <= A;
+									when "10" =>
+										fetch_jump <= '1';
+										fetch_address <= reg_value_a;
+									when others =>
+										null;
+								end case;
+							end if;
+						when "10000" =>	-- NPJMP
+							ram_rw <= '0';
+							reg_rw <= '0';
+							if status(1) = '0' then
+								case format is
+									when "00" =>
+										fetch_jump <= '1';
+										fetch_address <= reg_value_a;
+									when "01" =>
+										fetch_jump <= '1';
+										fetch_address <= A;
+									when "10" =>
+										fetch_jump <= '1';
+										fetch_address <= reg_value_a;
+									when others =>
+										null;
+								end case;
+							end if;
 						when others =>
 							null;
 					end case;

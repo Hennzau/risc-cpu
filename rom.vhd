@@ -23,14 +23,16 @@ architecture rom_a of rom is
 
     type alu_op_table is array (alu_op_type) of std_logic_vector(4 downto 0);
     constant ALU: alu_op_table := (
-        ADD     => "00001",
-        SUB     => "00010",
-        MUL     => "00011",
-        DIV     => "00100",
-        RSHIFT  => "00101",
+        ADD     => "00000",
+        SUB     => "00001",
+        MUL     => "00010",
+        DIV     => "00011",
+		  
+        INC     => "00100",
+        DEC     => "00101",
+		  
         LSHIFT  => "00110",
-        INC     => "00111",
-        DEC     => "01000"
+        RSHIFT  => "00111"
     );
 
 	 type format_type is (REG, IMM, BOTH);
@@ -42,13 +44,8 @@ architecture rom_a of rom is
 		  BOTH => "10"
     );
 	 
-	 type op_type is (MOV, PRINT);
-
-    type op_table is array (op_type) of std_logic_vector(4 downto 0);
-    constant OP: op_table := (
-        MOV 	=> "10001",
-		  PRINT 	=> "10011"
-    );
+	 constant MOV: std_logic_vector(4 downto 0) := "10001";
+	 constant PRINT: std_logic_vector(7 downto 0) := "10011" & "000";
 	 
 	 type ram_type is (FROM_REG, TO_REG);
 
@@ -58,6 +55,18 @@ architecture rom_a of rom is
 		  TO_REG 	=> "00" & "10101"
     );
 	 
+	 type jump_type is (ADDR, Z, NZ, P, NP);
+
+    type jump_table is array (jump_type) of std_logic_vector(7 downto 0);
+    constant JUMP: jump_table := (
+        ADDR	=>	"01100"	&	"000",
+		  Z		=>	"01101"	&	"000",
+		  NZ 		=>	"01110"	&	"000",
+		  P		=>	"01111"	&	"000",
+		  NP		=>	"10000"	&	"000"
+    );
+	 
+	constant RN: std_logic_vector(2 downto 0) := "000";
 	constant R0: std_logic_vector(2 downto 0) := "000";
 	constant R1: std_logic_vector(2 downto 0) := "001";
 	constant R2: std_logic_vector(2 downto 0) := "010";
@@ -77,39 +86,42 @@ architecture rom_a of rom is
 	constant R7_8: std_logic_vector(7 downto 0) := "00000111";
 
 	constant NOP: std_logic_vector(25 downto 0) := "00" & "10010" & "000" & "00000000" & "00000000";
-	constant ZERO: std_logic_vector(7 downto 0) := "00000000";
+	constant IGNORE: std_logic_vector(7 downto 0) := "00000000";
 	 
 	 function imm(value : integer) return std_logic_vector is
     begin
         return std_logic_vector(to_signed(value, 8));
     end function;
 	 
+	 function addr(value : integer) return std_logic_vector is
+    begin
+        return std_logic_vector(to_unsigned(value, 8));
+    end function;
+	 
 	type rom is array(0 to 255) of std_logic_vector(25 downto 0);
 	
 	signal rom_data : rom := (
-	--						FORMAT			OPCODE		REG DEST    A	       B
-						FORMAT(IMM)		&	OP(MOV)		&	R0	&	imm(10)	&	ZERO,
-						FORMAT(BOTH)	&	ALU(ADD)		&	R1	&	R0_8		&	imm(20),
-						FORMAT(REG)		&	ALU(SUB)		&	R2	&	R1_8		&	R0_8,
-						FORMAT(BOTH)	&	ALU(MUL)		&	R3 &	R2_8		&	imm(2),
-						FORMAT(REG)		&	ALU(DIV)		&	R4	&	R3_8		&	R0_8,
-						FORMAT(REG)		&	ALU(RSHIFT)	&	R5	&	R4_8		&	ZERO,
+	--						FORMAT			 OPCODE		REG_EST    A	       B
+	
+						FORMAT(IMM)		&		MOV		&	R0	&	imm(10)	&	IGNORE,	-- R0=10
+						FORMAT(BOTH)	&	ALU(ADD)		&	R1	&	R0_8		&	imm(20),	--	R1=30,R0=10
+						FORMAT(REG)		&	ALU(SUB)		&	R2	&	R1_8		&	R0_8,		-- R2=20, R1=30, R0=10
+						FORMAT(BOTH)	&	ALU(MUL)		&	R3 &	R2_8		&	imm(2),	--	R3=40, R2=20, R1=30, R0=10
+						FORMAT(REG)		&	ALU(DIV)		&	R4	&	R3_8		&	R0_8,		-- R4=4, R3=40, R2=20, R1=30, R0=10
+						FORMAT(REG)		&	ALU(RSHIFT)	&	R5	&	R4_8		&	IGNORE,	-- R5=2, R4=4, R3=40, R2=20, R1=30, R0=10
 						
+						FORMAT(REG)		&	ALU(LSHIFT)	&	R5	&	R5_8		&	IGNORE,	-- R5=4, R4=4, R3=40, R2=20, R1=30, R0=10
+						FORMAT(REG)		&		MOV		&	R6	&	R5_8		&	IGNORE,	-- R6=4, R5=4, R4=4, R3=40, R2=20, R1=30, R0=10
+						FORMAT(REG)		&	ALU(INC)		&	R7	&	R6_8		&	IGNORE, 	-- R7=5, R6=4, R5=4, R4=4, R3=40, R2=20, R1=30, R0=10
+						FORMAT(REG)		&	ALU(DEC)		&	R7	&	R7_8		&	IGNORE,  -- R7=4, R6=4, R5=4, R4=4, R3=40, R2=20, R1=30, R0=10
+						
+									RAM(FROM_REG)			&	R7	&	addr(28)	&	IGNORE,	
+									RAM(TO_REG)				&	R1	&	addr(28)	&	IGNORE,	-- R7=4, R6=4, R5=4, R4=4, R3=40, R2=20, R1=4, R0=10
+						
+						FORMAT(REG)		&	ALU(LSHIFT)	&	R1	&	R1_8		&	IGNORE,	-- R7=4, R6=4, R5=4, R4=4, R3=40, R2=20, R1=8, R0=10
+						
+						FORMAT(REG)		&			PRINT			&	R1_8		&	IGNORE,	
 		others => 	NOP
---						"01" & "10001" & "000" & std_logic_vector(to_signed(10, 8)) & "00000000", -- MOV 10 to REG 000
---						
---						"01" & "10001" & "001" & std_logic_vector(to_signed(12, 8))  & "00000000", -- MOV +13 to REG 001
-
---						"00" & "10001" & "001" & "00000000" & "00000000", -- MOV V(REG 000) to REG 001
---						
---						"00" & "10100" & "001" & "00001000" & "00000000", -- REG (001) to RAM(00001000)
---						"00" & "10101" & "100" & "00001000" & "00000000", -- RAM (00001000) to REG(100)
---						
---						"00" & "00010" & "010" & "00000010" & "00000001", -- MUL V(REG 001) and V(REG 010) and put into REG 100
---						
---						"00" & "10011" & "000" & "00000010" & "00000000", -- OUT REG 100
---						
---		others => 	"00" & "10010" & "000" & "00000000" & "00000000" -- NOP
 	);
 
 begin
