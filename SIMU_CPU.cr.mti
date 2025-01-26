@@ -41,15 +41,6 @@ Questa Intel Starter FPGA Edition-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
 ** Warning: /home/enzo/Documents/risc-cpu/pipeline.vhd(60): (vcom-1937) Choice in CASE statement alternative must be locally static.
 ** Warning: /home/enzo/Documents/risc-cpu/pipeline.vhd(63): (vcom-1937) Choice in CASE statement alternative must be locally static.
 
-} {} {}} /home/enzo/Documents/risc-cpu/rom.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/enzo/Documents/risc-cpu/rom.vhd
-Questa Intel Starter FPGA Edition-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity rom
--- Compiling architecture rom_a of rom
-
 } {} {}} /home/enzo/Documents/risc-cpu/reg.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/enzo/Documents/risc-cpu/reg.vhd
 Questa Intel Starter FPGA Edition-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
 -- Loading package STANDARD
@@ -103,5 +94,14 @@ Questa Intel Starter FPGA Edition-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
 -- Loading package NUMERIC_STD
 -- Compiling entity status
 -- Compiling architecture status_a of status
+
+} {} {}} /home/enzo/Documents/risc-cpu/decoder.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/enzo/Documents/risc-cpu/decoder.vhd
+Questa Intel Starter FPGA Edition-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity decoder
+-- Compiling architecture decoder_a of decoder
 
 } {} {}}
