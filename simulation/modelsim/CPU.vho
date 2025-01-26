@@ -1,4 +1,4 @@
--- Copyright (C) 2020  Intel Corporation. All rights reserved.
+-- Copyright (C) 2021  Intel Corporation. All rights reserved.
 -- Your use of Intel Corporation's design tools, logic functions 
 -- and other software and tools, and any partner logic 
 -- functions, and any output files from any of the foregoing 
@@ -15,16 +15,16 @@
 
 -- VENDOR "Altera"
 -- PROGRAM "Quartus Prime"
--- VERSION "Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition"
+-- VERSION "Version 21.1.0 Build 842 10/21/2021 SJ Lite Edition"
 
--- DATE "01/24/2025 12:46:43"
+-- DATE "01/24/2025 21:49:34"
 
 -- 
 -- Device: Altera 10M50DAF484C6GES Package FBGA484
 -- 
 
 -- 
--- This VHDL file should be used for ModelSim-Altera (VHDL) only
+-- This VHDL file should be used for Questa Intel FPGA (VHDL) only
 -- 
 
 LIBRARY FIFTYFIVENM;

@@ -5,14 +5,14 @@ use ieee.numeric_std.all;
 
 entity status is
 
-	port 
+	port
 	(
 		en			: in std_logic;
 		clk     	: in std_logic;
 		rst     	: in std_logic;
- 
-		input		: in std_logic_vector(1 downto 0);
-		output	: out std_logic_vector(1 downto 0)
+
+		input		: in std_logic_vector(1 downto 0) := "00";
+		output	: out std_logic_vector(1 downto 0) := "00"
 	);
 
 end status;
@@ -31,7 +31,7 @@ begin
 				end if;
 			end if;
 		end if;
- 
+
 	end process acces_status;
 
 end status_a;

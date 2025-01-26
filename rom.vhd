@@ -4,15 +4,15 @@ use IEEE.STD_LOGIC_1164.all;
 use ieee.numeric_std.all;
 entity rom is
 
-	port 
+	port
 	(
 		en      : in std_logic;
 		clk     : in std_logic;
 		rst     : in std_logic;
- 
-		address : in std_logic_vector(7 downto 0);
- 
-		data    : out std_logic_vector(25 downto 0)
+
+		address : in std_logic_vector(7 downto 0) := "00000000";
+
+		data    : out std_logic_vector(25 downto 0) := "00000000000000000000000000"
 	);
 
 end rom;
@@ -27,10 +27,10 @@ architecture rom_a of rom is
         SUB     => "00001",
         MUL     => "00010",
         DIV     => "00011",
-		  
+
         INC     => "00100",
         DEC     => "00101",
-		  
+
         LSHIFT  => "00110",
         RSHIFT  => "00111"
     );
@@ -43,10 +43,10 @@ architecture rom_a of rom is
 		  IMM => "01",
 		  BOTH => "10"
     );
-	 
+
 	 constant MOV: std_logic_vector(4 downto 0) := "10001";
 	 constant PRINT: std_logic_vector(7 downto 0) := "10011" & "000";
-	 
+
 	 type ram_type is (FROM_REG, TO_REG);
 
     type ram_table is array (ram_type) of std_logic_vector(6 downto 0);
@@ -54,7 +54,7 @@ architecture rom_a of rom is
         FROM_REG 	=> "00" & "10100",
 		  TO_REG 	=> "00" & "10101"
     );
-	 
+
 	 type jump_type is (ADDR, Z, NZ, P, NP);
 
     type jump_table is array (jump_type) of std_logic_vector(7 downto 0);
@@ -65,7 +65,7 @@ architecture rom_a of rom is
 		  P		=>	"01111"	&	"000",
 		  NP		=>	"10000"	&	"000"
     );
-	 
+
 	constant RN: std_logic_vector(2 downto 0) := "000";
 	constant R0: std_logic_vector(2 downto 0) := "000";
 	constant R1: std_logic_vector(2 downto 0) := "001";
@@ -87,40 +87,40 @@ architecture rom_a of rom is
 
 	constant NOP: std_logic_vector(25 downto 0) := "00" & "10010" & "000" & "00000000" & "00000000";
 	constant IGNORE: std_logic_vector(7 downto 0) := "00000000";
-	 
+
 	 function imm(value : integer) return std_logic_vector is
     begin
         return std_logic_vector(to_signed(value, 8));
     end function;
-	 
+
 	 function addr(value : integer) return std_logic_vector is
     begin
         return std_logic_vector(to_unsigned(value, 8));
     end function;
-	 
+
 	type rom is array(0 to 255) of std_logic_vector(25 downto 0);
-	
+
 	signal rom_data : rom := (
 	--						FORMAT			 OPCODE		REG_EST    A	       B
-	
+	                NOP,
 						FORMAT(IMM)		&		MOV		&	R0	&	imm(10)	&	IGNORE,	-- R0=10
 						FORMAT(BOTH)	&	ALU(ADD)		&	R1	&	R0_8		&	imm(20),	--	R1=30,R0=10
 						FORMAT(REG)		&	ALU(SUB)		&	R2	&	R1_8		&	R0_8,		-- R2=20, R1=30, R0=10
 						FORMAT(BOTH)	&	ALU(MUL)		&	R3 &	R2_8		&	imm(2),	--	R3=40, R2=20, R1=30, R0=10
 						FORMAT(REG)		&	ALU(DIV)		&	R4	&	R3_8		&	R0_8,		-- R4=4, R3=40, R2=20, R1=30, R0=10
 						FORMAT(REG)		&	ALU(RSHIFT)	&	R5	&	R4_8		&	IGNORE,	-- R5=2, R4=4, R3=40, R2=20, R1=30, R0=10
-						
+
 						FORMAT(REG)		&	ALU(LSHIFT)	&	R5	&	R5_8		&	IGNORE,	-- R5=4, R4=4, R3=40, R2=20, R1=30, R0=10
 						FORMAT(REG)		&		MOV		&	R6	&	R5_8		&	IGNORE,	-- R6=4, R5=4, R4=4, R3=40, R2=20, R1=30, R0=10
 						FORMAT(REG)		&	ALU(INC)		&	R7	&	R6_8		&	IGNORE, 	-- R7=5, R6=4, R5=4, R4=4, R3=40, R2=20, R1=30, R0=10
 						FORMAT(REG)		&	ALU(DEC)		&	R7	&	R7_8		&	IGNORE,  -- R7=4, R6=4, R5=4, R4=4, R3=40, R2=20, R1=30, R0=10
-						
-									RAM(FROM_REG)			&	R7	&	addr(28)	&	IGNORE,	
+
+									RAM(FROM_REG)			&	R7	&	addr(28)	&	IGNORE,
 									RAM(TO_REG)				&	R1	&	addr(28)	&	IGNORE,	-- R7=4, R6=4, R5=4, R4=4, R3=40, R2=20, R1=4, R0=10
-						
+
 						FORMAT(REG)		&	ALU(LSHIFT)	&	R1	&	R1_8		&	IGNORE,	-- R7=4, R6=4, R5=4, R4=4, R3=40, R2=20, R1=8, R0=10
-						
-						FORMAT(REG)		&			PRINT			&	R1_8		&	IGNORE,	
+
+						FORMAT(REG)		&			PRINT			&	R1_8		&	IGNORE,
 		others => 	NOP
 	);
 
@@ -135,7 +135,7 @@ begin
 
 			end if;
 		end if;
- 
+
 	end process acces_rom;
 
 end rom_a;

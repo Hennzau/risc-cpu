@@ -2,20 +2,21 @@ library ieee;
 
 use IEEE.STD_LOGIC_1164.all;
 use ieee.numeric_std.all;
+
 entity ram is
-	port 
+	port
 	(
-		rw       : in std_logic;
-		rw_dec	: in std_logic;
- 
+		rw       : in std_logic := '0';
+		rw_dec	: in std_logic := '0';
+
 		en       : in std_logic;
 		clk      : in std_logic;
 		rst      : in std_logic;
- 
-		address  : in std_logic_vector(7 downto 0);
- 
-		data_in  : in std_logic_vector(7 downto 0);
-		data_out : out std_logic_vector(7 downto 0)
+
+		address  : in std_logic_vector(7 downto 0) := "00000000";
+
+		data_in  : in std_logic_vector(7 downto 0) := "00000000";
+		data_out : out std_logic_vector(7 downto 0) := "00000000"
 	);
 end ram;
 
@@ -39,7 +40,7 @@ begin
 				end if;
 			end if;
 		end if;
- 
+
 	end process acces_ram;
 
 end ram_a;

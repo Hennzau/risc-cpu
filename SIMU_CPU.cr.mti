@@ -1,0 +1,107 @@
+/home/enzo/Documents/risc-cpu/screen.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/enzo/Documents/risc-cpu/screen.vhd
+Questa Intel Starter FPGA Edition-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity screen
+-- Compiling architecture screen_a of screen
+
+} {} {}} /home/enzo/Documents/risc-cpu/alu.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/enzo/Documents/risc-cpu/alu.vhd
+Questa Intel Starter FPGA Edition-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity alu
+-- Compiling architecture alu_a of alu
+
+} {} {}} /home/enzo/Documents/risc-cpu/dig2dec.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/enzo/Documents/risc-cpu/dig2dec.vhd
+Questa Intel Starter FPGA Edition-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity dig2dec
+-- Compiling architecture rtl of dig2dec
+
+} {} {}} /home/enzo/Documents/risc-cpu/pipeline.vhd {2 {vcom -work work -2002 -explicit -vopt -stats=none /home/enzo/Documents/risc-cpu/pipeline.vhd
+Questa Intel Starter FPGA Edition-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity pipeline
+-- Compiling architecture pipeline_a of pipeline
+** Warning: /home/enzo/Documents/risc-cpu/pipeline.vhd(38): (vcom-1937) Choice in CASE statement alternative must be locally static.
+** Warning: /home/enzo/Documents/risc-cpu/pipeline.vhd(41): (vcom-1937) Choice in CASE statement alternative must be locally static.
+** Warning: /home/enzo/Documents/risc-cpu/pipeline.vhd(44): (vcom-1937) Choice in CASE statement alternative must be locally static.
+** Warning: /home/enzo/Documents/risc-cpu/pipeline.vhd(54): (vcom-1937) Choice in CASE statement alternative must be locally static.
+** Warning: /home/enzo/Documents/risc-cpu/pipeline.vhd(57): (vcom-1937) Choice in CASE statement alternative must be locally static.
+** Warning: /home/enzo/Documents/risc-cpu/pipeline.vhd(60): (vcom-1937) Choice in CASE statement alternative must be locally static.
+** Warning: /home/enzo/Documents/risc-cpu/pipeline.vhd(63): (vcom-1937) Choice in CASE statement alternative must be locally static.
+
+} {} {}} /home/enzo/Documents/risc-cpu/rom.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/enzo/Documents/risc-cpu/rom.vhd
+Questa Intel Starter FPGA Edition-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity rom
+-- Compiling architecture rom_a of rom
+
+} {} {}} /home/enzo/Documents/risc-cpu/reg.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/enzo/Documents/risc-cpu/reg.vhd
+Questa Intel Starter FPGA Edition-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity reg
+-- Compiling architecture reg_a of reg
+
+} {} {}} /home/enzo/Documents/risc-cpu/ram.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/enzo/Documents/risc-cpu/ram.vhd
+Questa Intel Starter FPGA Edition-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity ram
+-- Compiling architecture ram_a of ram
+
+} {} {}} /home/enzo/Documents/risc-cpu/CPU.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/enzo/Documents/risc-cpu/CPU.vhd
+Questa Intel Starter FPGA Edition-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity CPU
+-- Compiling architecture bdf_type of CPU
+
+} {} {}} /home/enzo/Documents/risc-cpu/fetch.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/enzo/Documents/risc-cpu/fetch.vhd
+Questa Intel Starter FPGA Edition-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity fetch
+-- Compiling architecture fetch_a of fetch
+
+} {} {}} /home/enzo/Documents/risc-cpu/seg7_lut.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/enzo/Documents/risc-cpu/seg7_lut.vhd
+Questa Intel Starter FPGA Edition-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity seg7_lut
+-- Compiling architecture rtl of seg7_lut
+
+} {} {}} /home/enzo/Documents/risc-cpu/status.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/enzo/Documents/risc-cpu/status.vhd
+Questa Intel Starter FPGA Edition-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity status
+-- Compiling architecture status_a of status
+
+} {} {}}

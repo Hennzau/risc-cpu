@@ -12,7 +12,7 @@ entity CPU is
 --		MAX10_CLK2_50 	: in STD_LOGIC;
 --		ADC_CLK_10 		: in STD_LOGIC;
 
-		KEY	: in std_logic_vector(1 downto 0); 
+		KEY	: in std_logic_vector(1 downto 0);
 
 		SW            : in STD_LOGIC_VECTOR(9 downto 0);
 		LEDR          : out STD_LOGIC_VECTOR(9 downto 0);
@@ -119,49 +119,49 @@ architecture bdf_type of CPU is
 		output	: out std_logic_vector(1 downto 0)
 	);
 	end component;
-	
+
 	component decoder
 	port
 	(
 		en		  : in std_logic;
 		clk     : in std_logic;
-		
+
 		instruction : in std_logic_vector(25 downto 0);
 		reg_value_a	: in std_logic_vector(7 downto 0);
 		reg_value_b	: in std_logic_vector(7 downto 0);
 		ram_value	: in std_logic_vector(7 downto 0);
 		status		: in std_logic_vector(1 downto 0);
-		
+
 		alu_sel		: out std_logic_vector(2 downto 0);
 		alu_a			: out std_logic_vector(7 downto 0);
 		alu_b			: out std_logic_vector(7 downto 0);
-		
+
 		fetch_jump		: out std_logic;
 		fetch_address	: out std_logic_vector(7 downto 0);
-		
+
 		reg_rw			: out std_logic;
 		reg_address		: out std_logic_vector(2 downto 0);
 		reg_address_a	: out std_logic_vector(2 downto 0);
 		reg_address_b	: out std_logic_vector(2 downto 0);
-		
+
 		ram_rw		: out std_logic;
 		ram_address : out std_logic_vector(7 downto 0);
 		ram_data_in	: out std_logic_vector(7 downto 0);
-		
+
 		decoder_out	: out std_logic_vector(7 downto 0)
 	);
 	end component;
-	
+
 	component pipeline
 	port
 	(
 		clk     	: in std_logic;
 		rst     	: in std_logic;
-		
+
 		stage		: out std_logic_vector(7 downto 0)
 	);
 	end component;
-	
+
 	component screen
 	port
 	(
@@ -173,58 +173,58 @@ architecture bdf_type of CPU is
 		HEX2  : out STD_LOGIC_VECTOR(7 downto 0);
 		HEX3  : out STD_LOGIC_VECTOR(7 downto 0);
 		HEX4  : out STD_LOGIC_VECTOR(7 downto 0);
-		HEX5  : out STD_LOGIC_VECTOR(7 downto 0)	
+		HEX5  : out STD_LOGIC_VECTOR(7 downto 0)
 	);
 	end component;
-	
+
 	signal general_clk: STD_LOGIC;
-	signal general_rst: STD_LOGIC;
-	
+	signal general_rst: STD_LOGIC := '0';
+
 	signal fetch_en   : STD_LOGIC;
-	signal fetch_jump	: STD_LOGIC;
-	signal fetch_address_in : std_logic_vector(7 downto 0);
-	signal fetch_address_out : std_logic_vector(7 downto 0);
+	signal fetch_jump	: STD_LOGIC := '0';
+	signal fetch_address_in : std_logic_vector(7 downto 0):= "00000000";
+	signal fetch_address_out : std_logic_vector(7 downto 0):= "00000000";
 
 	signal rom_en : STD_LOGIC;
-	signal rom_address : std_logic_vector(7 downto 0);
-	signal rom_data : std_logic_vector(25 downto 0);
+	signal rom_address : std_logic_vector(7 downto 0) := "00000000";
+	signal rom_data : std_logic_vector(25 downto 0) := "00000000000000000000000000";
 
-	signal ram_rw : STD_LOGIC;
-	signal ram_rw_dec : STD_LOGIC;
+	signal ram_rw : STD_LOGIC := '0';
+	signal ram_rw_dec : STD_LOGIC := '0';
 	signal ram_en : STD_LOGIC;
-	signal ram_address : std_logic_vector(7 downto 0);
-	signal ram_data_in : std_logic_vector(7 downto 0);
-	signal ram_data_out : std_logic_vector(7 downto 0);
-	
+	signal ram_address : std_logic_vector(7 downto 0) := "00000000";
+	signal ram_data_in : std_logic_vector(7 downto 0) := "00000000";
+	signal ram_data_out : std_logic_vector(7 downto 0) := "00000000";
+
 	signal alu_en : std_logic;
-	signal alu_sel : std_logic_vector(2 downto 0);
-	signal alu_a : std_logic_vector(7 downto 0);
-	signal alu_b : std_logic_vector(7 downto 0);
-	signal alu_result : std_logic_vector(7 downto 0);
-	signal alu_status : std_logic_vector(1 downto 0);
-	
-	signal reg_rw : STD_LOGIC;
-	signal reg_rw_dec : STD_LOGIC;
+	signal alu_sel : std_logic_vector(2 downto 0) := "000";
+	signal alu_a : std_logic_vector(7 downto 0) := "00000000";
+	signal alu_b : std_logic_vector(7 downto 0) := "00000000";
+	signal alu_result : std_logic_vector(7 downto 0) := "00000000";
+	signal alu_status : std_logic_vector(1 downto 0) := "00";
+
+	signal reg_rw : STD_LOGIC := '0';
+	signal reg_rw_dec : STD_LOGIC := '0';
 	signal reg_en : STD_LOGIC;
-	signal reg_address : std_logic_vector(2 downto 0);
-	signal reg_address_a : std_logic_vector(2 downto 0);
-	signal reg_address_b : std_logic_vector(2 downto 0);
-	signal reg_data_in : std_logic_vector(7 downto 0);
-	signal reg_data_out_a : std_logic_vector(7 downto 0);
-	signal reg_data_out_b : std_logic_vector(7 downto 0);
+	signal reg_address : std_logic_vector(2 downto 0):= "000";
+	signal reg_address_a : std_logic_vector(2 downto 0) := "000";
+	signal reg_address_b : std_logic_vector(2 downto 0) := "000";
+	signal reg_data_in : std_logic_vector(7 downto 0) := "00000000";
+	signal reg_data_out_a : std_logic_vector(7 downto 0) := "00000000";
+	signal reg_data_out_b : std_logic_vector(7 downto 0) := "00000000";
 
 	signal status_en : std_logic;
-	signal status_input : std_logic_vector(1 downto 0);
-	signal status_output : std_logic_vector(1 downto 0);
+	signal status_input : std_logic_vector(1 downto 0) := "00";
+	signal status_output : std_logic_vector(1 downto 0) := "00";
 
 	signal decoder_en : std_logic;
-	
-	signal pipeline_stage : std_logic_vector(7 downto 0);
-	signal decoder_out : std_logic_vector(7 downto 0);
-	
-	signal decoder_reg_rw	: std_logic;
-	signal decoder_ram_rw	: std_logic;
-	
+
+	signal pipeline_stage : std_logic_vector(7 downto 0) := "00000000";
+	signal decoder_out : std_logic_vector(7 downto 0) := "00000000";
+
+	signal decoder_reg_rw	: std_logic := '0';
+	signal decoder_ram_rw	: std_logic := '0';
+
 begin
 
 	fetch_inst: fetch
@@ -298,44 +298,44 @@ begin
 		input  => status_input,
 		output => status_output
 	);
-	
+
 	rom_address <= fetch_address_out;
 	status_input <= alu_status;
 	reg_data_in <= alu_result;
-	general_clk <= MAX10_CLK1_50; 
+	general_clk <= MAX10_CLK1_50;
 	general_rst <= '0';
-	
+
 	-- Decoder Instantiation
 	decoder_inst: decoder
 	port map (
 		en => decoder_en,
 		clk => general_clk,
-		
+
 		instruction => rom_data,
 		reg_value_a	=> reg_data_out_a,
 		reg_value_b	=> reg_data_out_b,
 		ram_value => ram_data_out,
 		status => status_output,
-		
+
 		alu_sel => alu_sel,
 		alu_a	=> alu_a,
 		alu_b => alu_b,
-		
+
 		fetch_jump		=> fetch_jump,
 		fetch_address	=> fetch_address_in,
-		
+
 		reg_rw			=> decoder_reg_rw,
 		reg_address		=> reg_address,
 		reg_address_a	=> reg_address_a,
 		reg_address_b	=> reg_address_b,
-		
+
 		ram_rw		=> decoder_ram_rw,
 		ram_address => ram_address,
 		ram_data_in	=> ram_data_in,
-		
+
 		decoder_out => decoder_out
 	);
-	
+
 	-- Pipeline Instantation
 	-- Static pipeline, no matter what is the instruction:
 	-- Fetch => ROM => Decoder => RAM + REG => Decoder => ALU => RAM + REG + STATUS => ...
@@ -345,7 +345,7 @@ begin
 		rst => general_rst,
 		stage => pipeline_stage
 	);
-	
+
 	fetch_en <= pipeline_stage(0);
 	rom_en <= pipeline_stage(1);
 	decoder_en <= pipeline_stage(2);
@@ -353,18 +353,18 @@ begin
 	ram_en <= pipeline_stage(4);
 	alu_en <= pipeline_stage(5);
 	status_en <= pipeline_stage(6);
-	
+
 	ram_rw <= pipeline_stage(7);
 	reg_rw <= pipeline_stage(7);
 	ram_rw_dec <= decoder_ram_rw;
 	reg_rw_dec <= decoder_reg_rw;
-	
+
 	-- Screen
 	screen_inst: screen
 	port map (
 		data_a => decoder_out,
-		data_b => std_logic_vector(to_unsigned(to_integer(unsigned(SW(9 downto 8))), 6)),
-		
+		data_b => (others => '0'),
+
 		HEX0 => HEX0,
 		HEX1 => HEX1,
 		HEX2 => HEX2,
@@ -372,7 +372,7 @@ begin
 		HEX4 => HEX4,
 		HEX5 => HEX5
 	);
-	
+
 	LEDR <= SW;
-	
+
 end bdf_type;

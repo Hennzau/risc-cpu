@@ -4,19 +4,19 @@ use IEEE.STD_LOGIC_1164.all;
 use ieee.numeric_std.all;
 
 entity alu is
-	port 
+	port
 	(
-		en			: in std_logic;
+	   en		 : in std_logic;
 		clk      : in std_logic;
 		rst      : in std_logic;
- 
-		sel		: in std_logic_vector(2 downto 0); -- 0 ADD, 1 SUB, 2 MUL, 3 DIV, 4 INC, 5 DEC, 6 LSHIFT, 7 RSHIFT
- 
-		a			: in std_logic_vector(7 downto 0);
-		b		   : in std_logic_vector(7 downto 0);
-		
-		result	: out std_logic_vector(7 downto 0);
-		status  	: out std_logic_vector(1 downto 0) -- status(0) = nonzero, status(1) = positive
+
+		sel		: in std_logic_vector(2 downto 0) := "000"; -- 0 ADD, 1 SUB, 2 MUL, 3 DIV, 4 INC, 5 DEC, 6 LSHIFT, 7 RSHIFT
+
+		a			: in std_logic_vector(7 downto 0) := "00000000";
+		b		   : in std_logic_vector(7 downto 0) := "00000000";
+
+		result	: out std_logic_vector(7 downto 0) := "00000000";
+		status  	: out std_logic_vector(1 downto 0) := "00" -- status(0) = nonzero, status(1) = positive
 	);
 end alu;
 
@@ -24,9 +24,9 @@ architecture alu_a of alu is
 
 begin
 	use_alu: process (rst, clk)
-		variable a_signed : signed(7 downto 0);
-		variable b_signed : signed(7 downto 0);
-		variable temp_result : signed(15 downto 0);
+		variable a_signed : signed(7 downto 0) := "00000000";
+		variable b_signed : signed(7 downto 0) := "00000000";
+		variable temp_result : signed(15 downto 0) := "0000000000000000";
 	begin
 		if rst = '1' then
 			result <= (others => '0');
@@ -35,14 +35,14 @@ begin
 			if en = '1' then
 				a_signed := signed(a);
 				b_signed := signed(b);
-				
+
 				temp_result := to_signed(0, 16);
-				
+
 				case sel is
 					when "000" => -- ADD
 						temp_result(7 downto 0) := a_signed + b_signed;
 						result <= std_logic_vector(temp_result(7 downto 0));
-						
+
 					when "001" => -- SUB
 						temp_result(7 downto 0) := a_signed - b_signed;
 						result <= std_logic_vector(temp_result(7 downto 0));
