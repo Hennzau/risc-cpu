@@ -11,9 +11,9 @@ entity ram is
         clk : in std_logic;
         rst : in std_logic;
 
-        address : in std_logic_vector(7 downto 0) := "00000000";
+        address : in std_logic_vector(7 downto 0);
+        data_in  : in std_logic_vector(7 downto 0);
 
-        data_in  : in std_logic_vector(7 downto 0)  := "00000000";
         data_out : out std_logic_vector(7 downto 0) := "00000000"
     );
 end ram;
@@ -22,7 +22,7 @@ architecture Behavioral of ram is
 
     type ram is array(0 to 255) of std_logic_vector(7 downto 0);
 
-    signal data_ram : ram;
+    signal data_ram : ram := (others => (others => '0'));
 
 begin
     process (rst, clk)

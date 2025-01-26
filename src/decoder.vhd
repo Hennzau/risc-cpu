@@ -9,11 +9,11 @@ entity decoder is
         en  : in std_logic;
         clk : in std_logic;
 
-        instruction : in std_logic_vector(25 downto 0) := "00000000000000000000000000";
-        reg_value_a : in std_logic_vector(7 downto 0)  := "00000000";
-        reg_value_b : in std_logic_vector(7 downto 0)  := "00000000";
-        ram_value   : in std_logic_vector(7 downto 0)  := "00000000";
-        status      : in std_logic_vector(1 downto 0)  := "00";
+        instruction : in std_logic_vector(25 downto 0);
+        reg_value_a : in std_logic_vector(7 downto 0);
+        reg_value_b : in std_logic_vector(7 downto 0);
+        ram_value   : in std_logic_vector(7 downto 0);
+        status      : in std_logic_vector(1 downto 0);
 
         alu_sel : out std_logic_vector(2 downto 0) := "000";
         alu_a   : out std_logic_vector(7 downto 0) := "00000000";
@@ -22,12 +22,12 @@ entity decoder is
         fetch_jump    : out std_logic                    := '0';
         fetch_address : out std_logic_vector(7 downto 0) := "00000000";
 
-        reg_rw        : out std_logic;
+        reg_rw        : out std_logic                    := '0';
         reg_address   : out std_logic_vector(2 downto 0) := "000";
         reg_address_a : out std_logic_vector(2 downto 0) := "000";
         reg_address_b : out std_logic_vector(2 downto 0) := "000";
 
-        ram_rw      : out std_logic;
+        ram_rw      : out std_logic                    := '0';
         ram_address : out std_logic_vector(7 downto 0) := "00000000";
         ram_data_in : out std_logic_vector(7 downto 0) := "00000000";
 

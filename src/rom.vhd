@@ -10,7 +10,7 @@ entity rom is
         clk : in std_logic;
         rst : in std_logic;
 
-        address : in std_logic_vector(7 downto 0) := "00000000";
+        address : in std_logic_vector(7 downto 0);
 
         data : out std_logic_vector(25 downto 0) := "00000000000000000000000000"
     );

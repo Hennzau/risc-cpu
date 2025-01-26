@@ -10,7 +10,7 @@ entity status is
         clk : in std_logic;
         rst : in std_logic;
 
-        input  : in std_logic_vector(1 downto 0)  := "00";
+        input  : in std_logic_vector(1 downto 0);
         output : out std_logic_vector(1 downto 0) := "00"
     );
 

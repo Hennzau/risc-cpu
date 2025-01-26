@@ -9,10 +9,10 @@ entity alu is
         clk : in std_logic;
         rst : in std_logic;
 
-        sel : in std_logic_vector(2 downto 0) := "000"; -- 0 ADD, 1 SUB, 2 MUL, 3 DIV, 4 INC, 5 DEC, 6 LSHIFT, 7 RSHIFT
+        sel : in std_logic_vector(2 downto 0); -- 0 ADD, 1 SUB, 2 MUL, 3 DIV, 4 INC, 5 DEC, 6 LSHIFT, 7 RSHIFT
 
-        a : in std_logic_vector(7 downto 0) := "00000000";
-        b : in std_logic_vector(7 downto 0) := "00000000";
+        a : in std_logic_vector(7 downto 0);
+        b : in std_logic_vector(7 downto 0);
 
         result : out std_logic_vector(7 downto 0) := "00000000";
         status : out std_logic_vector(1 downto 0) := "00" -- status(0) = nonzero, status(1) = positive

@@ -8,12 +8,12 @@ entity dig2dec is
         data_a : in std_logic_vector(7 downto 0);
         data_b : in std_logic_vector(5 downto 0);
 
-        seg0 : out std_logic_vector(3 downto 0);
-        seg1 : out std_logic_vector(3 downto 0);
-        seg2 : out std_logic_vector(3 downto 0);
-        seg3 : out std_logic_vector(3 downto 0);
-        seg4 : out std_logic_vector(3 downto 0);
-        seg5 : out std_logic_vector(3 downto 0)
+        seg0 : out std_logic_vector(3 downto 0) := "0000";
+        seg1 : out std_logic_vector(3 downto 0) := "0000";
+        seg2 : out std_logic_vector(3 downto 0) := "0000";
+        seg3 : out std_logic_vector(3 downto 0) := "0000";
+        seg4 : out std_logic_vector(3 downto 0) := "0000";
+        seg5 : out std_logic_vector(3 downto 0) := "0000"
     );
 end entity;
 

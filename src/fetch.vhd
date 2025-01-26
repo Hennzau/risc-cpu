@@ -11,7 +11,8 @@ entity fetch is
 
         jump : in std_logic := '0';
 
-        address_in  : in std_logic_vector(7 downto 0)  := "00000000";
+        address_in  : in std_logic_vector(7 downto 0);
+
         address_out : out std_logic_vector(7 downto 0) := "00000000"
     );
 end entity;
