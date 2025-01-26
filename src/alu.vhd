@@ -40,52 +40,50 @@ begin
                 case sel is
                     when "000" => -- ADD
                         temp_result(7 downto 0) := a_signed + b_signed;
-                        result <= std_logic_vector(temp_result(7 downto 0));
 
                     when "001" => -- SUB
                         temp_result(7 downto 0) := a_signed - b_signed;
-                        result <= std_logic_vector(temp_result(7 downto 0));
 
                     when "010" => -- MUL
                         temp_result(7 downto 0) := to_signed(to_integer(a_signed * b_signed), 8);
-                        result <= std_logic_vector(temp_result(7 downto 0));
 
                     when "011" => -- DIV
                         temp_result(7 downto 0) := a_signed / b_signed;
-                        result <= std_logic_vector(temp_result(7 downto 0));
 
                     when "100" => -- INC
                         if a_signed = 127 then
-                            result <= std_logic_vector(to_signed(127, 8));
+                            temp_result(7 downto 0) := to_signed(127, 8);
                         else
-                            result <= std_logic_vector(a_signed + 1);
+                            temp_result(7 downto 0) := a_signed + 1;
                         end if;
 
                     when "101" => -- DEC
                         if a_signed =- 128 then
-                            result <= std_logic_vector(to_signed(-128, 8));
+                            temp_result(7 downto 0) := to_signed(-128, 8);
                         else
-                            result <= std_logic_vector(a_signed - 1);
+                            temp_result(7 downto 0) := a_signed - 1;
                         end if;
 
                     when "110" => -- LSHIFT (Logical Shift Left)
-                        result <= std_logic_vector(shift_left(a_signed, 1));
+                        temp_result(7 downto 0) := shift_left(a_signed, 1);
 
                     when "111" => -- RSHIFT (Logical Shift Right)
-                        result <= std_logic_vector(shift_right(a_signed, 1));
+                        temp_result(7 downto 0) := shift_right(a_signed, 1);
 
                     when others       =>
-                        result <= (others => '0');
+                        temp_result(7 downto 0) := "00000000";
                 end case;
 
+                result <= std_logic_vector(temp_result(7 downto 0));
+
                 -- Set status bits
-                if temp_result /= 0 then
+                if temp_result(7 downto 0) /= 0 then
                     status(0) <= '1'; -- nonzero
                 else
                     status(0) <= '0';
                 end if;
 
-                if temp_result >= 0 then
+                if temp_result(7 downto 0) >= 0 then
                     status(1) <= '1'; -- positive
                 else
                     status(1) <= '0';
