@@ -120,6 +120,9 @@ architecture Behavioral of cpu is
             ram_value   : in std_logic_vector(7 downto 0);
             status      : in std_logic_vector(1 downto 0);
 
+            decoder_sw  : in std_logic_vector(7 downto 0);
+            decoder_pc  : in std_logic_vector(7 downto 0);
+
             alu_sel : out std_logic_vector(2 downto 0);
             alu_a   : out std_logic_vector(7 downto 0);
             alu_b   : out std_logic_vector(7 downto 0);
@@ -136,7 +139,8 @@ architecture Behavioral of cpu is
             ram_address : out std_logic_vector(7 downto 0);
             ram_data_in : out std_logic_vector(7 downto 0);
 
-            decoder_out : out std_logic_vector(7 downto 0)
+            decoder_out_l : out std_logic_vector(7 downto 0);
+            decoder_out_s : out std_logic_vector(7 downto 0)
         );
     end component;
 
@@ -206,7 +210,8 @@ architecture Behavioral of cpu is
     signal decoder_en : std_logic;
 
     signal pipeline_stage : std_logic_vector(7 downto 0) := "00000000";
-    signal decoder_out    : std_logic_vector(7 downto 0) := "00000000";
+    signal decoder_out_l    : std_logic_vector(7 downto 0) := "00000000";
+    signal decoder_out_s    : std_logic_vector(7 downto 0) := "00000000";
 
     signal decoder_reg_rw : std_logic := '0';
     signal decoder_ram_rw : std_logic := '0';
@@ -301,6 +306,9 @@ begin
         ram_value   => ram_data_out,
         status      => status_output,
 
+        decoder_pc => rom_address,
+        decoder_sw  => SW(7 downto 0),
+
         alu_sel => alu_sel,
         alu_a   => alu_a,
         alu_b   => alu_b,
@@ -317,7 +325,8 @@ begin
         ram_address => ram_address,
         ram_data_in => ram_data_in,
 
-        decoder_out => decoder_out
+        decoder_out_l => decoder_out_l,
+        decoder_out_s => decoder_out_s
     );
 
     -- Pipeline Instantation
@@ -344,8 +353,8 @@ begin
     -- Screen
     screen_inst : screen
     port map(
-        data_a => decoder_out,
-        data_b => (others => '0'),
+        data_a => decoder_out_l,
+        data_b => decoder_out_s(5 downto 0),
 
         HEX0 => HEX0,
         HEX1 => HEX1,
@@ -355,6 +364,7 @@ begin
         HEX5 => HEX5
     );
 
-    LEDR <= SW;
+    LEDR(7 downto 0) <= SW(7 downto 0);
+    LEDR(9 downto 8) <= "00";
 
 end architecture;

@@ -15,6 +15,9 @@ entity decoder is
         ram_value   : in std_logic_vector(7 downto 0);
         status      : in std_logic_vector(1 downto 0);
 
+        decoder_pc  : in std_logic_vector(7 downto 0);
+        decoder_sw  : in std_logic_vector(7 downto 0);
+
         alu_sel : out std_logic_vector(2 downto 0) := "000";
         alu_a   : out std_logic_vector(7 downto 0) := "00000000";
         alu_b   : out std_logic_vector(7 downto 0) := "00000000";
@@ -31,7 +34,8 @@ entity decoder is
         ram_address : out std_logic_vector(7 downto 0) := "00000000";
         ram_data_in : out std_logic_vector(7 downto 0) := "00000000";
 
-        decoder_out : out std_logic_vector(7 downto 0) := "00000000"
+        decoder_out_l : out std_logic_vector(7 downto 0) := "00000000";
+        decoder_out_s : out std_logic_vector(7 downto 0) := "00000000"
     );
 
 end entity;
@@ -104,11 +108,11 @@ begin
 
                             case format is
                                 when "00" => -- ALL REG
-                                    decoder_out <= reg_value_a;
+                                    decoder_out_l <= reg_value_a;
                                 when "01" => -- ALL IMM
-                                    decoder_out <= A;
+                                    decoder_out_l <= A;
                                 when "10" => -- Duplicated from 00
-                                    decoder_out <= reg_value_a;
+                                    decoder_out_l <= reg_value_a;
                                 when others =>
                                     null;
                             end case;
