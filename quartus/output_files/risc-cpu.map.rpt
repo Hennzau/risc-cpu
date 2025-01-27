@@ -1,5 +1,5 @@
 Analysis & Synthesis report for risc-cpu
-Mon Jan 27 19:26:00 2025
+Mon Jan 27 22:00:29 2025
 Quartus Prime Version 21.1.0 Build 842 10/21/2021 SJ Lite Edition
 
 
@@ -33,17 +33,10 @@ Quartus Prime Version 21.1.0 Build 842 10/21/2021 SJ Lite Edition
  25. Parameter Settings for Inferred Entity Instance: alu:alu_inst|lpm_divide:Div0
  26. altsyncram Parameter Settings by Entity Instance
  27. lpm_mult Parameter Settings by Entity Instance
- 28. Port Connectivity Checks: "pipeline:pipeline_inst"
- 29. Port Connectivity Checks: "decoder:decoder_inst"
- 30. Port Connectivity Checks: "status:status_inst"
- 31. Port Connectivity Checks: "reg:reg_inst"
- 32. Port Connectivity Checks: "alu:alu_inst"
- 33. Port Connectivity Checks: "ram:ram_inst"
- 34. Port Connectivity Checks: "rom:rom_inst"
- 35. Port Connectivity Checks: "pcounter:pcounter_inst"
- 36. Post-Synthesis Netlist Statistics for Top Partition
- 37. Elapsed Time Per Partition
- 38. Analysis & Synthesis Messages
+ 28. Port Connectivity Checks: "decoder:decoder_inst"
+ 29. Post-Synthesis Netlist Statistics for Top Partition
+ 30. Elapsed Time Per Partition
+ 31. Analysis & Synthesis Messages
 
 
 
@@ -70,13 +63,13 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Jan 27 19:26:00 2025       ;
+; Analysis & Synthesis Status        ; Successful - Mon Jan 27 22:00:29 2025       ;
 ; Quartus Prime Version              ; 21.1.0 Build 842 10/21/2021 SJ Lite Edition ;
 ; Revision Name                      ; risc-cpu                                    ;
 ; Top-level Entity Name              ; cpu                                         ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 778                                         ;
-;     Total combinational functions  ; 676                                         ;
+; Total logic elements               ; 780                                         ;
+;     Total combinational functions  ; 678                                         ;
 ;     Dedicated logic registers      ; 178                                         ;
 ; Total registers                    ; 178                                         ;
 ; Total pins                         ; 71                                          ;
@@ -255,16 +248,16 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+---------------------+
 ; Resource                                    ; Usage               ;
 +---------------------------------------------+---------------------+
-; Estimated Total logic elements              ; 778                 ;
+; Estimated Total logic elements              ; 780                 ;
 ;                                             ;                     ;
-; Total combinational functions               ; 676                 ;
+; Total combinational functions               ; 678                 ;
 ; Logic element usage by number of LUT inputs ;                     ;
-;     -- 4 input functions                    ; 290                 ;
-;     -- 3 input functions                    ; 188                 ;
+;     -- 4 input functions                    ; 294                 ;
+;     -- 3 input functions                    ; 186                 ;
 ;     -- <=2 input functions                  ; 198                 ;
 ;                                             ;                     ;
 ; Logic elements by mode                      ;                     ;
-;     -- normal mode                          ; 521                 ;
+;     -- normal mode                          ; 523                 ;
 ;     -- arithmetic mode                      ; 155                 ;
 ;                                             ;                     ;
 ; Total registers                             ; 178                 ;
@@ -278,8 +271,8 @@ https://fpgasoftware.intel.com/eula.
 ;                                             ;                     ;
 ; Maximum fan-out node                        ; MAX10_CLK1_50~input ;
 ; Maximum fan-out                             ; 212                 ;
-; Total fan-out                               ; 3099                ;
-; Average fan-out                             ; 3.00                ;
+; Total fan-out                               ; 3196                ;
+; Average fan-out                             ; 3.09                ;
 +---------------------------------------------+---------------------+
 
 
@@ -288,8 +281,8 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
 ; Compilation Hierarchy Node                   ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                                                                                                                          ; Entity Name         ; Library Name ;
 +----------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
-; |cpu                                         ; 676 (0)             ; 178 (0)                   ; 8704        ; 0          ; 1            ; 1       ; 0         ; 71   ; 0            ; 0          ; |cpu                                                                                                                                         ; cpu                 ; work         ;
-;    |alu:alu_inst|                            ; 202 (92)            ; 10 (10)                   ; 0           ; 0          ; 1            ; 1       ; 0         ; 0    ; 0            ; 0          ; |cpu|alu:alu_inst                                                                                                                            ; alu                 ; work         ;
+; |cpu                                         ; 678 (0)             ; 178 (0)                   ; 8704        ; 0          ; 1            ; 1       ; 0         ; 71   ; 0            ; 0          ; |cpu                                                                                                                                         ; cpu                 ; work         ;
+;    |alu:alu_inst|                            ; 203 (93)            ; 10 (10)                   ; 0           ; 0          ; 1            ; 1       ; 0         ; 0    ; 0            ; 0          ; |cpu|alu:alu_inst                                                                                                                            ; alu                 ; work         ;
 ;       |lpm_divide:Div0|                      ; 110 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |cpu|alu:alu_inst|lpm_divide:Div0                                                                                                            ; lpm_divide          ; work         ;
 ;          |lpm_divide_5ao:auto_generated|     ; 110 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |cpu|alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated                                                                              ; lpm_divide_5ao      ; work         ;
 ;             |abs_divider_aag:divider|        ; 110 (14)            ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |cpu|alu:alu_inst|lpm_divide:Div0|lpm_divide_5ao:auto_generated|abs_divider_aag:divider                                                      ; abs_divider_aag     ; work         ;
@@ -307,7 +300,7 @@ https://fpgasoftware.intel.com/eula.
 ;       |altsyncram:data_ram_rtl_0|            ; 0 (0)               ; 0 (0)                     ; 2048        ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |cpu|ram:ram_inst|altsyncram:data_ram_rtl_0                                                                                                  ; altsyncram          ; work         ;
 ;          |altsyncram_m4d1:auto_generated|    ; 0 (0)               ; 0 (0)                     ; 2048        ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |cpu|ram:ram_inst|altsyncram:data_ram_rtl_0|altsyncram_m4d1:auto_generated                                                                   ; altsyncram_m4d1     ; work         ;
 ;    |reg:reg_inst|                            ; 90 (90)             ; 80 (80)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |cpu|reg:reg_inst                                                                                                                            ; reg                 ; work         ;
-;    |rom:rom_inst|                            ; 0 (0)               ; 0 (0)                     ; 6656        ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |cpu|rom:rom_inst                                                                                                                            ; rom                 ; work         ;
+;    |rom:rom_inst|                            ; 1 (1)               ; 0 (0)                     ; 6656        ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |cpu|rom:rom_inst                                                                                                                            ; rom                 ; work         ;
 ;       |altsyncram:rom_data_rtl_0|            ; 0 (0)               ; 0 (0)                     ; 6656        ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |cpu|rom:rom_inst|altsyncram:rom_data_rtl_0                                                                                                  ; altsyncram          ; work         ;
 ;          |altsyncram_3h61:auto_generated|    ; 0 (0)               ; 0 (0)                     ; 6656        ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |cpu|rom:rom_inst|altsyncram:rom_data_rtl_0|altsyncram_3h61:auto_generated                                                                   ; altsyncram_3h61     ; work         ;
 ;    |screen:screen_inst|                      ; 280 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |cpu|screen:screen_inst                                                                                                                      ; screen              ; work         ;
@@ -390,7 +383,7 @@ Note: number of Embedded Multiplier Blocks used is only available after a succes
 ; Total registers                              ; 178   ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 9     ;
-; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Clear ; 87    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 174   ;
 ; Number of registers using Preset             ; 0     ;
@@ -802,15 +795,6 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------------------------------------+-----------------------------+
 
 
-+----------------------------------------------------+
-; Port Connectivity Checks: "pipeline:pipeline_inst" ;
-+------+-------+----------+--------------------------+
-; Port ; Type  ; Severity ; Details                  ;
-+------+-------+----------+--------------------------+
-; rst  ; Input ; Info     ; Stuck at GND             ;
-+------+-------+----------+--------------------------+
-
-
 +-------------------------------------------------------------------------------------------------------------------------------+
 ; Port Connectivity Checks: "decoder:decoder_inst"                                                                              ;
 +---------------------+--------+----------+-------------------------------------------------------------------------------------+
@@ -820,60 +804,6 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+------------------------------------------------+
-; Port Connectivity Checks: "status:status_inst" ;
-+------+-------+----------+----------------------+
-; Port ; Type  ; Severity ; Details              ;
-+------+-------+----------+----------------------+
-; rst  ; Input ; Info     ; Stuck at GND         ;
-+------+-------+----------+----------------------+
-
-
-+------------------------------------------+
-; Port Connectivity Checks: "reg:reg_inst" ;
-+------+-------+----------+----------------+
-; Port ; Type  ; Severity ; Details        ;
-+------+-------+----------+----------------+
-; rst  ; Input ; Info     ; Stuck at GND   ;
-+------+-------+----------+----------------+
-
-
-+------------------------------------------+
-; Port Connectivity Checks: "alu:alu_inst" ;
-+------+-------+----------+----------------+
-; Port ; Type  ; Severity ; Details        ;
-+------+-------+----------+----------------+
-; rst  ; Input ; Info     ; Stuck at GND   ;
-+------+-------+----------+----------------+
-
-
-+------------------------------------------+
-; Port Connectivity Checks: "ram:ram_inst" ;
-+------+-------+----------+----------------+
-; Port ; Type  ; Severity ; Details        ;
-+------+-------+----------+----------------+
-; rst  ; Input ; Info     ; Stuck at GND   ;
-+------+-------+----------+----------------+
-
-
-+------------------------------------------+
-; Port Connectivity Checks: "rom:rom_inst" ;
-+------+-------+----------+----------------+
-; Port ; Type  ; Severity ; Details        ;
-+------+-------+----------+----------------+
-; rst  ; Input ; Info     ; Stuck at GND   ;
-+------+-------+----------+----------------+
-
-
-+----------------------------------------------------+
-; Port Connectivity Checks: "pcounter:pcounter_inst" ;
-+------+-------+----------+--------------------------+
-; Port ; Type  ; Severity ; Details                  ;
-+------+-------+----------+--------------------------+
-; rst  ; Input ; Info     ; Stuck at GND             ;
-+------+-------+----------+--------------------------+
-
-
 +-----------------------------------------------------+
 ; Post-Synthesis Netlist Statistics for Top Partition ;
 +-----------------------+-----------------------------+
@@ -881,26 +811,29 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; boundary_port         ; 71                          ;
 ; cycloneiii_ff         ; 178                         ;
-;     ENA               ; 165                         ;
-;     ENA SLD           ; 9                           ;
-;     plain             ; 4                           ;
-; cycloneiii_lcell_comb ; 683                         ;
+;     CLR               ; 3                           ;
+;     ENA               ; 89                          ;
+;     ENA CLR           ; 76                          ;
+;     ENA CLR SLD       ; 8                           ;
+;     ENA SLD           ; 1                           ;
+;     plain             ; 1                           ;
+; cycloneiii_lcell_comb ; 685                         ;
 ;     arith             ; 155                         ;
 ;         1 data inputs ; 3                           ;
 ;         2 data inputs ; 43                          ;
 ;         3 data inputs ; 109                         ;
-;     normal            ; 528                         ;
+;     normal            ; 530                         ;
 ;         0 data inputs ; 26                          ;
 ;         1 data inputs ; 11                          ;
 ;         2 data inputs ; 122                         ;
-;         3 data inputs ; 79                          ;
-;         4 data inputs ; 290                         ;
+;         3 data inputs ; 77                          ;
+;         4 data inputs ; 294                         ;
 ; cycloneiii_mac_mult   ; 1                           ;
 ; cycloneiii_mac_out    ; 1                           ;
 ; cycloneiii_ram_block  ; 34                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 25.70                       ;
-; Average LUT depth     ; 10.48                       ;
+; Average LUT depth     ; 10.50                       ;
 +-----------------------+-----------------------------+
 
 
@@ -909,7 +842,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:02     ;
 +----------------+--------------+
 
 
@@ -919,7 +852,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 21.1.0 Build 842 10/21/2021 SJ Lite Edition
-    Info: Processing started: Mon Jan 27 19:25:51 2025
+    Info: Processing started: Mon Jan 27 22:00:19 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off risc-cpu -c risc-cpu
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
@@ -1119,6 +1052,8 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_
     Info (12023): Found entity 1: lpm_abs_r99 File: /home/enzo/Documents/risc-cpu/quartus/db/lpm_abs_r99.tdf Line: 25
 Info (13014): Ignored 14 buffer(s)
     Info (13016): Ignored 14 CARRY_SUM buffer(s)
+Info (13000): Registers with preset signals will power-up high
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "LEDR[8]" is stuck at GND File: /home/enzo/Documents/risc-cpu/src/cpu.vhd Line: 15
     Warning (13410): Pin "LEDR[9]" is stuck at GND File: /home/enzo/Documents/risc-cpu/src/cpu.vhd Line: 15
@@ -1140,20 +1075,19 @@ Info (17016): Found the following redundant logic cells in design
     Info (17048): Logic cell "screen:screen_inst|dig2dec:dig2dec_inst|lpm_divide:Mod0|lpm_divide_gkl:auto_generated|sign_div_unsign_fkh:divider|alt_u_div_8fe:divider|add_sub_6_result_int[0]~14" File: /home/enzo/Documents/risc-cpu/quartus/db/alt_u_div_8fe.tdf Line: 57
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 3 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "KEY[1]" File: /home/enzo/Documents/risc-cpu/src/cpu.vhd Line: 12
+Warning (21074): Design contains 2 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SW[8]" File: /home/enzo/Documents/risc-cpu/src/cpu.vhd Line: 14
     Warning (15610): No output dependent on input pin "SW[9]" File: /home/enzo/Documents/risc-cpu/src/cpu.vhd Line: 14
-Info (21057): Implemented 901 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 903 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 13 input pins
     Info (21059): Implemented 58 output pins
-    Info (21061): Implemented 795 logic cells
+    Info (21061): Implemented 797 logic cells
     Info (21064): Implemented 34 RAM segments
     Info (21062): Implemented 1 DSP elements
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 21 warnings
-    Info: Peak virtual memory: 543 megabytes
-    Info: Processing ended: Mon Jan 27 19:26:00 2025
-    Info: Elapsed time: 00:00:09
-    Info: Total CPU time (on all processors): 00:00:25
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 20 warnings
+    Info: Peak virtual memory: 544 megabytes
+    Info: Processing ended: Mon Jan 27 22:00:29 2025
+    Info: Elapsed time: 00:00:10
+    Info: Total CPU time (on all processors): 00:00:24
 
 

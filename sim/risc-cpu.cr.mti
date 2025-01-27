@@ -25,15 +25,6 @@ Questa Intel Starter FPGA Edition-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
 -- Compiling entity reg
 -- Compiling architecture Behavioral of reg
 
-} {} {}} /home/enzo/Documents/risc-cpu/src/cpu.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/enzo/Documents/risc-cpu/src/cpu.vhd
-Questa Intel Starter FPGA Edition-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity cpu
--- Compiling architecture Behavioral of cpu
-
 } {} {}} /home/enzo/Documents/risc-cpu/src/pcounter.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/enzo/Documents/risc-cpu/src/pcounter.vhd
 Questa Intel Starter FPGA Edition-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
 -- Loading package STANDARD
@@ -78,21 +69,5 @@ Questa Intel Starter FPGA Edition-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
 -- Loading package NUMERIC_STD
 -- Compiling entity seg7
 -- Compiling architecture Behavioral of seg7
-
-} {} {}} /home/enzo/Documents/risc-cpu/src/pipeline.vhd {2 {vcom -work work -2002 -explicit -vopt -stats=none /home/enzo/Documents/risc-cpu/src/pipeline.vhd
-Questa Intel Starter FPGA Edition-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity pipeline
--- Compiling architecture pipeline_a of pipeline
-** Warning: /home/enzo/Documents/risc-cpu/src/pipeline.vhd(37): (vcom-1937) Choice in CASE statement alternative must be locally static.
-** Warning: /home/enzo/Documents/risc-cpu/src/pipeline.vhd(40): (vcom-1937) Choice in CASE statement alternative must be locally static.
-** Warning: /home/enzo/Documents/risc-cpu/src/pipeline.vhd(43): (vcom-1937) Choice in CASE statement alternative must be locally static.
-** Warning: /home/enzo/Documents/risc-cpu/src/pipeline.vhd(46): (vcom-1937) Choice in CASE statement alternative must be locally static.
-** Warning: /home/enzo/Documents/risc-cpu/src/pipeline.vhd(49): (vcom-1937) Choice in CASE statement alternative must be locally static.
-** Warning: /home/enzo/Documents/risc-cpu/src/pipeline.vhd(52): (vcom-1937) Choice in CASE statement alternative must be locally static.
-** Warning: /home/enzo/Documents/risc-cpu/src/pipeline.vhd(55): (vcom-1937) Choice in CASE statement alternative must be locally static.
 
 } {} {}}

@@ -293,7 +293,7 @@ begin
     status_input <= alu_status;
     reg_data_in  <= alu_result;
     general_clk  <= MAX10_CLK1_50;
-    general_rst  <= '0';
+    general_rst  <= not KEY(1);
 
     -- Decoder Instantiation
     decoder_inst : decoder

@@ -29,8 +29,7 @@ begin
         variable counter : unsigned(3 downto 0) := to_unsigned(1, 4);
     begin
         if rst = '1' then
-            counter := to_unsigned(0, 4);
-            stage <= "00000001";
+            counter := to_unsigned(1, 4);
         else
             if rising_edge(clk) then
                 case counter is
