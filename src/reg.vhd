@@ -27,7 +27,7 @@ architecture Behavioral of reg is
 
     type reg is array(0 to 7) of std_logic_vector(7 downto 0);
 
-    signal data_reg : reg := (others => (others => '0'));
+    signal data_reg : reg;
 
 begin
     process (rst, clk)

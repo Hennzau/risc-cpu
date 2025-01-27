@@ -22,7 +22,7 @@ architecture Behavioral of ram is
 
     type ram is array(0 to 255) of std_logic_vector(7 downto 0);
 
-    signal data_ram : ram := (others => (others => '0'));
+    signal data_ram : ram;
 
 begin
     process (rst, clk)

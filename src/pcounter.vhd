@@ -3,7 +3,7 @@ library ieee;
 use IEEE.STD_LOGIC_1164.all;
 use ieee.numeric_std.all;
 
-entity fetch is
+entity pcounter is
     port (
         en  : in std_logic;
         clk : in std_logic;
@@ -17,7 +17,7 @@ entity fetch is
     );
 end entity;
 
-architecture Behavioral of fetch is
+architecture Behavioral of pcounter is
 
     signal address : std_logic_vector(7 downto 0) := "00000000";
 

@@ -24,7 +24,7 @@ entity cpu is
 end cpu;
 
 architecture Behavioral of cpu is
-    component fetch
+    component pcounter
         port (
             en  : in std_logic;
             clk : in std_logic;
@@ -212,8 +212,8 @@ architecture Behavioral of cpu is
     signal decoder_ram_rw : std_logic := '0';
 
 begin
-
-    fetch_inst : fetch
+    -- Program Counter Instantiation
+    pcounter_inst : pcounter
     port map(
         en          => fetch_en,
         clk         => general_clk,
