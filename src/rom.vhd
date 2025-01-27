@@ -105,28 +105,125 @@ architecture Behavioral of rom is
     type rom is array(0 to 255) of std_logic_vector(25 downto 0);
 
     signal rom_data : rom := (
-            FORMAT(IMM) & MOV & R0 & imm(10) & IGNORE,      -- R0=10
-            FORMAT(BOTH) & ALU(ADD) & R1 & R0_8 & imm(20),  -- R1=30,R0=10
-            FORMAT(REG) & ALU(SUB) & R2 & R1_8 & R0_8,      -- R2=20, R1=30, R0=10
-            FORMAT(BOTH) & ALU(MUL) & R3 & R2_8 & imm(2),   -- R3=40, R2=20, R1=30, R0=10
-            FORMAT(REG) & ALU(DIV) & R4 & R3_8 & R0_8,      -- R4=4, R3=40, R2=20, R1=30, R0=10
-            FORMAT(REG) & ALU(RSHIFT) & R5 & R4_8 & IGNORE, -- R5=2, R4=4, R3=40, R2=20, R1=30, R0=10
+            -- Program list and mapping. total of 0 -> 64 programs.
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,    -- Selector
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(64)     &       IGNORE,
 
-            --FORMAT(BOTH) & ALU(SUB) & R1 & R1_8 & imm(31),  -- Test JUMP
-            --FORMAT(IMM) & JUMP(NP) & addr(9) & IGNORE,
+            -- Selector Program, starts at address 64 (65th instruction).
 
-            FORMAT(REG) & ALU(LSHIFT) & R5 & R5_8 & IGNORE, -- R5=4, R4=4, R3=40, R2=20, R1=30, R0=10
-            FORMAT(REG) & MOV & R6 & R5_8 & IGNORE,         -- R6=4, R5=4, R4=4, R3=40, R2=20, R1=30, R0=10
-            FORMAT(REG) & ALU(INC) & R7 & R6_8 & IGNORE,    -- R7=5, R6=4, R5=4, R4=4, R3=40, R2=20, R1=30, R0=10
-            FORMAT(REG) & ALU(DEC) & R7 & R7_8 & IGNORE,    -- R7=4, R6=4, R5=4, R4=4, R3=40, R2=20, R1=30, R0=10
+            -- Load the SW and print it
+            LOAD_SW                         &   R0          &   IGNORE      &       IGNORE,
+            FORMAT(REG)         &   PRINT                   &   R0_8        &       IGNORE,
 
-            RAM(FROM_REG) & R7 & addr(28) & IGNORE, -- R7=4, R6=4, R5=4, R4=4, R3=40, R2=20, R1=30, R0=10
-            RAM(TO_REG) & R1 & addr(28) & IGNORE,   -- R7=4, R6=4, R5=4, R4=4, R3=40, R2=20, R1=4, R0=10
+            -- Load the KEY and compare it : Zero means pressed. We store current counter to loop back
+            LOAD_KEY                        &   R1          &   IGNORE      &       IGNORE,
+            FORMAT(BOTH)    &   ALU(SUB)    &   R1          &   R1_8        &       imm(1),
 
-            FORMAT(REG) & ALU(LSHIFT) & R1 & R1_8 & IGNORE, -- R7=4, R6=4, R5=4, R4=4, R3=40, R2=20, R1=8, R0=10
-            FORMAT(REG) & ALU(LSHIFT) & R1 & R1_8 & IGNORE, -- R7=4, R6=4, R5=4, R4=4, R3=40, R2=20, R1=16, R0=10
+            FORMAT(IMM)     &           JUMP(Z)             &   addr(0)     &       IGNORE,
 
-            FORMAT(REG) & PRINT & R1_8 & IGNORE,
+            -- We pass this when pressed but to avoid looping we wait for unpressed to go further
+            LOAD_PC                         &   R0          &   IGNORE      &       IGNORE,
+            LOAD_KEY                        &   R1          &   IGNORE      &       IGNORE,
+            FORMAT(BOTH)    &   ALU(SUB)    &   R1          &   R1_8        &       imm(1),
+
+            FORMAT(REG)     &           JUMP(NZ)            &   R0_8        &       IGNORE,
+
+            -- We get the current SW and we will perform some conditions to only validate
+            -- a program number in [0, 63]
+            LOAD_SW                         &   R0          &   IGNORE      &       IGNORE,
+
+            FORMAT(BOTH)    &   ALU(SUB)    &   R1          &   R0_8        &       imm(0),
+            FORMAT(IMM)     &       JUMP(NP)                &   addr(0)     &       IGNORE, -- restart from the begining if negative
+            FORMAT(BOTH)    &   ALU(SUB)    &   R1          &   R0_8        &       imm(64),
+            FORMAT(IMM)     &       JUMP(P)                 &   addr(0)     &       IGNORE, -- restart from the begining more than 63
+
+            FORMAT(REG)         &   SPRINT                  &   R0_8        &       IGNORE,
+            FORMAT(REG)     &       JUMP(ADDR)              &   R0_8        &       IGNORE,
+
+            --FORMAT(IMM) & MOV & R0 & imm(10) & IGNORE,      -- R0=10
+            --FORMAT(BOTH) & ALU(ADD) & R1 & R0_8 & imm(20),  -- R1=30,R0=10
+            --FORMAT(REG) & ALU(SUB) & R2 & R1_8 & R0_8,      -- R2=20, R1=30, R0=10
+            --FORMAT(BOTH) & ALU(MUL) & R3 & R2_8 & imm(2),   -- R3=40, R2=20, R1=30, R0=10
+            --FORMAT(REG) & ALU(DIV) & R4 & R3_8 & R0_8,      -- R4=4, R3=40, R2=20, R1=30, R0=10
+            --FORMAT(REG) & ALU(RSHIFT) & R5 & R4_8 & IGNORE, -- R5=2, R4=4, R3=40, R2=20, R1=30, R0=10
+
+            ----FORMAT(BOTH) & ALU(SUB) & R1 & R1_8 & imm(31),  -- Test JUMP
+            ----FORMAT(IMM) & JUMP(NP) & addr(9) & IGNORE,
+
+            --FORMAT(REG) & ALU(LSHIFT) & R5 & R5_8 & IGNORE, -- R5=4, R4=4, R3=40, R2=20, R1=30, R0=10
+            --FORMAT(REG) & MOV & R6 & R5_8 & IGNORE,         -- R6=4, R5=4, R4=4, R3=40, R2=20, R1=30, R0=10
+            --FORMAT(REG) & ALU(INC) & R7 & R6_8 & IGNORE,    -- R7=5, R6=4, R5=4, R4=4, R3=40, R2=20, R1=30, R0=10
+            --FORMAT(REG) & ALU(DEC) & R7 & R7_8 & IGNORE,    -- R7=4, R6=4, R5=4, R4=4, R3=40, R2=20, R1=30, R0=10
+
+            --RAM(FROM_REG) & R7 & addr(28) & IGNORE, -- R7=4, R6=4, R5=4, R4=4, R3=40, R2=20, R1=30, R0=10
+            --RAM(TO_REG) & R1 & addr(28) & IGNORE,   -- R7=4, R6=4, R5=4, R4=4, R3=40, R2=20, R1=4, R0=10
+
+            --FORMAT(REG) & ALU(LSHIFT) & R1 & R1_8 & IGNORE, -- R7=4, R6=4, R5=4, R4=4, R3=40, R2=20, R1=8, R0=10
+            --FORMAT(REG) & ALU(LSHIFT) & R1 & R1_8 & IGNORE, -- R7=4, R6=4, R5=4, R4=4, R3=40, R2=20, R1=16, R0=10
+
+            --FORMAT(REG) & PRINT & R1_8 & IGNORE,
 
         others => NOP
     );

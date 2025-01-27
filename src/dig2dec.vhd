@@ -50,6 +50,8 @@ begin
         a2    := resize((a_abs / 10) mod 10, a2'length);
         a1    := resize(a_abs mod 10, a1'length);
 
+        minus := 3;
+
         if a_abs >= 100 then
             seg2 <= std_logic_vector(a3);
         else
