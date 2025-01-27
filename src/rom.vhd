@@ -112,8 +112,8 @@ architecture Behavioral of rom is
             FORMAT(REG) & ALU(DIV) & R4 & R3_8 & R0_8,      -- R4=4, R3=40, R2=20, R1=30, R0=10
             FORMAT(REG) & ALU(RSHIFT) & R5 & R4_8 & IGNORE, -- R5=2, R4=4, R3=40, R2=20, R1=30, R0=10
 
-            FORMAT(BOTH) & ALU(SUB) & R1 & R1_8 & imm(31),  -- Test JUMP
-            FORMAT(IMM) & JUMP(NP) & addr(9) & IGNORE,
+            --FORMAT(BOTH) & ALU(SUB) & R1 & R1_8 & imm(31),  -- Test JUMP
+            --FORMAT(IMM) & JUMP(NP) & addr(9) & IGNORE,
 
             FORMAT(REG) & ALU(LSHIFT) & R5 & R5_8 & IGNORE, -- R5=4, R4=4, R3=40, R2=20, R1=30, R0=10
             FORMAT(REG) & MOV & R6 & R5_8 & IGNORE,         -- R6=4, R5=4, R4=4, R3=40, R2=20, R1=30, R0=10

@@ -1,5 +1,5 @@
 Analysis & Elaboration report for risc-cpu
-Mon Jan 27 13:25:48 2025
+Mon Jan 27 13:47:17 2025
 Quartus Prime Version 21.1.0 Build 842 10/21/2021 SJ Lite Edition
 
 
@@ -45,7 +45,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Elaboration Summary                                                   ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Elaboration Status      ; Successful - Mon Jan 27 13:25:48 2025       ;
+; Analysis & Elaboration Status      ; Successful - Mon Jan 27 13:47:17 2025       ;
 ; Quartus Prime Version              ; 21.1.0 Build 842 10/21/2021 SJ Lite Edition ;
 ; Revision Name                      ; risc-cpu                                    ;
 ; Top-level Entity Name              ; cpu                                         ;
@@ -244,7 +244,7 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Elaboration
     Info: Version 21.1.0 Build 842 10/21/2021 SJ Lite Edition
-    Info: Processing started: Mon Jan 27 13:25:38 2025
+    Info: Processing started: Mon Jan 27 13:47:08 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off risc-cpu -c risc-cpu --analysis_and_elaboration
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
@@ -296,10 +296,43 @@ Info (12128): Elaborating entity "pipeline" for hierarchy "pipeline:pipeline_ins
 Info (12128): Elaborating entity "screen" for hierarchy "screen:screen_inst" File: /home/enzo/Documents/risc-cpu/src/cpu.vhd Line: 356
 Info (12128): Elaborating entity "seg7" for hierarchy "screen:screen_inst|seg7:seg7_0" File: /home/enzo/Documents/risc-cpu/src/screen.vhd Line: 59
 Info (12128): Elaborating entity "dig2dec" for hierarchy "screen:screen_inst|dig2dec:dig2dec_inst" File: /home/enzo/Documents/risc-cpu/src/screen.vhd Line: 101
-Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 1 warning
+Warning (10631): VHDL Process Statement warning at dig2dec.vhd(23): inferring latch(es) for signal or variable "minus", which holds its previous value in one or more paths through the process File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 23
+Info (10041): Inferred latch for "minus[0]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[1]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[2]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[3]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[4]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[5]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[6]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[7]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[8]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[9]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[10]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[11]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[12]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[13]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[14]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[15]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[16]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[17]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[18]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[19]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[20]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[21]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[22]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[23]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[24]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[25]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[26]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[27]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[28]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[29]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[30]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info (10041): Inferred latch for "minus[31]" at dig2dec.vhd(60) File: /home/enzo/Documents/risc-cpu/src/dig2dec.vhd Line: 60
+Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 2 warnings
     Info: Peak virtual memory: 753 megabytes
-    Info: Processing ended: Mon Jan 27 13:25:48 2025
-    Info: Elapsed time: 00:00:10
+    Info: Processing ended: Mon Jan 27 13:47:17 2025
+    Info: Elapsed time: 00:00:09
     Info: Total CPU time (on all processors): 00:00:31
 
 

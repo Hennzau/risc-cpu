@@ -29,6 +29,8 @@ begin
         variable a3    : unsigned(3 downto 0); -- Les centaines (4 bits)
         variable a2    : unsigned(3 downto 0); -- Les dizaines (4 bits)
         variable a1    : unsigned(3 downto 0); -- Les unités (4 bits)
+
+        variable minus : integer := 3;
     begin
         b1 := unsigned(data_b);
 
@@ -43,29 +45,36 @@ begin
 
         seg4 <= std_logic_vector(b3); -- Les unités
 
-        a_abs := unsigned(abs(signed(data_a)));          -- Convertir en valeur absolue et en unsigned
-        a3    := resize(a_abs / 100, a3'length);         -- Les centaines
-        a2    := resize((a_abs / 10) mod 10, a2'length); -- Les dizaines
-        a1    := resize(a_abs mod 10, a1'length);        -- Les unités
+        a_abs := unsigned(abs(signed(data_a)));
+        a3    := resize(a_abs / 100, a3'length);
+        a2    := resize((a_abs / 10) mod 10, a2'length);
+        a1    := resize(a_abs mod 10, a1'length);
 
         if a_abs >= 100 then
-            seg2 <= std_logic_vector(a3); -- Les centaines
+            seg2 <= std_logic_vector(a3);
         else
-            seg2 <= X"B"; -- Vide
+            seg2 <= X"B";
+            minus := 2;
         end if;
 
         if a_abs >= 10 then
-            seg1 <= std_logic_vector(a2); -- Les dizaines
+            seg1 <= std_logic_vector(a2);
         else
-            seg1 <= X"B"; -- Vide
+            seg1 <= X"B";
+            minus := 1;
         end if;
 
-        seg0 <= std_logic_vector(a1); -- Toujours affiché pour les unités
+        seg0 <= std_logic_vector(a1);
+        seg3 <= X"B";
 
         if signed(data_a) < 0 then
-            seg3 <= X"a";
-        else
-            seg3 <= X"b";
+            if minus = 3 then
+                seg3 <= X"a";
+            elsif minus = 2 then
+                seg2 <= X"a";
+            elsif minus = 1 then
+                seg1 <= X"a";
+            end if;
         end if;
 
     end process;
