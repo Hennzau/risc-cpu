@@ -17,6 +17,7 @@ entity decoder is
 
         decoder_pc  : in std_logic_vector(7 downto 0);
         decoder_sw  : in std_logic_vector(7 downto 0);
+        decoder_key : in std_logic;
 
         alu_sel : out std_logic_vector(2 downto 0) := "000";
         alu_a   : out std_logic_vector(7 downto 0) := "00000000";
@@ -116,7 +117,37 @@ begin
                                 when others =>
                                     null;
                             end case;
+                        when "01011" => -- SPRINT (small print)
+                            reg_rw <= '0';
+                            ram_rw <= '0';
 
+                            case format is
+                                when "00" => -- ALL REG
+                                    decoder_out_s <= reg_value_a;
+                                when "01" => -- ALL IMM
+                                    decoder_out_s <= A;
+                                when "10" => -- Duplicated from 00
+                                    decoder_out_s <= reg_value_a;
+                                when others =>
+                                    null;
+                            end case;
+                        when "01000" => -- LOAD PC
+                            reg_rw <= '1';
+                            ram_rw <= '0';
+
+                            alu_a <= decoder_pc;
+
+                        when "01001" => -- LOAD SW
+                            reg_rw <= '1';
+                            ram_rw <= '0';
+
+                            alu_a <= decoder_sw;
+                        when "01010" => -- LOAD KEY
+                            reg_rw <= '1';
+                            ram_rw <= '0';
+
+                            alu_a(7 downto 1) <= "0000000";
+                            alu_a(0) <= decoder_key;
                         when "10001" => -- MOV
                             reg_rw <= '1';
                             ram_rw <= '0';

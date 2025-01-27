@@ -46,6 +46,7 @@ architecture Behavioral of rom is
 
     constant MOV   : std_logic_vector(4 downto 0) := "10001";
     constant PRINT : std_logic_vector(7 downto 0) := "10011" & "000";
+    constant SPRINT : std_logic_vector(7 downto 0) := "01011" & "000";
 
     type ram_type is (FROM_REG, TO_REG);
 
@@ -86,6 +87,10 @@ architecture Behavioral of rom is
 
     constant NOP    : std_logic_vector(25 downto 0) := "00" & "10010" & "000" & "00000000" & "00000000";
     constant IGNORE : std_logic_vector(7 downto 0)  := "00000000";
+
+    constant LOAD_PC : std_logic_vector(6 downto 0) := "00" & "01000";
+    constant LOAD_SW : std_logic_vector(6 downto 0) := "00" & "01001";
+    constant LOAD_KEY : std_logic_vector(6 downto 0) := "00" & "01010";
 
     function imm(value : integer) return std_logic_vector is
     begin

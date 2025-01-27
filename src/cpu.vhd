@@ -122,6 +122,7 @@ architecture Behavioral of cpu is
 
             decoder_sw  : in std_logic_vector(7 downto 0);
             decoder_pc  : in std_logic_vector(7 downto 0);
+            decoder_key : in std_logic;
 
             alu_sel : out std_logic_vector(2 downto 0);
             alu_a   : out std_logic_vector(7 downto 0);
@@ -308,6 +309,7 @@ begin
 
         decoder_pc => rom_address,
         decoder_sw  => SW(7 downto 0),
+        decoder_key => KEY(0),
 
         alu_sel => alu_sel,
         alu_a   => alu_a,
