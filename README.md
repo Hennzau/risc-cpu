@@ -1,1 +1,3 @@
 # risc-cpu
+
+![](arch.png)
