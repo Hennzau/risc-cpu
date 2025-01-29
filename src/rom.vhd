@@ -108,9 +108,9 @@ architecture Behavioral of rom is
             -- Program list and mapping. total of 0 -> 8 programs.
             FORMAT(IMM)     &           JUMP(ADDR)          &   addr(8)     &       IGNORE,    -- Selector
             FORMAT(IMM)     &           JUMP(ADDR)          &   addr(24)    &       IGNORE,    -- Addition
-            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(24)    &       IGNORE,
-            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(24)    &       IGNORE,
-            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(24)    &       IGNORE,
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(49)    &       IGNORE,    -- Multiplication
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(74)    &       IGNORE,    -- Division
+            FORMAT(IMM)     &           JUMP(ADDR)          &   addr(99)    &       IGNORE,    -- Fibonacci
             FORMAT(IMM)     &           JUMP(ADDR)          &   addr(24)    &       IGNORE,
             FORMAT(IMM)     &           JUMP(ADDR)          &   addr(24)    &       IGNORE,
             FORMAT(IMM)     &           JUMP(ADDR)          &   addr(24)    &       IGNORE,
@@ -185,10 +185,164 @@ architecture Behavioral of rom is
                 FORMAT(REG)     &   ALU(ADD)    &   R2          &   R0_8        &       R1_8,
                 FORMAT(REG)         &   PRINT                   &   R2_8        &       IGNORE,
 
-            -- Loop at the end
-            FORMAT(IMM)     &       SPRINT                  &   imm(0)      &       IGNORE,
-            LOAD_PC                         &   R0          &   IGNORE      &       IGNORE,
-            FORMAT(REG)     &           JUMP(NZ)            &   R0_8        &       IGNORE,
+                -- Loop at the end
+                FORMAT(IMM)     &       SPRINT                  &   imm(0)      &       IGNORE,
+                LOAD_PC                         &   R0          &   IGNORE      &       IGNORE,
+                FORMAT(REG)     &           JUMP(NZ)            &   R0_8        &       IGNORE,
+
+            -- Multiplication
+                -- Load the SW and print it. Variable X
+                LOAD_PC                         &   R7          &   IGNORE      &       IGNORE,
+                LOAD_SW                         &   R0          &   IGNORE      &       IGNORE,
+                FORMAT(REG)         &   PRINT                   &   R0_8        &       IGNORE,
+
+                -- Load the KEY and compare it : Zero means pressed.
+                LOAD_KEY                        &   R2          &   IGNORE      &       IGNORE,
+                FORMAT(BOTH)    &   ALU(SUB)    &   R2          &   R2_8        &       imm(1),
+
+                FORMAT(REG)     &           JUMP(Z)             &   R7_8        &       IGNORE,
+
+                -- We pass this when pressed but to avoid looping we wait for unpressed to go further
+                LOAD_PC                         &   R7          &   IGNORE      &       IGNORE,
+                LOAD_KEY                        &   R2          &   IGNORE      &       IGNORE,
+                FORMAT(BOTH)    &   ALU(SUB)    &   R2          &   R2_8        &       imm(1),
+
+                FORMAT(REG)     &           JUMP(NZ)            &   R7_8        &       IGNORE,
+
+                -- Load the SW and print it. Variable Y
+                LOAD_PC                         &   R7          &   IGNORE      &       IGNORE,
+                LOAD_SW                         &   R1          &   IGNORE      &       IGNORE,
+                FORMAT(REG)         &   PRINT                   &   R1_8        &       IGNORE,
+
+                -- Load the KEY and compare it : Zero means pressed.
+                LOAD_KEY                        &   R2          &   IGNORE      &       IGNORE,
+                FORMAT(BOTH)    &   ALU(SUB)    &   R2          &   R2_8        &       imm(1),
+
+                FORMAT(REG)     &           JUMP(Z)             &   R7_8        &       IGNORE,
+
+                -- We pass this when pressed but to avoid looping we wait for unpressed to go further
+                LOAD_PC                         &   R7          &   IGNORE      &       IGNORE,
+                LOAD_KEY                        &   R2          &   IGNORE      &       IGNORE,
+                FORMAT(BOTH)    &   ALU(SUB)    &   R2          &   R2_8        &       imm(1),
+
+                FORMAT(REG)     &           JUMP(NZ)            &   R7_8        &       IGNORE,
+
+                FORMAT(REG)     &   ALU(MUL)    &   R2          &   R0_8        &       R1_8,
+                FORMAT(REG)         &   PRINT                   &   R2_8        &       IGNORE,
+
+                -- Loop at the end
+                FORMAT(IMM)     &       SPRINT                  &   imm(0)      &       IGNORE,
+                LOAD_PC                         &   R0          &   IGNORE      &       IGNORE,
+                FORMAT(REG)     &           JUMP(NZ)            &   R0_8        &       IGNORE,
+
+            -- Division
+                -- Load the SW and print it. Variable X
+                LOAD_PC                         &   R7          &   IGNORE      &       IGNORE,
+                LOAD_SW                         &   R0          &   IGNORE      &       IGNORE,
+                FORMAT(REG)         &   PRINT                   &   R0_8        &       IGNORE,
+
+                -- Load the KEY and compare it : Zero means pressed.
+                LOAD_KEY                        &   R2          &   IGNORE      &       IGNORE,
+                FORMAT(BOTH)    &   ALU(SUB)    &   R2          &   R2_8        &       imm(1),
+
+                FORMAT(REG)     &           JUMP(Z)             &   R7_8        &       IGNORE,
+
+                -- We pass this when pressed but to avoid looping we wait for unpressed to go further
+                LOAD_PC                         &   R7          &   IGNORE      &       IGNORE,
+                LOAD_KEY                        &   R2          &   IGNORE      &       IGNORE,
+                FORMAT(BOTH)    &   ALU(SUB)    &   R2          &   R2_8        &       imm(1),
+
+                FORMAT(REG)     &           JUMP(NZ)            &   R7_8        &       IGNORE,
+
+                -- Load the SW and print it. Variable Y
+                LOAD_PC                         &   R7          &   IGNORE      &       IGNORE,
+                LOAD_SW                         &   R1          &   IGNORE      &       IGNORE,
+                FORMAT(REG)         &   PRINT                   &   R1_8        &       IGNORE,
+
+                -- Load the KEY and compare it : Zero means pressed.
+                LOAD_KEY                        &   R2          &   IGNORE      &       IGNORE,
+                FORMAT(BOTH)    &   ALU(SUB)    &   R2          &   R2_8        &       imm(1),
+
+                FORMAT(REG)     &           JUMP(Z)             &   R7_8        &       IGNORE,
+
+                -- We pass this when pressed but to avoid looping we wait for unpressed to go further
+                LOAD_PC                         &   R7          &   IGNORE      &       IGNORE,
+                LOAD_KEY                        &   R2          &   IGNORE      &       IGNORE,
+                FORMAT(BOTH)    &   ALU(SUB)    &   R2          &   R2_8        &       imm(1),
+
+                FORMAT(REG)     &           JUMP(NZ)            &   R7_8        &       IGNORE,
+
+                FORMAT(REG)     &   ALU(DIV)    &   R2          &   R0_8        &       R1_8,
+                FORMAT(REG)         &   PRINT                   &   R2_8        &       IGNORE,
+
+                -- Loop at the end
+                FORMAT(IMM)     &       SPRINT                  &   imm(0)      &       IGNORE,
+                LOAD_PC                         &   R0          &   IGNORE      &       IGNORE,
+                FORMAT(REG)     &           JUMP(NZ)            &   R0_8        &       IGNORE,
+
+            -- Fibonacci
+                -- Load the SW and print it. Variable N
+                LOAD_PC                         &   R7          &   IGNORE      &       IGNORE,
+                LOAD_SW                         &   R0          &   IGNORE      &       IGNORE,
+                FORMAT(REG)         &   PRINT                   &   R0_8        &       IGNORE,
+
+                -- Load the KEY and compare it : Zero means pressed.
+                LOAD_KEY                        &   R2          &   IGNORE      &       IGNORE,
+                FORMAT(BOTH)    &   ALU(SUB)    &   R2          &   R2_8        &       imm(1),
+
+                FORMAT(REG)     &           JUMP(Z)             &   R7_8        &       IGNORE,
+
+                -- We pass this when pressed but to avoid looping we wait for unpressed to go further
+                LOAD_PC                         &   R7          &   IGNORE      &       IGNORE,
+                LOAD_KEY                        &   R2          &   IGNORE      &       IGNORE,
+                FORMAT(BOTH)    &   ALU(SUB)    &   R2          &   R2_8        &       imm(1),
+
+                FORMAT(REG)     &           JUMP(NZ)            &   R7_8        &       IGNORE,
+
+                -- Loop to calculate this term of fibonacci
+
+                FORMAT(IMM)     &   ALU(ADD)    &   R1          &   imm(0)        &       imm(0), -- U_0 R1
+                FORMAT(IMM)     &   ALU(ADD)    &   R2          &   imm(1)        &       imm(0), -- U_1 R2
+                FORMAT(IMM)     &   ALU(ADD)    &   R3          &   imm(0)        &       imm(1), -- Counter 111
+
+                -- Print the result, warning, if N == 0, we have to print 0, so we copy 0 to R2
+
+                LOAD_PC                         &   R7          &   IGNORE      &       IGNORE, -- Load the current address to jump further
+                FORMAT(BOTH)    &   ALU(ADD)    &   R7          &   R7_8        &       imm(6), -- Further is 6 instructions after the LOAD_PC
+                FORMAT(BOTH)    &   ALU(SUB)    &   R6          &   R0_8        &       imm(0), -- check if N != 0
+                FORMAT(REG)     &           JUMP(NZ)            &   R7_8        &       IGNORE,
+                FORMAT(REG)     &   MOV         &   R2          &   R1_8        &       IGNORE, -- Further, only if N == 0, copy R1 to R2 (ie U_0 to U_1)
+                FORMAT(IMM)     &           JUMP(ADDR)          &   imm(131)    &       IGNORE,
+
+                -- Print the result, warning, if N == 1, we have to skip the loop
+
+                LOAD_PC                         &   R7          &   IGNORE      &       IGNORE, -- Load the current address to jump further
+                FORMAT(BOTH)    &   ALU(ADD)    &   R7          &   R7_8        &       imm(5), -- Further is 5 instructions after the LOAD_PC
+                FORMAT(BOTH)    &   ALU(SUB)    &   R6          &   R0_8        &       imm(1), -- check if N != 1
+                FORMAT(REG)     &           JUMP(NZ)            &   R7_8        &       IGNORE,
+                FORMAT(IMM)     &           JUMP(ADDR)          &   imm(131)    &       IGNORE,
+
+                -- Loop to calculate the next term
+
+                LOAD_PC                         &   R7          &   IGNORE      &       IGNORE, -- begining of the loop 123
+
+                FORMAT(REG)     &   MOV         &   R4          &   R2_8        &       IGNORE,
+                FORMAT(REG)     &   ALU(ADD)    &   R5          &   R4_8        &       R1_8,
+
+                FORMAT(REG)     &   MOV         &   R1          &   R4_8        &       IGNORE,
+                FORMAT(REG)     &   MOV         &   R2          &   R5_8        &       IGNORE,
+
+                FORMAT(BOTH)    &   ALU(ADD)    &   R3          &   R3_8        &       imm(1), -- Counter
+                FORMAT(REG)     &   ALU(SUB)    &   R6          &   R3_8        &       R0_8, -- Compare N to Counter
+                FORMAT(REG)     &           JUMP(NP)            &   R7_8        &       IGNORE, -- If N > Counter, loop
+
+
+                FORMAT(REG)         &   PRINT                   &   R2_8        &       IGNORE, -- Final result should be in R2 -- 131
+
+                -- Loop at the end
+                FORMAT(IMM)     &       SPRINT                  &   imm(0)      &       IGNORE,
+                LOAD_PC                         &   R0          &   IGNORE      &       IGNORE,
+                FORMAT(REG)     &           JUMP(NZ)            &   R0_8        &       IGNORE,
 
         others => NOP
     );
