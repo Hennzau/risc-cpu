@@ -30,7 +30,7 @@ architecture Behavioral of reg is
     signal data_reg : reg;
 
 begin
-    process (rst, clk)
+    WRITE: process (rst, clk)
     begin
         if rst = '1' then
             for k in 0 to 7 loop
@@ -41,14 +41,20 @@ begin
                 if en = '1' then
                     if rw = '1' then
                         data_reg(to_integer(unsigned(address))) <= data_in;
-                    else
-                        data_out_a <= data_reg(to_integer(unsigned(address_a)));
-                        data_out_b <= data_reg(to_integer(unsigned(address_b)));
+                    --else
+                    --    data_out_a <= data_reg(to_integer(unsigned(address_a)));
+                    --    data_out_b <= data_reg(to_integer(unsigned(address_b)));
                     end if;
                 end if;
             end if;
         end if;
 
+    end process;
+
+    READ: process (data_reg, address_a, address_b)
+    begin
+        data_out_a <= data_reg(to_integer(unsigned(address_a)));
+        data_out_b <= data_reg(to_integer(unsigned(address_b)));
     end process;
 
 end architecture;

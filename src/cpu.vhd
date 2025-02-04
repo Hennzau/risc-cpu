@@ -98,6 +98,22 @@ architecture Behavioral of cpu is
         );
     end component;
 
+    component flipflop_rw
+
+        port (
+            en  : in std_logic;
+            clk : in std_logic;
+            rst : in std_logic;
+
+            reg_rw_in  : in std_logic;
+            ram_rw_in  : in std_logic;
+
+            reg_rw_out : out std_logic;
+            ram_rw_out : out std_logic
+        );
+
+    end component;
+
     component status
         port (
             en  : in std_logic;
@@ -181,7 +197,6 @@ architecture Behavioral of cpu is
     signal rom_data    : std_logic_vector(25 downto 0) := "00000000000000000000000000";
 
     signal ram_rw       : std_logic := '0';
-    signal ram_rw_dec   : std_logic := '0';
     signal ram_en       : std_logic;
     signal ram_address  : std_logic_vector(7 downto 0) := "00000000";
     signal ram_data_in  : std_logic_vector(7 downto 0) := "00000000";
@@ -195,7 +210,6 @@ architecture Behavioral of cpu is
     signal alu_status : std_logic_vector(1 downto 0) := "00";
 
     signal reg_rw         : std_logic := '0';
-    signal reg_rw_dec     : std_logic := '0';
     signal reg_en         : std_logic;
     signal reg_address    : std_logic_vector(2 downto 0) := "000";
     signal reg_address_a  : std_logic_vector(2 downto 0) := "000";
@@ -295,6 +309,19 @@ begin
     general_clk  <= MAX10_CLK1_50;
     general_rst  <= not KEY(1);
 
+    -- Flip Flop Instantiation
+    flipflop_rw_inst : flipflop_rw
+    port map(
+        en         => alu_en,
+        clk        => general_clk,
+        rst        => general_rst,
+        reg_rw_in  => decoder_reg_rw,
+        ram_rw_in  => decoder_ram_rw,
+
+        reg_rw_out => reg_rw,
+        ram_rw_out => ram_rw
+    );
+
     -- Decoder Instantiation
     decoder_inst : decoder
     port map(
@@ -349,8 +376,8 @@ begin
     alu_en     <= pipeline_stage(5);
     status_en  <= pipeline_stage(6);
 
-    ram_rw <= pipeline_stage(7) and decoder_ram_rw;
-    reg_rw <= pipeline_stage(7) and decoder_reg_rw;
+    --ram_rw <= pipeline_stage(7) and decoder_ram_rw;
+    --reg_rw <= pipeline_stage(7) and decoder_reg_rw;
 
     -- Screen
     screen_inst : screen

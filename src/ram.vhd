@@ -25,20 +25,25 @@ architecture Behavioral of ram is
     signal data_ram : ram;
 
 begin
-    process (rst, clk)
+    WRITE: process (rst, clk)
     begin
         if rst /= '1' then
             if rising_edge(clk) then
                 if en = '1' then
                     if rw = '1' then
                         data_ram(to_integer(unsigned(address))) <= data_in;
-                    else
-                        data_out <= data_ram(to_integer(unsigned(address)));
+                    --else
+                    --    data_out <= data_ram(to_integer(unsigned(address)));
                     end if;
                 end if;
             end if;
         end if;
 
+    end process;
+
+    READ: process (data_ram, address)
+    begin
+        data_out <= data_ram(to_integer(unsigned(address)));
     end process;
 
 end architecture;
