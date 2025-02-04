@@ -276,3 +276,108 @@ begin
     end process;
 
 end architecture;
+
+library ieee;
+use IEEE.STD_LOGIC_1164.ALL;
+use ieee.numeric_std.ALL;
+
+entity decoder_tb is
+end decoder_tb;
+
+architecture Behavioral of decoder_tb is
+
+    -- Signals for decoder inputs
+    signal en            : std_logic := '0';
+    signal clk           : std_logic := '0';
+    signal instruction   : std_logic_vector(25 downto 0) := (others => '0');
+    signal reg_value_a   : std_logic_vector(7 downto 0) := (others => '0');
+    signal reg_value_b   : std_logic_vector(7 downto 0) := (others => '0');
+    signal ram_value     : std_logic_vector(7 downto 0) := (others => '0');
+    signal status        : std_logic_vector(1 downto 0) := (others => '0');
+    signal decoder_pc    : std_logic_vector(7 downto 0) := (others => '0');
+    signal decoder_sw    : std_logic_vector(7 downto 0) := (others => '0');
+    signal decoder_key   : std_logic := '0';
+
+    -- Signals for decoder outputs
+    signal alu_sel       : std_logic_vector(2 downto 0);
+    signal alu_a         : std_logic_vector(7 downto 0);
+    signal alu_b         : std_logic_vector(7 downto 0);
+    signal fetch_jump    : std_logic;
+    signal fetch_address : std_logic_vector(7 downto 0);
+    signal reg_rw        : std_logic;
+    signal reg_address   : std_logic_vector(2 downto 0);
+    signal reg_address_a : std_logic_vector(2 downto 0);
+    signal reg_address_b : std_logic_vector(2 downto 0);
+    signal ram_rw        : std_logic;
+    signal ram_address   : std_logic_vector(7 downto 0);
+    signal ram_data_in   : std_logic_vector(7 downto 0);
+    signal decoder_out_l : std_logic_vector(7 downto 0);
+    signal decoder_out_s : std_logic_vector(7 downto 0);
+
+    -- Clock period
+    constant clk_period : time := 10 ns;
+
+begin
+
+    -- Instantiate the decoder
+    uut: entity work.decoder
+        port map (
+            en             => en,
+            clk            => clk,
+            instruction    => instruction,
+            reg_value_a    => reg_value_a,
+            reg_value_b    => reg_value_b,
+            ram_value      => ram_value,
+            status         => status,
+            decoder_pc     => decoder_pc,
+            decoder_sw     => decoder_sw,
+            decoder_key    => decoder_key,
+            alu_sel        => alu_sel,
+            alu_a          => alu_a,
+            alu_b          => alu_b,
+            fetch_jump     => fetch_jump,
+            fetch_address  => fetch_address,
+            reg_rw         => reg_rw,
+            reg_address    => reg_address,
+            reg_address_a  => reg_address_a,
+            reg_address_b  => reg_address_b,
+            ram_rw         => ram_rw,
+            ram_address    => ram_address,
+            ram_data_in    => ram_data_in,
+            decoder_out_l  => decoder_out_l,
+            decoder_out_s  => decoder_out_s
+        );
+
+    -- Clock generation process
+    clk_process: process
+    begin
+        while true loop
+            clk <= '0';
+            wait for clk_period / 2;
+            clk <= '1';
+            wait for clk_period / 2;
+        end loop;
+    end process;
+
+    -- Test stimulus process
+    stimulus_process: process
+    begin
+        -- Test 1: ADD between two registers R0 and R1 put in R3
+        en <= '1';
+        instruction <= "00" & "00000" & "010" & "00000000" & "00000001";
+        wait for 10 ns;
+
+        -- Test 2: ADD between registers with reg_values for ALU A and B
+        instruction <= "00" & "00000" & "010" & "00000000" & "00000001";
+        reg_value_a <= "00001111"; -- Value in R0
+        reg_value_b <= "11110000"; -- Value in R1
+        wait for 10 ns;
+
+        -- Test 3: JUMP to addr 28
+        instruction <= "01" & "01100" & "000" & "00011100" & "00000000";
+        wait for 10 ns;
+
+        wait;
+    end process;
+
+end Behavioral;

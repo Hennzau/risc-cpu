@@ -92,3 +92,115 @@ begin
         end if;
     end process;
 end architecture;
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity alu_tb is
+end entity;
+
+architecture Behavioral of alu_tb is
+
+    -- Constants
+    constant clk_period : time := 10 ns;
+
+    -- Signals
+    signal en      : std_logic;
+    signal clk     : std_logic := '0';
+    signal rst     : std_logic;
+    signal sel     : std_logic_vector(2 downto 0);
+    signal a       : std_logic_vector(7 downto 0);
+    signal b       : std_logic_vector(7 downto 0);
+    signal result  : std_logic_vector(7 downto 0);
+    signal status  : std_logic_vector(1 downto 0);
+
+begin
+
+    -- Clock generation
+    clk_process : process
+    begin
+        while true loop
+            clk <= '0';
+            wait for clk_period / 2;
+            clk <= '1';
+            wait for clk_period / 2;
+        end loop;
+    end process;
+
+    -- DUT instantiation
+    uut: entity work.alu
+        port map (
+            en      => en,
+            clk     => clk,
+            rst     => rst,
+            sel     => sel,
+            a       => a,
+            b       => b,
+            result  => result,
+            status  => status
+        );
+
+    -- Test process
+    test_process : process
+    begin
+        -- Test 1: Reset
+        rst <= '1';
+        en <= '0';
+        sel <= "000";
+        a <= (others => '0');
+        b <= (others => '0');
+        wait for clk_period;
+        rst <= '0';
+        wait for clk_period;
+
+        -- Test 2: Addition
+        en <= '1';
+        sel <= "000"; -- ADD
+        a <= "00001010"; -- 10
+        b <= "00000101"; -- 5
+        wait for clk_period;
+
+        -- Test 3: Subtraction
+        sel <= "001"; -- SUB
+        a <= "00001010"; -- 10
+        b <= "00000101"; -- 5
+        wait for clk_period;
+
+        -- Test 4: Multiplication
+        sel <= "010"; -- MUL
+        a <= "00000011"; -- 3
+        b <= "00000010"; -- 2
+        wait for clk_period;
+
+        -- Test 5: Division
+        sel <= "011"; -- DIV
+        a <= "00001010"; -- 10
+        b <= "00000010"; -- 2
+        wait for clk_period;
+
+        -- Test 6: Increment
+        sel <= "100"; -- INC
+        a <= "00000101"; -- 5
+        wait for clk_period;
+
+        -- Test 7: Decrement
+        sel <= "101"; -- DEC
+        a <= "00000101"; -- 5
+        wait for clk_period;
+
+        -- Test 8: Logical Shift Left
+        sel <= "110"; -- LSHIFT
+        a <= "00000010"; -- 2
+        wait for clk_period;
+
+        -- Test 9: Logical Shift Right
+        sel <= "111"; -- RSHIFT
+        a <= "00000100"; -- 4
+        wait for clk_period;
+
+        -- End of test
+        wait;
+    end process;
+
+end Behavioral;
